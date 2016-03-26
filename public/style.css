@@ -5,6 +5,10 @@ body{
   font-family: 'Open Sans', sans-serif;
 }
 
+body > *{
+  max-width:80vw;
+}
+
 header{
     width: 100vw;
     height: 15vh;
