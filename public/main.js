@@ -1,5 +1,4 @@
-var $ = document.querySelectorAll;
-
+var $ = function(selector){return document.querySelectorAll(selector);}
 
 function setQuote(){
   //Experimental request API
