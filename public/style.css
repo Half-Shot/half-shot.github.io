@@ -1,5 +1,8 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
 body{
   margin:0px 10vw;
+  font-family: 'Open Sans', sans-serif;
 }
 
 header{
@@ -21,10 +24,12 @@ header > *{
 
 .title{
   font-size:2.5em;
+  font-weight:500;
 }
 .subtitle{
   font-size:1.5em;
   margin-top: 0.5em;
+  font-weight:200;
 }
 
 article{
