@@ -1,3 +1,6 @@
+var $ = document.querySelectorAll;
+
+
 function setQuote(){
   //Experimental request API
   var rQuotes = new Request("quotes.json");
@@ -5,7 +8,7 @@ function setQuote(){
       return response.json()
     }).then(function(quotes) {
       qn = Math.floor(Math.random() * quotes.length);
-      $("header h1").innerHTML = quotes[qn];
+      $("header h1")[0].innerHTML = quotes[qn];
     });
 }
 
