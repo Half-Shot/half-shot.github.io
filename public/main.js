@@ -7,7 +7,7 @@ function setQuote(){
       return response.json()
     }).then(function(quotes) {
       qn = Math.floor(Math.random() * quotes.length);
-      $("header h1")[0].innerHTML = quotes[qn];
+      $("header h2")[0].innerHTML = quotes[qn];
     });
 }
 
