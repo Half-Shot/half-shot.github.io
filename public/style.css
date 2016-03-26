@@ -7,6 +7,6 @@ header{
     height: 15vh;
 }
 
-header{
+header > *{
   float:left;
 }
