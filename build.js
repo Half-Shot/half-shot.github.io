@@ -7,7 +7,9 @@ const sass = require('node-sass');
 OUTPUTDIR = "./public/"
 SOURCEDIR = "./source/"
 
-SASS_FILE = path.join(SOURCEDIR,"style","main.scss")
+console.log("Starting build");
+
+SASS_FILE = path.join(SOURCEDIR,"style","main.scss");
 
 //Build
-console.log("Finished build")
+console.log("Finished build");
