@@ -19,6 +19,7 @@ PAGEDIR = path.join(SOURCEDIR,"pages");
 PAGE_OUT = OUTPUTDIR;//We put pages directly in the output dir.
 
 console.log("Building Pages");
+hs_pages.buildIndex(PAGEDIR);
 hs_pages.buildPages(PAGEDIR,TEMP_PAGE,PAGE_OUT);
 
 //Copy the static files

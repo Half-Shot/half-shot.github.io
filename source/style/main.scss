@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+@import 'nav.scss';
 
 body{
   margin:0px 10vw;
@@ -43,8 +44,5 @@ article{
 
 header .hsavatar{
   float:left;
-}
-
-.hsavatar{
-  width: 3vw;
+  width: 3.5vw;
 }
