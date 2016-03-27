@@ -1,0 +1,24 @@
+{
+  "name": "half-shot.uk",
+  "version": "1.0.0",
+  "description": "Half-Shot's site",
+  "main": "build.js",
+  "dependencies": {
+    "markdown-it": "^6.0.0",
+    "mustache": "^2.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Half-Shot/half-shot.uk.git"
+  },
+  "author": "Half-Shot",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/Half-Shot/half-shot.uk/issues"
+  },
+  "homepage": "https://github.com/Half-Shot/half-shot.uk#readme"
+}
