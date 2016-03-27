@@ -1,8 +1,10 @@
 const markdown = require('markdown-it');
 const mustache = require('mustache');
-const fs   = require('fs');
 const path = require('path');
-const sass = require('node-sass');
+
+//Local functions
+const hs_style = require('./style');
+const hs_markdown = require('./style');
 
 OUTPUTDIR = "./public/"
 SOURCEDIR = "./source/"
@@ -12,19 +14,10 @@ console.log("Starting build");
 SASS_FILE = path.join(SOURCEDIR,"style","main.scss");
 CSS_FILE = path.join(OUTPUTDIR,"style.css");
 
-console.log("Building SASS")
+console.log("Building SASS");
+hs_style.render(SASS_FILE,CSS_FILE);
+console.log("Finished SASS");
 
-sass.render({
-  file: SASS_FILE
-}, function(err, result) {
-	if(err){
-		console.error(err);
-	}
-	else
-	{
-		fs.writeFileSync(CSS_FILE,result.css);
-	}
-});
 
-//Build
+
 console.log("Finished build");
