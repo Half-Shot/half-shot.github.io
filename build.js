@@ -27,7 +27,7 @@ STATIC_FILES_OUT = path.join(OUTPUTDIR);
 ncp(path.join(FONTA_FILES,"scss"),path.join(SOURCEDIR,"style","font-awesome")); //Copy font scss
 hs_style.render(SASS_FILE,CSS_FILE);
 
-hs_pages.buildIndex(PAGEDIR,["blog"]);
+hs_pages.buildIndex(PAGEDIR,);//["blog"]);
 hs_pages.buildPages(PAGEDIR,TEMP_PAGE,PAGE_OUT);
 
 hs_blog.buildBlog(BLOGDIR,TEMP_PAGE,TEMP_PAGE,BLOG_OUT)
