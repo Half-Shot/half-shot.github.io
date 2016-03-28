@@ -10,3 +10,17 @@ nav ul{
   padding: 0;
   list-style-type: none;
 }
+
+.social-icons{
+  font-size: 2vw;
+  list-style-type: none;
+  float:right;
+}
+
+.social-icons .fa-twitter-square{
+  color:#1da1f2;
+}
+
+.social-icons li{
+  display: inline;
+}

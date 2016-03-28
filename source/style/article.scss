@@ -3,7 +3,7 @@ span.created-on{
 }
 
 span.created-on:before{
-  @extend .fa;
+  @extend .fa ;
   @extend .fa-calendar;
   margin-right: 5px;
 }
