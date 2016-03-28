@@ -1,8 +1,11 @@
 const markdown = require('markdown-it')();
+var fa = require('markdown-it-fontawesome');
 const mustache = require('mustache');
 const fs       = require('fs');
 const path     = require('path');
 const dateFormat = require('dateformat');
+
+markdown().use(fa);
 
 siteIndex = []
 
