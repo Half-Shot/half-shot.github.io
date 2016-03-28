@@ -4,6 +4,7 @@
   "description": "Half-Shot's site",
   "main": "build.js",
   "dependencies": {
+    "dateformat": "^1.0.12",
     "markdown-it": "^6.0.0",
     "mustache": "^2.2.1",
     "ncp": "^2.0.0",

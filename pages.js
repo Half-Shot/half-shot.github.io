@@ -2,10 +2,11 @@ const markdown = require('markdown-it')();
 const mustache = require('mustache');
 const fs       = require('fs');
 const path     = require('path');
+const dateFormat = require('dateformat');
 
 siteIndex = []
 
-function buildIndex(pagein){
+function buildIndex(pagein,extra){
   var files = fs.readdirSync(pagein);
   var index = [];
   for(var f in files){
@@ -15,7 +16,32 @@ function buildIndex(pagein){
       index.push(file.replace(".md",""));
     }
   }
+  if(extra){
+    index = index.concat(extra);
+  }
   siteIndex = index;
+}
+
+function buildPage(file,template,pageout){
+  var text = fs.readFileSync(file,'utf-8');
+  var md = markdown.render(text);
+  var stats = fs.statSync(file);
+  const formatString = "ddd dS mmm yyyy, HH:MM ";
+  var meta = {
+    siteindex:siteIndex,
+    article:md,
+    created:dateFormat(stats.birthtime,formatString),
+    modified:dateFormat(stats.ctime,formatString)
+  };
+  var html = mustache.render(template,meta);
+  var name = path.basename(file,'.md')+".html";
+
+  name = name.replace(/^\.+/,""); //Build hidden anyway
+  fs.writeFile(path.join(pageout,name),html,function(err){
+    if(err){
+      throw err;
+    }
+  });
 }
 
 function buildPages(pagein,template,pageout){
@@ -25,17 +51,7 @@ function buildPages(pagein,template,pageout){
     if(!err){
       for(var f in files){
         var file = files[f];
-        var text = fs.readFileSync(path.join(pagein,file),'utf-8');
-        var md = markdown.render(text);
-        var meta = {siteindex:siteIndex,article:md};
-        var html = mustache.render(mst,meta);
-        var name = path.basename(file,'.md')+".html";
-        name = name.replace(/^\.+/,""); //Build hidden anyway
-        fs.writeFile(path.join(pageout,name),html,function(err){
-          if(err){
-            throw err;
-          }
-        });
+        buildPage(path.join(pagein,file),mst,pageout);
       }
     }
     else{
@@ -46,5 +62,6 @@ function buildPages(pagein,template,pageout){
 
 module.exports = {
   buildPages:buildPages,
+  buildPage:buildPage,
   buildIndex:buildIndex
 }
