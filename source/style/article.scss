@@ -1,5 +1,8 @@
+span.created-on{
+  float:right;
+}
+
 span.created-on:before{
   content: "📅";
   margin-right: 5px;
-  float:right;
 }
