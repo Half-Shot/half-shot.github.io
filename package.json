@@ -10,7 +10,8 @@
     "markdown-it-fontawesome": "^0.2.0",
     "mustache": "^2.2.1",
     "ncp": "^2.0.0",
-    "node-sass": "^3.4.2"
+    "node-sass": "^3.4.2",
+    "rimraf": "^2.5.2"
   },
   "devDependencies": {},
   "scripts": {

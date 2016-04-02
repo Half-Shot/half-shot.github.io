@@ -55,12 +55,12 @@ function buildPost(mddata,attributes,template,pageout){
   });
 }
 
-function buildBlog(indir,blogtemplate,indextemplate,outdir){
-
+function buildBlog(indir,blogtemplate,indextemplate,outdir)
+{
 	if(!fs.statSync(outdir)){
 		fs.mkdir(outdir);
 	}
-	
+
 	blogtemplate = fs.readFileSync(blogtemplate,'utf-8');
 	indextemplate = fs.readFileSync(indextemplate,'utf-8');
 

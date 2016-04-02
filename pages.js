@@ -6,31 +6,32 @@ const fs       = require('fs');
 const path     = require('path');
 const dateFormat = require('dateformat');
 
-siteIndex = []
+SHOULD_INCLUDE_HTML = true;
 
-function buildIndex(pagein,extra){
+function buildIndex(pagein){
   var files = fs.readdirSync(pagein);
   var index = [];
   for(var f in files){
     var file = files[f];
     console.log("Page found:"+file);
     if(!file.startsWith('.')){
-      index.push(file.replace(".md",""));
+      var link = file.replace(/^\.+/,""); //Build hidden anyway
+      link = link.replace(/\.(.*)/, SHOULD_INCLUDE_HTML ? ".html" : "");
+      var name = link.replace(".html","");
+      name = name.replace(/_/g," ");
+      index.push({name:name,link:link});
     }
   }
-  if(extra){
-    index = index.concat(extra);
-  }
-  siteIndex = index;
-}
+  return index;
 
-function buildPage(file,template,pageout){
+}
+//Returns {"file":,"data":}
+function buildPage(file,template){
   var text = fs.readFileSync(file,'utf-8');
   var md = markdown.render(text);
   var stats = fs.statSync(file);
   const formatString = "ddd dS mmm yyyy, HH:MM ";
   var meta = {
-    siteindex:siteIndex,
     article:md,
     created:dateFormat(stats.birthtime,formatString),
     modified:dateFormat(stats.ctime,formatString)
@@ -39,27 +40,19 @@ function buildPage(file,template,pageout){
   var name = path.basename(file,'.md')+".html";
 
   name = name.replace(/^\.+/,""); //Build hidden anyway
-  fs.writeFile(path.join(pageout,name),html,function(err){
-    if(err){
-      throw err;
-    }
-  });
+  return {"file":name,"data":html};
 }
 
-function buildPages(pagein,template,pageout){
+function buildPages(pagein,template){
   var mst = fs.readFileSync(template,'utf-8');
   mustache.parse(mst);
-  fs.readdir(pagein,function(err,files){
-    if(!err){
-      for(var f in files){
-        var file = files[f];
-        buildPage(path.join(pagein,file),mst,pageout);
-      }
-    }
-    else{
-      throw err;
-    }
-  });
+  var files = fs.readdirSync(pagein);
+  var pages = [];
+  for(var f in files){
+    var file = files[f];
+    pages.push(buildPage(path.join(pagein,file),mst));
+  }
+  return pages;
 }
 
 module.exports = {

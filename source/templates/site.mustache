@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="/favicon.png" rel="icon"/>
+<title>$half-shot.uk</title>
+
+<header>
+  <img  class="hsavatar" src="/avatar.png">
+  <span class="title">$half-shot.uk</span>
+  <span class="subtitle">'Stuck in the past' edition</span>
+  <ul class="social-icons">
+    <li><a href="https://twitter.com/Half_Shot"><i class="fa fa-twitter-square"></i></a></li>
+    <li><a href="https://github.com/Half-Shot"><i class="fa fa-github-square"></i></a></li>
+  </ul>
+  <nav>
+    <ul>
+      {{#siteindex}}
+      <li><a href="{{{link}}}">{{name}}</a></li>
+      {{/siteindex}}
+    </ul>
+  </nav>
+</header>
+
+<article>
+  <span class="created-on">{{created}}</span>
+  {{{article}}}
+</article>
+<footer>
+ <p> Copyright © 2016 Will Hunt &lt;me@half-shot.uk&gt; </p>
+ <p> This work is free. You can redistribute it and/or modify it under the
+     terms of the Do What The Fuck You Want To Public License, Version 2,
+     as published by Sam Hocevar. See the <a href="https://github.com/Half-Shot/half-shot.uk/blob/master/COPYING">COPYING</a> file for more details.
+ </p>
+</footer>
+<script src="/main.js"></script>
