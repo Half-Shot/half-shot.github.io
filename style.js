@@ -3,7 +3,7 @@ const sass = require('node-sass');
 
 module.exports = {
   render: function (SASS_FILE,CSS_FILE) {
-    sass.render({
+    return sass.render({
       file: SASS_FILE
     }, function(err, result) {
     	if(err){

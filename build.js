@@ -45,8 +45,8 @@ ncp(path.join(FONTA_FILES,"fonts"),path.join(STATIC_FILES_OUT,"fonts"));
 
 //Set up wrapper
 hs_wrap.setTemplate(TEMP_SITE);
-
-ncp(path.join(FONTA_FILES,"scss"),path.join(SOURCEDIR,"style","font-awesome")); //Copy font scss
+FA = path.join(SOURCEDIR,"style","font-awesome");
+ncp(path.join(FONTA_FILES,"scss"),FA); //Copy font scss
 hs_style.render(SASS_FILE,CSS_FILE);
 
 // Pages
@@ -63,5 +63,8 @@ hs_pages.buildPages(PAGEDIR,TEMP_PAGE).forEach(function(item){
 //
 // hs_blog.buildBlog(BLOGDIR,TEMP_PAGE,TEMP_PAGE,BLOG_OUT)
 //
+
+//Cleanup
+rmdir.sync(FA); //Remove fonts
 
 console.log("Finished build");
