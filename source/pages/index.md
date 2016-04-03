@@ -5,6 +5,6 @@ I've (after countless iterations over the years) got a blogging system working o
 I'll probably put something more useful on the index at some point, but for now this is all yer getting.
 
 ### Projects
-* :folder: [Matrix MPD DJ](https://github.com/Half-Shot/matrix-mpd-dj)
-* :folder: [Matrix Python SDK](https://github.com/matrix-org/matrix-python-sdk) (contributations)
-* :exclamation-triangle: (Need to put on Github) Attorney Engine - Free Software game engine in C#
+* :fa-folder: [Matrix MPD DJ](https://github.com/Half-Shot/matrix-mpd-dj)
+* :fa-folder: [Matrix Python SDK](https://github.com/matrix-org/matrix-python-sdk) (contributations)
+* :fa-exclamation-triangle: (Need to put on Github) Attorney Engine - Free Software game engine in C#
