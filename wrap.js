@@ -33,6 +33,9 @@ function addPages(pages){
 
 function render(html,callback,extratags){
   var vars = Object.assign(MustacheVars, extratags);
+  for(var i in vars["siteindex"]){
+    vars["siteindex"][i]["link"] = vars["siteindex"][i]["link"].replace(/\.(.*)/, "");
+  }
   vars["content"] = html;
   //callback(null,mustache.render(Template,vars));
   tidy(mustache.render(Template,vars),TIDY_OPTS,callback);

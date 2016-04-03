@@ -9,7 +9,7 @@ const walk 		 = require('walk');
 const dateFormat = require('dateformat');
 const hs_pages     = require('./pages');
 
-const SHOULD_INCLUDE_HTML = false;
+const SHOULD_INCLUDE_HTML = true;
 
 /**
    Blog page format:
@@ -79,7 +79,7 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		var date = new Date(attributes["created"]);
 		var categoryString = root.replace(indir,"");
 		var name = fileStats.name;
-		name = name.replace(/\.(.*)/, SHOULD_INCLUDE_HTML ? ".html" : "");
+		name = name.replace(/\.(.*)/, ".html");
 		var fpath = path.join(date.getFullYear().toString(),dateFormat(date,"mm"),categoryString,name);
 
 		const formatStringC = "ddd dS mmm yyyy";
@@ -91,6 +91,7 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		attributes["article"] = markdown.render(data);
 		attributes["articlemd"] = data;
 		attributes["path"] = fpath;
+		attributes["path"] = attributes["path"].replace(/\.(.*)/, "");
 		attributes["categories"] = categoryString.replace(/\//," ");
 
 	  files.push(
