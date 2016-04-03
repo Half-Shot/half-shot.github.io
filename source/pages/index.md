@@ -4,7 +4,13 @@ I've (after countless iterations over the years) got a blogging system working o
 
 I'll probably put something more useful on the index at some point, but for now this is all yer getting.
 
-### Projects
-* :fa-folder: [Matrix MPD DJ](https://github.com/Half-Shot/matrix-mpd-dj)
-* :fa-folder: [Matrix Python SDK](https://github.com/matrix-org/matrix-python-sdk) (contributations)
+### Current Projects
+* :fa-github: [Matrix MPD DJ](https://github.com/Half-Shot/matrix-mpd-dj)
+* :fa-github: [Matrix Python SDK](https://github.com/matrix-org/matrix-python-sdk) (contributations)
 * :fa-exclamation-triangle: (Need to put on Github) Attorney Engine - Free Software game engine in C#
+
+### Past Projects
+
+* :fa-github: [Bread](https://github.com/Half-Shot/bread) Full PHP CMS system designed to be modular.
+* :fa-github: [Fatmo](https://github.com/Half-Shot/fatmo) File based system for reading netatmo devices.
+* :fa-github: [Shmup With Love](https://github.com/Half-Shot/ShmupWithLove) Shoot-em-up game (engine really) built within Love2D.
