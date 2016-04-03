@@ -3,9 +3,12 @@
 {{#posts}}
 <section class="blogpost">
   <h1><a href="/blog/{{{path}}}">{{title}}</a></h1>
-  <span class="author"><i class="fa fa-chevron-right"></i>{{categories}}</span>
-  <span class="author"><i class="fa fa-user"></i>{{author}}</span>
-  <span class="author"><i class="fa fa-calendar"></i>{{created}}</span>
+  {{#image}}
+    <img src="{{{image}}}" alt="{{title}}">
+  {{/image}}
+  <span class="categories"><i class="fa fa-chevron-right"></i> {{categories}}</span>
+  <span class="author"><i class="fa fa-user"></i> {{author}}</span>
+  <span class="created"><i class="fa fa-calendar"></i> {{created}}</span>
   <p>
     {{{article}}}
   </p>
