@@ -111,7 +111,7 @@ function buildBlog(indir,blogtemplate,indextemplate)
 	var subset = files.slice(0,9);//Get the last 10 items;
 	for (var f in subset){
 		subset[f] = subset[f].attributes;
-		subset[f].articlemd = subset[f].articlemd.substr(0,5) + (subset[f].articlemd.length > 5 ? "..." : "");
+		subset[f].articlemd = subset[f].articlemd.substr(0,150) + (subset[f].articlemd.length > 150 ? "..." : "");
 		subset[f].article = markdown.render(subset[f].articlemd);
 	}
 
