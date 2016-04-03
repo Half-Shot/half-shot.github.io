@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <meta charset="utf-8" />
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
 <link href="/favicon.png" rel="icon"/>
 <title>$half-shot.uk</title>
 
@@ -16,16 +16,15 @@
   <nav>
     <ul>
       {{#siteindex}}
-      <li><a href="{{{link}}}">{{name}}</a></li>
+      <li><a href="/{{{link}}}">{{name}}</a></li>
       {{/siteindex}}
     </ul>
   </nav>
 </header>
 
-<article>
-  <span class="created-on">{{created}}</span>
-  {{{article}}}
-</article>
+<main>
+  {{{content}}}
+</main>
 <footer>
  <p> Copyright © 2016 Will Hunt &lt;me@half-shot.uk&gt; </p>
  <p> This work is free. You can redistribute it and/or modify it under the
