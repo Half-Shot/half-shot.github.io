@@ -32,3 +32,8 @@ article.blogpost > img {
     display:block;
     max-height: 30vh;
 }
+
+
+article.blogpost p * {
+  max-width: 100%;
+}
