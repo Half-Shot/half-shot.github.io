@@ -7,6 +7,7 @@ I'll probably put something more useful on the index at some point, but for now 
 ### Current Projects
 * :fa-github: [Matrix MPD DJ](https://github.com/Half-Shot/matrix-mpd-dj)
 * :fa-github: [Matrix Python SDK](https://github.com/matrix-org/matrix-python-sdk) (contributations)
+* :fa-github: [Matrix .NET SDK](https://github.com/Half-Shot/matrix-dotnet-sdk)
 * :fa-exclamation-triangle: (Need to put on Github) Attorney Engine - Free Software game engine in C#
 
 ### Past Projects
