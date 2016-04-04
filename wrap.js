@@ -31,6 +31,15 @@ function addPages(pages){
   MustacheVars["siteindex"] = pages.concat(MustacheVars["siteindex"]);
 }
 
+function shiftPageOrder(page,newindex){
+  var f = MustacheVars["siteindex"].findIndex(function(e,i,a){ return e.name == page;});
+  if(f != -1){
+   var item = MustacheVars["siteindex"].splice(f,1);
+   MustacheVars["siteindex"].splice(newindex,0,item[0]);
+  }
+
+}
+
 function render(html,callback,extratags){
   var vars = Object.assign(MustacheVars, extratags);
   for(var i in vars["siteindex"]){
