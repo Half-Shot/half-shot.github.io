@@ -1,6 +1,6 @@
 @title 'Phoenix'
-@created 00:00 AM 1st April 2016
-@modified 00:30 AM 1st April 2016
+@created April 1, 2016
+@modified April 1, 2016 00:30:00
 @author Will
 @image images/blog/phoenix.jpg
 
