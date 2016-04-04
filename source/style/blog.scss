@@ -25,3 +25,10 @@ section.blogpost > img{
 section.blogpost > *{
   margin-left: 1vw;
 }
+
+article.blogpost > img {
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    max-height: 30vh;
+}
