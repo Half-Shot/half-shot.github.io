@@ -2,7 +2,7 @@
 @created April 1, 2016
 @modified April 1, 2016 00:30:00
 @author Will
-@image images/blog/phoenix.jpg
+@image /images/blog/phoenix.jpg
 
 Okay. So I bought half-shot.uk. And halfshot.uk...and half-shot.lol/halfshot.lol...
 
