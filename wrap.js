@@ -53,6 +53,7 @@ function render(html,callback,extratags){
 module.exports = {
     setTemplate:setTemplate,
     addPages:addPages,
+    shiftPageOrder:shiftPageOrder,
     setVar:setVar,
     render:render
 }
