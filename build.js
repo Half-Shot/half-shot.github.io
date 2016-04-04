@@ -60,6 +60,9 @@ console.log("Added blog posts!");
 hs_wrap.addPages(hs_pages.buildIndex(PAGEDIR));
 var pages = [];
 
+hs_wrap.shiftPageOrder("index",0);
+hs_wrap.shiftPageOrder("blog",1);
+
 hs_pages.buildPages(PAGEDIR,TEMP_PAGE).forEach(function(item){
   var p = path.join(PAGE_OUT,item["file"]);
   hs_wrap.render(item["data"],(err,html) => {
