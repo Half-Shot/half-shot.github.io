@@ -8,3 +8,4 @@ Every day I think of another stupid idea which I want to make a matrix bot/servi
 * A bot for steam profiles and random stats
 * A bot that will give a random fact about the querying user.
 * A service that allows me to enter a pokemon battle with any user.  
+* Polls! Dude, we NEED them.
