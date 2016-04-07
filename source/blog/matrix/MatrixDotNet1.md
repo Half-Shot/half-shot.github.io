@@ -6,7 +6,11 @@
 
 I recently got into working on matrix.org, which is a pretty awesome spec/set of tools & SDKs to create a decentralised messaging system. That's actually a really rubbish way of describing it, so [check here](http://matrix.org/docs/guides/faq.html#what-is-matrix) if you want an actual definition.
 
-Anyone who has known me for a length of time knows I like C#. One statement I have made (with only a slight amount of sarcasm) is that the C# language is the closest humans have come to perfection in that field. Microsoft ownership (they have loosened up a whole lot now) aside, it's fantastic. It's statically typed for the most part and strict enough to keep me in check, but it doesn't go overboard and request dumb shit like Java's 'every function must declare how it could cause an exception' nonsense. I could go on but that is not the subject of what I'm going to talk about.
+Anyone who has known me for a length of time knows I like C#. One statement I have made (with only a slight amount of sarcasm) is that:
+
+**The C# language is the closest humans have come to perfection in the field of programming field.**
+
+Microsoft's ownership (they have loosened up a whole lot now) aside, it's fantastic. It's statically typed for the most part and strict enough to keep me in check, but it doesn't go overboard and request dumb shit like Java's 'every function must declare how it could cause an exception' nonsense. I could go on but that is not the subject of what I'm going to talk about.
 
 I've done a bunch of things for matrix in Python, but I only use Python for small bits and bobs, not large projects because it gets too messy too quickly for my tastes. I want to write a bot for matrix that can interpret conversation as it is going on, and try to construct a table of key-worded questions to answers so that we don't have to reiterate everything discussed in the central matrix chatroom. That's not the subject of this post either though :P
 
