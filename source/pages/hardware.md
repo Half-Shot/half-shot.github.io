@@ -12,10 +12,10 @@ MEMORY: Generic-ish 16GB of DDR4 RAM @ 2400Mhz
 PSU: Corsair "won't explode probably" CX600  
 Case: Corsair 300R  
 HDDS: Oh boy.  
-Hitachi "elder" 500GB @ 7200RPM  
-WD Black "homely" 1TB @ 7200RPM  
-"Some SSD I had in my Laptop" 128GB.  
-OCZ "trooper" Agility 3 @ 128GB
+* Hitachi "elder" 500GB @ 7200RPM  
+* WD Black "holds all" 1TB @ 7200RPM  
+* "Some SSD I had in my Laptop" 128GB.  
+* OCZ " lil trooper" Agility 3 @ 128GB
 
 OS: Arch "so custom it hurts" Linux 
 (and Windows 8 for emergencies)
