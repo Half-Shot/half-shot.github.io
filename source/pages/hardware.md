@@ -3,7 +3,7 @@ Hardware
 
 You'll notice I give all my PCs names from the Ratchet & Clank series. Every networks gotta have a naming scheme, right.
 
-## Ratchet
+## Ratchet :: Desktop
 
 CPU: Intel i7 6700k  
 GPU: Radeon HD7950. I love it to pieces despite it running like crap.  
@@ -20,7 +20,7 @@ HDDS: Oh boy.
 OS: Arch "so custom it hurts" Linux 
 (and Windows 8 for emergencies)
 
-## Clank
+## Clank :: Laptop
 
 CPU: Intel i5 4210m  
 GPU: Nvidia Geforce 860m  
@@ -29,7 +29,26 @@ MEMORY: Generic 4GB 1600MHZ
 HDD: Kingston SSD @ 250GB  
 OS: Ubuntu "eh, it's stable" 16.04  
 
-## Phoenix (as in the Starship)
+## Phoenix (as in the Starship) :: NAS/Media Server
 
 CPU: Intel Pentium G3258  
 GPU: ^  
+HDDS: 2x WD Red 4TB in Raid 1
+RAM: 8GB of cheap 1600MHz Corsair stuff
+
+
+# Future Devices
+
+## Zoni :: Router
+CPU: Either a cheap amd/intel or arm powered.
+HDDS: USB Stick ;)
+RAM: 4GB of something
+WIFI: A decent AC card.
+ETH:
+* 1x10GBPS port (feeding into a switch)
+* 1x1GBPS port for WAN
+
+
+## Cpt.Quark :: VM Server
+
+*To be thunk about*
