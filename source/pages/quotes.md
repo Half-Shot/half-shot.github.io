@@ -10,3 +10,5 @@ They don't have any particular relevance, but they must be saved for the good of
 
 > Tor: Half-Shot: feel free to use mine also! [https://bash.no/](https://bash.no/)
 > [minutes later] Tor: NotLikeThis
+
+> camoyoshi: "Off Topic Matrix is filmed in front of a live studio audience!"
