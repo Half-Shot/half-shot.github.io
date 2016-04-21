@@ -1,8 +1,8 @@
-@title Culture Shock
+@title A Post of a Non-Technical Nature
 @created April 20, 2016
 @modified April 20, 2016 21:55
 @author Will
-@image https://placeholdit.imgix.net/~text?txtsize=32&txt=Image%20Coming%20Shortly&w=1000&h=200&txtpad=1
+@image /images/blog/Furries.png
 
 So I wanted this to become a technical blog. A place away from politics and drama, because I really wanted this to be a helpful site where people can find out information about stuff which I'm also involved in. But to be honest, it's not so easy to do. So I am going to just choose whatever topic is in my head and today it's the elephant in the room; Furries.
 
