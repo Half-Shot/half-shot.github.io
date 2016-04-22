@@ -10,3 +10,4 @@ Every day I think of another stupid idea which I want to make a matrix bot/servi
 * A service that allows me to enter a pokemon battle with any user.  
 * Polls! Dude, we NEED them.
 * A bot that when invited to the room will spawn a completely sandboxed bash interprepter.
+* A bot that announces new media files on emby.
