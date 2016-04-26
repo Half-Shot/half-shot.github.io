@@ -6,6 +6,11 @@ Last updated at **5:14** on the **20th of April 2016**
 
 ## offtopic:matrix.com
 
+> Urist: Being so giggly about it is only a sign of inexperience, Half-Shot ;)
+> Urist: You really must become more familiar with the proper etiquette for breaking people's vases.
+> Urist: Ideally you want to use an appropriately sized hammer and wield it with confidence and accuracy.
+> Urist: And make sure to clean up afterwards.
+
 > Cadey: this mango is too intense
 
 > camoyoshi: "Off Topic Matrix is filmed in front of a live studio audience!"
