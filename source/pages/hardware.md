@@ -40,13 +40,13 @@ RAM: 8GB of cheap 1600MHz Corsair stuff
 # Future Devices
 
 ## Zoni :: Router
-CPU: Either a cheap amd/intel or arm powered.
-HDDS: USB Stick ;)
-RAM: 4GB of something
-WIFI: A decent AC card.
-ETH:
-* 1x10GBPS port (feeding into a switch)
-* 1x1GBPS port for WAN
+CPU: Either a cheap amd/intel or arm powered  
+HDDS: USB Stick ;)  
+RAM: 4GB of something  
+WIFI: A decent AC card  
+ETH:  
+* 1x10GBPS port (feeding into a switch)  
+* 1x1GBPS port for WAN  
 
 
 ## Cpt.Quark :: VM Server
