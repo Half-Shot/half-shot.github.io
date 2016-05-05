@@ -8,11 +8,11 @@ If you want the source code for this site (for whatever twisted purpose), you ca
 * :fa-github: [Matrix MPD DJ](https://github.com/Half-Shot/matrix-mpd-dj)
 * :fa-github: [Matrix Python SDK](https://github.com/matrix-org/matrix-python-sdk) (contributations)
 * :fa-github: [Matrix .NET SDK](https://github.com/Half-Shot/matrix-dotnet-sdk)
-* :fa-exclamation-triangle: (Need to put on Github) Attorney Engine - Free Software game engine in C#
+* :fa-github: [Matrix Card Bot](https://github.com/Half-Shot/matrix-card-bot)
 
 ### Past Projects
 
 * :fa-github: [Bread](https://github.com/Half-Shot/bread) Full PHP CMS system designed to be modular.
 * :fa-github: [Fatmo](https://github.com/Half-Shot/fatmo) File based system for reading netatmo devices.
 * :fa-github: [Shmup With Love](https://github.com/Half-Shot/ShmupWithLove) Shoot-em-up game (engine really) built within Love2D.
-
+* :fa-exclamation-triangle: Attorney Engine - Free Software game engine in C#
