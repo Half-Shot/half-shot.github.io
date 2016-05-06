@@ -115,7 +115,7 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		subset[f].article = markdown.render(subset[f].articlemd);
 	}
 
-	files.push({"file":"index.html","data":mustache.render(indextemplate,{posts:subset})});
+	files.push({"file":"index.html","data":mustache.render(indextemplate,{posts:subset}),"attributes":{"title":"Blog"}});
 
 	//Make the blog index.
 	return files;
