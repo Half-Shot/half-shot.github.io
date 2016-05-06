@@ -85,7 +85,7 @@ hs_blog.buildBlog(BLOGDIR,TEMP_BLOG_POST,TEMP_BLOG_INDEX).forEach(function(item)
     fs.writeFile(p,html,(err) => {
       if (err) throw err;
     });
-  });
+  },item["attributes"]);
 });
 
 //
