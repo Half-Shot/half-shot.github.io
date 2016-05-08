@@ -27,7 +27,13 @@ function buildIndex(pagein){
 //Returns {"file":,"data":}
 function buildPage(file,template){
   var text = fs.readFileSync(file,'utf-8');
-  var md = markdown.render(text);
+  var md = "";
+  if(file.endsWith(".md")){
+    md = markdown.render(text);
+  }
+  else {
+    md = text;
+  }
   var stats = fs.statSync(file);
   const formatString = "ddd dS mmm yyyy, HH:MM ";
   var meta = {
@@ -36,7 +42,7 @@ function buildPage(file,template){
     modified:dateFormat(stats.ctime,formatString)
   };
   var html = mustache.render(template,meta);
-  var name = path.basename(file,'.md')+".html";
+  var name = path.basename(file).replace(".md",".html");
 
   name = name.replace(/^\.+/,""); //Build hidden anyway
   return {"file":name,"data":html};
