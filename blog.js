@@ -1,5 +1,5 @@
 var fa = require('markdown-it-fontawesome');
-const markdown = require('markdown-it')().use(fa);
+const markdown = require('markdown-it')().use(fa).use(require('markdown-it-highlightjs'));
 
 const mustache = require('mustache');
 const fs       = require('fs');

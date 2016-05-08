@@ -7,3 +7,7 @@ span.created-on:before{
   @extend .fa-calendar;
   margin-right: 5px;
 }
+
+article code{
+	width:50%;
+}

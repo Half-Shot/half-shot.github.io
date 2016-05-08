@@ -1,4 +1,4 @@
-const markdown = require('markdown-it')().use(require('markdown-it-fontawesome')).use(require('markdown-it-anchor'));
+const markdown = require('markdown-it')().use(require('markdown-it-fontawesome')).use(require('markdown-it-anchor')).use(require('markdown-it-highlightjs'));
 
 const mustache = require('mustache');
 const fs       = require('fs');

@@ -4,6 +4,7 @@
 @import 'article.scss';
 @import 'blog.scss';
 @import 'font-awesome/font-awesome.scss';
+@import 'highlight.css';
 
 body{
   margin:0px 10vw;
@@ -51,6 +52,11 @@ header .hsavatar{
   width: 3.5vw;
 }
 
+table thead tr th {
+	text-align:left;
+	border-bottom: 1px solid #565656;
+}
+
 table  td {
-  border: grey solid 1px;
+  border: none;
 }

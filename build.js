@@ -14,6 +14,7 @@ const mkdirp   = require('mkdirp');
 OUTPUTDIR = "./public/"
 SOURCEDIR = "./source/"
 FONTA_FILES = path.join("node_modules","font-awesome");
+HIGHLIGHT_STYLE = path.join("node_modules","highlight.js","styles","dark.css");
 
 SASS_FILE = path.join(SOURCEDIR,"style","main.scss");
 CSS_FILE = path.join(OUTPUTDIR,"style.css");
@@ -46,6 +47,7 @@ if (err) {
 
 //Copy font awesome
 ncp(path.join(FONTA_FILES,"fonts"),path.join(STATIC_FILES_OUT,"fonts"));
+ncp(HIGHLIGHT_STYLE,path.join(STATIC_FILES_OUT,"highlight.css"));
 
 //Set up wrapper
 hs_wrap.setTemplate(TEMP_SITE);
