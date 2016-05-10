@@ -4,6 +4,11 @@ They don't have any particular relevance, but they must be saved for the good of
 
 Last updated at **22:15** on the **26th of April 2016**
 
+## Camoyoshi
+
+> Camoyoshi: CUTE GIRLS DO CUTE THINGS  
+> Camoyoshi: THAT'S ALL YOU NEED TO KNOW
+
 ## offtopic:matrix.com
 
 > Urist: Being so giggly about it is only a sign of inexperience, Half-Shot ;)  
