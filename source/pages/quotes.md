@@ -2,14 +2,26 @@
 
 They don't have any particular relevance, but they must be saved for the good of humankind.
 
-Last updated at **08:44** on the **10th of May 2016**
+Last updated at **21:40** on the **10th of May 2016**
 
 ## Camoyoshi
 
-> Camoyoshi: CUTE GIRLS DO CUTE THINGS  
-> Camoyoshi: THAT'S ALL YOU NEED TO KNOW
+> camoyoshi: CUTE GIRLS DO CUTE THINGS  
+> camoyoshi: THAT'S ALL YOU NEED TO KNOW
 
 ## offtopic:matrix.com
+
+> camoyoshi: TOOT TOOT MOTHERFUCKER  
+> camoyoshi: GET OUTTA MY WAY I'M A BOAT  
+> Half-Shot: Boats don't go toot  
+> *camoyoshi toots at Half-Shot*  
+> camoyoshi: I'M A BOOOOOOOOOAT  
+> *Half-Shot barks at camo*  
+> PawsOverHead.png  
+> camoyoshi: sneaks up to halfy right up to his face  
+> *...toot*  
+> Half-Shot: BABABARKBAKBKABKATK  
+> trilobite17: AWOOOOOOOOOOOOOOOOOOOOOOOOOOGA!!!  
 
 > Urist: Being so giggly about it is only a sign of inexperience, Half-Shot ;)  
 > Urist: You really must become more familiar with the proper etiquette for breaking people's vases.  
