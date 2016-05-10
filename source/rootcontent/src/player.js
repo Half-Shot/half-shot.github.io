@@ -1,4 +1,4 @@
-var streamURL = "http://half-shot.uk:8000/status-json.xsl";
+var streamURL = "https://half-shot.uk/stream.json";
 var player = document.querySelector("audio#stream_player");
 var streamended = true;
 var player_interval;
