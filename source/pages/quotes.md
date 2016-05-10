@@ -19,9 +19,20 @@ Last updated at **21:40** on the **10th of May 2016**
 > *Half-Shot barks at camo*  
 > PawsOverHead.png  
 > camoyoshi: sneaks up to halfy right up to his face  
-> *...toot*  
+> camoyoshi: *...toot*  
 > Half-Shot: BABABARKBAKBKABKATK  
 > trilobite17: AWOOOOOOOOOOOOOOOOOOOOOOOOOOGA!!!  
+> *Half-Shot runs away to his bed*  
+> Undercover.png  
+> trilobite17: wrong kind of horn?  
+> camoyoshi: boops halfy's snoot  
+> *Half-Shot pokes face out, yes*  
+> camoyoshi: ...toot  
+> camoyoshi: c:  
+> *Half-Shot shuffles back in*  
+> trilobite17: then he shakes it all about  
+> Half-Shot: I'm not coming out until camoyoshi accepts that he cannot identify as a tooting boat  
+> camoyoshi: :c  
 
 > Urist: Being so giggly about it is only a sign of inexperience, Half-Shot ;)  
 > Urist: You really must become more familiar with the proper etiquette for breaking people's vases.  
