@@ -31,3 +31,5 @@ function getStream(){
 
 player.addEventListener("ended", function() { player_interval = setInterval(getStream,5000); }, true);
 player_interval = setInterval(getStream,5000);
+
+getStream();
