@@ -15,7 +15,6 @@ function getStream(){
        document.querySelector("#stream_listeners").innerHTML = source.listeners;
        if(player.paused && streamended){
           player.src = source.listenurl + "?nocache=" + (Math.random()*100); //Dumb hack
-          player.play();
           streamended = false;
        }
     }
@@ -29,5 +28,9 @@ function getStream(){
 }
 
 player.addEventListener("ended", function() { streamended = true; }, true);
+player.addEventListener('canplay', function(e) {
+  this.play();
+}, false);
+
 player_interval = setInterval(getStream,5000);
 getStream();
