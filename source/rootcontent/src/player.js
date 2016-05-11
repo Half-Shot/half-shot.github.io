@@ -14,10 +14,10 @@ function getStream(){
        document.querySelector("#stream_online").hidden = null;
        document.querySelector("#stream_listeners").innerHTML = source.listeners;
        if(player.paused && streamended){
-         player.src = source.listenurl + "?nocache=" + (Math.random()*100); //Dumb hack
-         player.play();
+          player.src = source.listenurl + "?nocache=" + (Math.random()*100); //Dumb hack
+          player.play();
+          streamended = false;
        }
-       streamended = false;
     }
     else
     {
@@ -28,6 +28,6 @@ function getStream(){
   });
 }
 
-//player.addEventListener("ended", function() { player_interval = setInterval(getStream,5000); }, true);
+player.addEventListener("ended", function() { streamended = true; }, true);
 player_interval = setInterval(getStream,5000);
 getStream();
