@@ -6,7 +6,7 @@ If you want the source code for this site (for whatever twisted purpose), you ca
 
 ### Current Projects
 * :fa-github: [Matrix MPD DJ](https://github.com/Half-Shot/matrix-mpd-dj)
-* :fa-github: [Matrix Python SDK](https://github.com/matrix-org/matrix-python-sdk) (contributations)
+* :fa-github: [Matrix Python SDK](https://github.com/matrix-org/matrix-python-sdk) (contributions)
 * :fa-github: [Matrix .NET SDK](https://github.com/Half-Shot/matrix-dotnet-sdk)
 * :fa-github: [Matrix Card Bot](https://github.com/Half-Shot/matrix-card-bot)
 
