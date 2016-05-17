@@ -5,3 +5,4 @@ This page serves as an index for all the docs & code I've written for Bark, my p
 
 * [Original Proposal](gsoc_proposal)
 * [Spec for Clients](gsoc_spec)
+* [Client Flow](gsoc_flow)
