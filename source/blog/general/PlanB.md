@@ -1,8 +1,10 @@
 @title Plan B
 @created May 21, 2016
-@modified May 21, 2016 09:29:00
+@modified May 21, 2016 20:51:00
 @author Will
 @image /images/blog/planb.png
+
+**EDIT** I had 24 hours to think about it and I've appended my final thoughts below.
 
 I wasn't sure if I had the guts to write this one but if there is one thing I am, it's stubborn. I have to write this because otherwise another poor soul is going to get the full experience of me venting at them and I'd rather put it on the internet in an easily dismissable form.
 
@@ -27,3 +29,16 @@ The person who I was """dating""" was really having a bad time and I felt **awfu
  With other things coming up on the horizon it's hardly like I'm going to have nothing to do. It's easy to section of part of you to connect with another person, but it's not so easy to reattach. As much as I kinda hate myself for saying it, I know I overextended myself and I'm going to be careful from now on, consider this one a teenage mistake which I should have made years a go.
 
  I'm just glad I still have the friends who I have made over the years, you're probably the reason I still have any sanity left.
+
+**EDIT**
+
+I just couldn't do it this time. I've given all I had before but there is nothing left in me that wants to be charitable. I've thought it over all day and I can't do it.  
+I can't justify a guy who I spent helping for two months and it *never occured* to mention that it wouldn't work out. The only way this seems possible is because they did like me enough
+to talk with me but not enough to either invoke conversation or so much as explain to me that it couldn't work out. I am sure I gave every sign of my intentions and I can't work out why
+they would lie to me.
+
+But you know what, the fact that I spent possibly over a week trying to connect with someone and I barely got a thanks out of them was enough reason for doubt, but
+the only way I could finally get a trace of honesty out was by begging on my birthday. And even then, he never wished me a happy one. I know that's a petty thing to say, but at the same time
+it kinda sums everything up. As much as I want to be friends, I can't work like this. I want out and I want to go back to how things were with my old friends.
+
+I wanted to leave this post as it was, but I needed a final resolution. This is it.
