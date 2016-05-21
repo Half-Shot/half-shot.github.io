@@ -22,6 +22,8 @@ The person who I was """dating""" was really having a bad time and I felt **awfu
 
  Yep. So now I really don't know how to feel at all. Part of me wants to rip everything apart and sink back into what I was before, but part of me wants to shrug it off and keep going. I can't hate him for what they did as I still *hope* they did it for the right reasons but I can't shake the doubt that I was just used. I just can't bring myself to hate them, I really can't. As far as I'm aware we are still friends and I'm considered "Plan B".
 
- Of course, all that does is feed the small bit of my mind that wants to hang on. I hate that. With other things coming up on the horizon it's hardly like I'm going to have nothing to do. It's easy to section of part of you to connect with another person, but it's not so easy to reattach. As much as I kinda hate myself for saying it, I know I overextended myself and I'm going to be careful from now on, consider this one a teenage mistake which I should have made years a go.
+ Of course, all that does is feed the small bit of my mind that wants to hang on. I hate that. The friend who I spoke of previously had the same experience and I had to pry him away from a dead relationship. Now I have to do the same for myself.
+
+ With other things coming up on the horizon it's hardly like I'm going to have nothing to do. It's easy to section of part of you to connect with another person, but it's not so easy to reattach. As much as I kinda hate myself for saying it, I know I overextended myself and I'm going to be careful from now on, consider this one a teenage mistake which I should have made years a go.
 
  I'm just glad I still have the friends who I have made over the years, you're probably the reason I still have any sanity left.
