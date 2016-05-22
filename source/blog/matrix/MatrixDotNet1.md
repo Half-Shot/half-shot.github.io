@@ -8,7 +8,7 @@ I recently got into working on matrix.org, which is a pretty awesome spec/set of
 
 Anyone who has known me for a length of time knows I like C#. One statement I have made (with only a slight amount of sarcasm) is that:
 
-**The C# language is the closest humans have come to perfection in the field of programming field.**
+**The C# language is the closest humans have come to perfection in the field of programming.**
 
 Microsoft's ownership (they have loosened up a whole lot now) aside, it's fantastic. It's statically typed for the most part and strict enough to keep me in check, but it doesn't go overboard and request dumb shit like Java's 'every function must declare how it could cause an exception' nonsense. I could go on but that is not the subject of what I'm going to talk about.
 
