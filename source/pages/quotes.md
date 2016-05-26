@@ -9,7 +9,7 @@ Last updated at **21:40** on the **10th of May 2016**
 > camoyoshi: CUTE GIRLS DO CUTE THINGS  
 > camoyoshi: THAT'S ALL YOU NEED TO KNOW
 
-## offtopic:matrix.com
+## offtopic:matrix.org
 
 > camoyoshi: TOOT TOOT MOTHERFUCKER  
 > camoyoshi: GET OUTTA MY WAY I'M A BOAT  
