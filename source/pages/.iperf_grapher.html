@@ -16,6 +16,32 @@ document.getElementById("file_button").addEventListener("click", function () {
   document.getElementById("file_uploader").click();
 },false);
 
+function getColor(index,bg){
+  var rgb = index % 3;
+  var factor = (index-rgb)+1;
+  var r = 40 * factor;
+  var g = 40 * factor;
+  var b = 40 * factor;
+  if(rgb == 0){
+    r = 70 * factor;
+  }
+  else if(rgb == 1){
+    g = 70 * factor;
+  }
+  else if(rgb == 2){
+    b = 70 * factor;
+  }
+  
+  if(bg){
+    return "rgba("+r+","+g+","+b+",0.33)";
+  }
+  else
+  {
+    return "rgba("+r+","+g+","+b+",0.8)";
+  }
+   
+}
+
 document.getElementById("file_uploader").addEventListener("change", function () {
   var ctx = document.getElementById("graph");
   window.iperf_chart = new Chart(ctx, {
@@ -46,6 +72,8 @@ document.getElementById("file_uploader").addEventListener("change", function () 
       }
       window.iperf_chart.data.datasets.push({
           label: event.target.file.name,
+          backgroundColor: getColor(index,true),
+          borderColor: getColor(index,false),
           data:data
       });
       window.iperf_chart.update();
