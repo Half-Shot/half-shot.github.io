@@ -1,0 +1,57 @@
+<h1>IPerf Grapher</h1>
+
+<p> This utility will read JSON files from iperf's JSON output and display a neat graph </p>
+
+<button style="display:block;" id="file_button">Upload</button>
+
+<input style="display:none;" id="file_uploader" multiple type="file"></input>
+
+<canvas id="graph" style="width:50%; height:33%;">
+  
+</canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<script>
+document.getElementById("file_button").addEventListener("click", function () {
+  document.getElementById("file_uploader").click();
+},false);
+
+document.getElementById("file_uploader").addEventListener("change", function () {
+  var ctx = document.getElementById("graph");
+  window.iperf_chart = new Chart(ctx, {
+      type: 'line',
+      data: {datasets:[]},
+      options: {
+        title:{
+          text:"IPerf Results"
+        },
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+      }
+  });
+  
+  Array.map(this.files,(value,index,array) => {
+    var reader = new FileReader();
+    reader.file = value;
+    reader.onload = function(event) {
+      var json = JSON.parse(event.target.result);
+      console.log(json);
+      var data = [];
+      for(var item of json.intervals){
+        data.push({x:item.sum.end,y:item.sum.bits_per_second/1000000});
+      }
+      window.iperf_chart.data.datasets.push({
+          label: event.target.file.name,
+          data:data
+      });
+      window.iperf_chart.update();
+    };
+    reader.readAsText(value);
+
+  });
+}, false);
+</script>
