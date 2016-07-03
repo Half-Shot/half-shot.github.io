@@ -79,7 +79,12 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		var date = new Date(attributes["created"]);
 		var categoryString = root.replace(indir,"");
 		var name = fileStats.name;
-		name = name.replace(/\.(.*)/, ".html");
+		var hidden = false;
+		name = name.replace(".md", ".html");
+		if(name.startsWith('.')){
+			name = name.substr(1);
+			hidden = true;
+		}
 		var fpath = path.join(date.getFullYear().toString(),dateFormat(date,"mm"),categoryString,name);
 
 		const formatStringC = "ddd dS mmm yyyy";
@@ -90,9 +95,10 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		attributes["modified"] = dateFormat(attributes["dmodified"],formatStringM);
 		attributes["article"] = markdown.render(data);
 		attributes["articlemd"] = data;
+		attributes["hidden"] = hidden;
 		attributes["path"] = fpath;
-		attributes["path"] = attributes["path"].replace(/\.(.*)/, "");
 		attributes["categories"] = categoryString.replace(/\//," ");
+		attributes["file"] = attributes["path"];
 
 	  files.push(
 			{
@@ -108,13 +114,21 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		return a.attributes.dcreated < b.attributes.dcreated;
 	});
 
-	var subset = files.slice(0,9);//Get the last 10 items;
-	for (var f in subset){
-		subset[f] = subset[f].attributes;
-		subset[f].articlemd = subset[f].articlemd.substr(0,150) + (subset[f].articlemd.length > 150 ? "..." : "");
-		subset[f].article = markdown.render(subset[f].articlemd);
+	//var subset = files.slice(0,9);//Get the last 10 items;
+	var subset = [];
+	for (var f in files){
+		if(subset.length == 10){
+			break;
+		}
+		files[f] = files[f].attributes;
+		var file = files[f];
+		if(file.hidden){
+			continue;
+		}
+		file.articlemd = file.articlemd.substr(0,150) + (file.articlemd.length > 150 ? "..." : "");
+		file.article = markdown.render(file.articlemd);
+		subset.push(file);
 	}
-
 	files.push({"file":"index.html","data":mustache.render(indextemplate,{posts:subset}),"attributes":{"title":"Blog"}});
 
 	//Make the blog index.
