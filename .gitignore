@@ -35,3 +35,5 @@ jspm_packages
 
 #Remove public files
 public/
+
+source/style/font-awesome
