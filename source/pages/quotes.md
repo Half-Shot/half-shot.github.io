@@ -2,7 +2,7 @@
 
 They don't have any particular relevance, but they must be saved for the good of humankind.
 
-Last updated at **10:17** on the **05th of June 2016**
+Last updated at **00:28** on the **06th of July 2016**
 
 ## Camoyoshi
 
@@ -12,6 +12,9 @@ Last updated at **10:17** on the **05th of June 2016**
 > camoyoshi: Aaahn, snapshot me more, senpai~
 
 ## offtopic:matrix.org
+
+> aviraldg: C++ is not designed at all  
+> aviraldg: it is a collection of features monkey patched together with ridiculously overloaded syntax that is a nightmare to understand  
 
 > camoyoshi: TOOT TOOT MOTHERFUCKER  
 > camoyoshi: GET OUTTA MY WAY I'M A BOAT  
