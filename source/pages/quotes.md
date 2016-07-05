@@ -4,13 +4,6 @@ They don't have any particular relevance, but they must be saved for the good of
 
 Last updated at **00:28** on the **06th of July 2016**
 
-## Camoyoshi
-
-> camoyoshi: CUTE GIRLS DO CUTE THINGS  
-> camoyoshi: THAT'S ALL YOU NEED TO KNOW
-
-> camoyoshi: Aaahn, snapshot me more, senpai~
-
 ## offtopic:matrix.org
 
 > aviraldg: C++ is not designed at all  
@@ -55,5 +48,9 @@ Last updated at **00:28** on the **06th of July 2016**
 > camoyoshi: *mutters*  
 > [the next day] camoyoshi: Half-Shot is a perv
 
+## Camoyoshi
 
+> camoyoshi: CUTE GIRLS DO CUTE THINGS  
+> camoyoshi: THAT'S ALL YOU NEED TO KNOW
 
+> camoyoshi: Aaahn, snapshot me more, senpai~
