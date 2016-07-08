@@ -74,7 +74,7 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		attributes["created"] = dateFormat(attributes["dcreated"],formatStringC);
 		attributes["modified"] = dateFormat(attributes["dmodified"],formatStringM);
 		attributes["article"] = markdown.render(data);
-		attributes["articlemd"] = data;cd
+		attributes["articlemd"] = data;
 		attributes["hidden"] = hidden;
 		attributes["path"] = fpath;
 		attributes["categories"] = categoryString.replace(/\//," ");
