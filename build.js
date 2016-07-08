@@ -75,7 +75,6 @@ hs_pages.buildPages(PAGEDIR,TEMP_PAGE).forEach(function(item){
 });
 
 hs_blog.buildBlog(BLOGDIR,TEMP_BLOG_POST,TEMP_BLOG_INDEX).forEach(function(item){
-  console.log(item["file"]);
   var p = path.join(BLOG_OUT,item["file"]);
   hs_wrap.render(item["data"],(err,html) => {
     var dir = path.dirname(p);

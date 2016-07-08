@@ -46,7 +46,6 @@ function render(html,callback,extratags){
     vars["siteindex"][i]["link"] = vars["siteindex"][i]["link"].replace(/\.(.*)/, "");
   }
   vars["content"] = html;
-  //callback(null,mustache.render(Template,vars));
   tidy(mustache.render(Template,vars),TIDY_OPTS,callback);
 }
 

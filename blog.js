@@ -9,7 +9,7 @@ const walk 		 = require('walk');
 const dateFormat = require('dateformat');
 const hs_pages     = require('./pages');
 
-const SHOULD_INCLUDE_HTML = true;
+const SHOULD_INCLUDE_HTML = false;
 
 /**
    Blog page format:
@@ -38,26 +38,6 @@ function parseMDAttributes(mddata,attributes){
 		}
 	}
 	return outputmd;
-}
-
-function buildPost(mddata,attributes,template,pageout){
-  // var md = markdown.render(mddata);
-  // const formatString = "ddd dS mmm yyyy, HH:MM ";
-  // var meta = {
-  //   siteindex:[],
-  //   article:md,
-  //   created:dateFormat(new Date(attributes["created"]),formatString),
-  //   modified:dateFormat(new Date(attributes["modified"]),formatString)
-  // };
-  // var html = mustache.render(template,meta);
-  // var name = attributes["title"].replace(/ /g,"")+".html";
-  // name = name.replace(/^\.+/,""); //Build hidden anyway
-  // fs.writeFile(path.join(pageout,name),html,function(err){
-  //   if(err){
-  //     throw err;
-  //   }
-  // });
-	return {name:null,html:"",attribs:{}};
 }
 
 function buildBlog(indir,blogtemplate,indextemplate)
@@ -99,7 +79,6 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		attributes["path"] = fpath;
 		attributes["categories"] = categoryString.replace(/\//," ");
 		attributes["file"] = attributes["path"];
-
 	  files.push(
 			{
 				file:fpath,
@@ -120,8 +99,7 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		if(subset.length == 10){
 			break;
 		}
-		files[f] = files[f].attributes;
-		var file = files[f];
+		var file = files[f].attributes;
 		if(file.hidden){
 			continue;
 		}
