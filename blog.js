@@ -60,7 +60,7 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		var categoryString = root.replace(indir,"");
 		var name = fileStats.name;
 		var hidden = false;
-		name = name.replace(".md", SHOULD_INCLUDE_HTML ? ".html" : "");
+		name = name.replace(".md", ".html");
 		if(name.startsWith('.')){
 			name = name.substr(1);
 			hidden = true;
@@ -74,7 +74,7 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		attributes["created"] = dateFormat(attributes["dcreated"],formatStringC);
 		attributes["modified"] = dateFormat(attributes["dmodified"],formatStringM);
 		attributes["article"] = markdown.render(data);
-		attributes["articlemd"] = data;
+		attributes["articlemd"] = data;cd
 		attributes["hidden"] = hidden;
 		attributes["path"] = fpath;
 		attributes["categories"] = categoryString.replace(/\//," ");
@@ -100,6 +100,9 @@ function buildBlog(indir,blogtemplate,indextemplate)
 			break;
 		}
 		var file = files[f].attributes;
+		if(!SHOULD_INCLUDE_HTML){
+			file.path = file.path.replace(".html","");
+		}
 		if(file.hidden){
 			continue;
 		}
