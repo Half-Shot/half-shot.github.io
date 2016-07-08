@@ -60,7 +60,7 @@ function buildBlog(indir,blogtemplate,indextemplate)
 		var categoryString = root.replace(indir,"");
 		var name = fileStats.name;
 		var hidden = false;
-		name = name.replace(".md", ".html");
+		name = name.replace(".md", SHOULD_INCLUDE_HTML ? ".html" : "");
 		if(name.startsWith('.')){
 			name = name.substr(1);
 			hidden = true;
