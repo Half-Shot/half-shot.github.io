@@ -2,9 +2,11 @@
 
 They don't have any particular relevance, but they must be saved for the good of humankind.
 
-Last updated at **00:28** on the **06th of July 2016**
+Last updated at **22:33** on the **1st of August 2016**
 
 ## offtopic:matrix.org
+
+> trilobite17: So ... the band Earth, Wind, and Fire was named after eating a bowl of really good chili?  
 
 > aviraldg: C++ is not designed at all  
 > aviraldg: it is a collection of features monkey patched together with ridiculously overloaded syntax that is a nightmare to understand  
