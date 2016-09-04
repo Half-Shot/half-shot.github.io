@@ -2,7 +2,7 @@
 @created September 4, 2016
 @modified September 4, 2016 22:17:00 
 @author Will
-@image https://placehold.it/1000x200
+@image /images/blog/ice.png
 
 Okay so it's been a while since I've published on this blog so let's try and do things in order, paragraph by paragraph.
 
