@@ -59,10 +59,10 @@ Last updated at **23:42** on the **6th of October 2016**
 
 ## MaxwellKepler
 
-> Half-Shot: https://web.archive.org/web/20090820113434/http://geocities.com/gay_traveler/images/banner.gif
-> MaxwellK: That's a massive list of options
-> MaxwellK: Gay people can be only three things
-> MaxwellK: Utter nerds, NASCAR nuts, or alcoholics
+> Half-Shot: [banner.gif](https://web.archive.org/web/20090820113434/http://geocities.com/gay_traveler/images/banner.gif)  
+> MaxwellK: That's a massive list of options  
+> MaxwellK: Gay people can be only three things  
+> MaxwellK: Utter nerds, NASCAR nuts, or alcoholics  
 
 ## Halfy
 
