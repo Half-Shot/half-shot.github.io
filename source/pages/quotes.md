@@ -2,7 +2,7 @@
 
 They don't have any particular relevance, but they must be saved for the good of humankind.
 
-Last updated at **22:33** on the **1st of August 2016**
+Last updated at **23:42** on the **6th of October 2016**
 
 ## offtopic:matrix.org
 
@@ -56,3 +56,14 @@ Last updated at **22:33** on the **1st of August 2016**
 > camoyoshi: THAT'S ALL YOU NEED TO KNOW
 
 > camoyoshi: Aaahn, snapshot me more, senpai~
+
+## MaxwellKepler
+
+> Half-Shot: https://web.archive.org/web/20090820113434/http://geocities.com/gay_traveler/images/banner.gif
+> MaxwellK: That's a massive list of options
+> MaxwellK: Gay people can be only three things
+> MaxwellK: Utter nerds, NASCAR nuts, or alcoholics
+
+## Halfy
+
+> Half-Shot: With the internet, we can examine train defecation speeds instantly
