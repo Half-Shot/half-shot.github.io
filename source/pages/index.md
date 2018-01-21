@@ -5,13 +5,18 @@ I've (after countless iterations over the years) got a blogging system working o
 If you want the source code for this site (for whatever twisted purpose), you can grab it from [this Github  Repo](https://github.com/Half-Shot/half-shot.uk). The site is written in JS (node), and builds statically using mustache, sass and markdown. I'm not making this into it's own project, but it is very 'copy paste-able' ;)
 
 ### Current Projects
-* :fa-exclamation-triangle: - I'm currently busy all week with work stuff, so my time is limited sadly.
-* :fa-github: [Matrix Python SDK](https://github.com/matrix-org/matrix-python-sdk) (maintainer)
-* :fa-github: [Matrix .NET SDK](https://github.com/Half-Shot/matrix-dotnet-sdk)
+* :fa-exclamation-triangle: - I'm currently busy with work stuff, so my time is limited sadly.
 * :fa-github: [Matrix Discord Bridge](https://github.com/Half-Shot/matrix-appservice-discord)
+* :fa-github: [MagnetHS](https://github.com/Half-Shot/MagnetHS)
+
+### On-hold/uncertain projects
+* :fa-github: [Matrix .NET SDK](https://github.com/Half-Shot/matrix-dotnet-sdk)
+
 
 ### Past Projects
 
+* :fa-github: [Matrix Facebook chat](https://github.com/Half-Shot/matrix-fb-chat)
+* :fa-github: [Matrix Python SDK](https://github.com/matrix-org/matrix-python-sdk) (ex-maintainer)
 * :fa-github: [Matrix Twitter Bridge](https://github.com/Half-Shot/matrix-appservice-twitter) | [:fa-external-link: Project Page](https://half-shot.github.io/matrix-appservice-twitter/)
 * :fa-github: [Matrix MPD DJ](https://github.com/Half-Shot/matrix-mpd-dj)
 * :fa-github: [Smarter Coffee .NET](https://github.com/Half-Shot/Smarter-Coffee-NET)
@@ -21,4 +26,4 @@ If you want the source code for this site (for whatever twisted purpose), you ca
 * :fa-github: [Fatmo](https://github.com/Half-Shot/fatmo) File based system for reading netatmo devices.
 * :fa-exclamation-triangle: Attorney Engine - Free Software game engine in C#
 
-Last Updated: 06/08/17
+Last Updated: 21/01/18
