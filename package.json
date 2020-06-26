@@ -9,6 +9,7 @@
     "@types/nunjucks": "^3.1.3",
     "express": "^4.17.1",
     "nunjucks": "^3.2.1",
+    "sass": "^1.26.9",
     "toml": "^3.0.0",
     "typescript": "^3.9.5"
   },
@@ -25,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/Half-Shot/half-shot.uk/issues"
   },
-  "homepage": "https://github.com/Half-Shot/half-shot.uk#readme"
+  "homepage": "https://github.com/Half-Shot/half-shot.uk#readme",
+  "devDependencies": {
+    "@types/sass": "^1.16.0"
+  }
 }
