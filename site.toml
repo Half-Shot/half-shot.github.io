@@ -1,0 +1,8 @@
+[globals]
+title = "Half-Shot's site"
+copyright = "2020"
+
+[globals.social]
+matrix = "@Half-Shot:half-shot.uk"
+twitter = "@Half_Shot"
+github = "@Half-Shot"
