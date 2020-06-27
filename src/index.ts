@@ -1,75 +1,126 @@
 import { readConfig, AppConfig } from "./config";
-import { renderPage } from "./PageRender";
-import { promises as fs,  watch, writeFile, writeFileSync } from "fs";
-import * as path from "path";
+import { renderPage, configureRenderer, BuildContext } from "./pageRender";
 import { createWriteStream } from "fs";
+import { writeFile, readdir } from "fs/promises";
+import { PAGES_IN_DIR, ROOT_SASS_DOC, CSS_DOC, CONTENT_DIR, COMPONENTS_DIR, SCSS_DIR, ICONS_DIR, ICONS_OUT, PAGES_OUT_DIR, POSTS_IN_DIR, POSTS_OUT_DIR } from "./directories";
+import ncpSync from "ncp";
+import chokidar from "chokidar";
+import { BlogPost, BlogPostAttributes } from "./BlogPost";
+import * as path from "path";
 import express from "express";
 import sass from "sass";
 import { promisify } from "util";
 
 const renderSass = promisify(sass.render);
+const ncp = promisify(ncpSync);
 
-const CONTENT_DIR = path.resolve(__dirname, "..", "content");
-const SCSS_DIR = path.join(CONTENT_DIR, "style");
-const ROOT_SASS_DOC = path.join(SCSS_DIR, "main.scss");
-const PAGES_IN_DIR = path.join(CONTENT_DIR, "pages");
-const PAGES_OUT_DIR = path.resolve(__dirname, "..", "public");
-const CSS_DOC = path.join(PAGES_OUT_DIR, "main.css");
-
-async function buildSite() {
-    const config = await readConfig("./site.toml");
-    const pages = await fs.readdir(PAGES_IN_DIR, { withFileTypes: true });
-    writeFileSync(CSS_DOC, (await renderSass({ file: ROOT_SASS_DOC })).css);
-    for (const dirEntry of pages) {
-        if (!dirEntry.isFile()) {
-            continue;
-        }
-        if (!dirEntry.name.endsWith(".njk")) {
-            continue;
-        }
-        const inFile = path.join(PAGES_IN_DIR, dirEntry.name);
-        await buildFile(inFile, config);
-        const outFile = path.join(PAGES_OUT_DIR, path.basename(dirEntry.name, ".njk"));
-        console.log(`Rendering ${dirEntry.name} to ${outFile}`);
-        const stream = createWriteStream(outFile, { flags: "w", encoding: "utf-8"});
-        await renderPage(path.join(PAGES_IN_DIR, dirEntry.name), stream, config.globals);
-    }
-    return config;
+async function findAllInDir(dir: string, extension: string) {
+    const files = await readdir(dir, { withFileTypes: true });
+    return files.filter((dirEntry) => 
+        dirEntry.isFile() && dirEntry.name.endsWith(extension)
+    ).map((dirEntry) => path.join(dir, dirEntry.name));
 }
 
-async function buildFile(inFile: string, config: AppConfig) {
+async function buildSite(config: AppConfig): Promise<BuildContext> {
+    const blogPosts = await Promise.all((await findAllInDir(POSTS_IN_DIR, ".md")).map(name => BlogPost.readFromFile(name)));
+    const context = {
+        globals: config.globals,
+        blogPosts: blogPosts.map(b => b.attributes),
+    };
+    for (const post of blogPosts) {
+        await buildBlogPost(post, context);
+    }
+    for (const page of await findAllInDir(PAGES_IN_DIR, ".njk")) {
+        await buildPage(page, context);
+    }
+    await writeFile(CSS_DOC, (await renderSass({ file: ROOT_SASS_DOC })).css);
+    await ncp(ICONS_DIR, ICONS_OUT);
+    return context;
+}
+
+async function buildPage(inFile: string, context: BuildContext) {
     const baseName = path.basename(inFile, ".njk");
     const outFile = path.join(PAGES_OUT_DIR, baseName);
-    console.log(`Rendering ${baseName} to ${outFile}`);
+    console.log(`Rendering page ${baseName} to ${outFile}`);
     const stream = createWriteStream(outFile, { flags: "w", encoding: "utf-8"});
-    await renderPage(inFile, stream, config.globals);
+    try {
+        await renderPage(inFile, stream, context);
+    } finally {
+        stream.close();
+    }
 }
 
-async function watchSite() {
-    const config = await buildSite();
+async function buildBlogPost(blogPost: BlogPost, context: BuildContext) {
+    const baseName = path.basename(blogPost.sourceFile, ".md");
+    const outFile = path.join(POSTS_OUT_DIR, baseName) + ".html";
+    console.log(`Rendering post ${baseName} to ${outFile}`);
+    const stream = createWriteStream(outFile, { flags: "w", encoding: "utf-8"});
+    try {
+        stream.write(await blogPost.render(context));
+        return blogPost;
+    } finally {
+        stream.close();
+    }
+}
+
+async function watchSite(config: AppConfig) {
+    let context = await buildSite(config);
     const app = express();
     app.use(express.static('public'));
     app.listen(8000, '127.0.0.1');
     console.log(`Watching for changes in ${CONTENT_DIR}. Listening on http://127.0.0.1:8000/`);
-    watch(PAGES_IN_DIR, { recursive: true, }, async (eventType: string, fileName: string) => {
-        console.log(eventType, fileName);
+    chokidar.watch(PAGES_IN_DIR).on('all', async (eventType, fileName) => {
+        console.log("page", eventType, fileName);
+        if (eventType === "addDir" || eventType === "unlinkDir") {
+            return;
+        }
         try {
-            await buildFile(path.join(PAGES_IN_DIR, fileName), config);
+            await buildPage(fileName, context);
         } catch (ex) {
             console.log(`Error building: ${fileName}`, ex);
         }
     });
-    watch(SCSS_DIR, { recursive: true, }, async (eventType: string, fileName: string) => {
+    chokidar.watch(POSTS_IN_DIR).on('all', async (eventType: string, fileName: string) => {
+        console.log("post", eventType, fileName);
+        if (eventType === "addDir" || eventType === "unlinkDir") {
+            return;
+        }
+        try {
+            const blogPost = await BlogPost.readFromFile(fileName);
+            await buildBlogPost(blogPost, context);
+        } catch (ex) {
+            console.log(`Error building: ${fileName}`, ex);
+        }
+    });
+    let buildInProgress = false;
+    chokidar.watch(COMPONENTS_DIR).on('all', async (eventType: string, fileName: string) => {
+        if (buildInProgress) {
+            return;
+        }
+        console.log("component", eventType, fileName);
+        try {
+            buildInProgress = true;
+            context = await buildSite(config);
+        } catch (ex) {
+            console.log(`Error building site`, ex);
+        } finally {
+            buildInProgress = false;
+        }
+    });
+    chokidar.watch(SCSS_DIR).on('all', async (eventType: string, fileName: string) => {
         console.log(eventType, fileName);
-        writeFileSync(CSS_DOC, (await renderSass({ file: ROOT_SASS_DOC })).css);
+        await writeFile(CSS_DOC, (await renderSass({ file: ROOT_SASS_DOC })).css);
     });
 }
 
-function main(): Promise<unknown> {
+async function main(): Promise<unknown> {
+    const config = await readConfig("./site.toml");
     if (process.argv.includes("--watch")) {
-        return watchSite();
+        configureRenderer(true, CONTENT_DIR);
+        return watchSite(config);
     } else {
-        return buildSite();
+        configureRenderer(false, CONTENT_DIR);
+        return buildSite(config);
     }
 }
 
