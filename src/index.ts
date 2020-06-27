@@ -1,11 +1,10 @@
 import { readConfig, AppConfig } from "./config";
 import { renderPage, configureRenderer, BuildContext } from "./pageRender";
-import { createWriteStream } from "fs";
-import { writeFile, readdir } from "fs/promises";
+import { createWriteStream, promises as fs } from "fs";
 import { PAGES_IN_DIR, ROOT_SASS_DOC, CSS_DOC, CONTENT_DIR, COMPONENTS_DIR, SCSS_DIR, ICONS_DIR, ICONS_OUT, PAGES_OUT_DIR, POSTS_IN_DIR, POSTS_OUT_DIR, IMAGES_DIR, IMAGES_OUT } from "./directories";
 import ncpSync from "ncp";
 import chokidar from "chokidar";
-import { BlogPost, BlogPostAttributes } from "./BlogPost";
+import { BlogPost } from "./BlogPost";
 import * as path from "path";
 import express from "express";
 import sass from "sass";
@@ -15,7 +14,7 @@ const renderSass = promisify(sass.render);
 const ncp = promisify(ncpSync);
 
 async function findAllInDir(dir: string, extension: string) {
-    const files = await readdir(dir, { withFileTypes: true });
+    const files = await fs.readdir(dir, { withFileTypes: true });
     return files.filter((dirEntry) => 
         dirEntry.isFile() && dirEntry.name.endsWith(extension)
     ).map((dirEntry) => path.join(dir, dirEntry.name));
@@ -33,7 +32,7 @@ async function buildSite(config: AppConfig): Promise<BuildContext> {
     for (const page of await findAllInDir(PAGES_IN_DIR, ".njk")) {
         await buildPage(page, context);
     }
-    await writeFile(CSS_DOC, (await renderSass({ file: ROOT_SASS_DOC })).css);
+    await fs.writeFile(CSS_DOC, (await renderSass({ file: ROOT_SASS_DOC })).css);
     await ncp(IMAGES_DIR, IMAGES_OUT);
     await ncp(ICONS_DIR, ICONS_OUT);
     return context;
@@ -110,7 +109,7 @@ async function watchSite(config: AppConfig) {
     });
     chokidar.watch(SCSS_DIR).on('all', async (eventType: string, fileName: string) => {
         console.log(eventType, fileName);
-        await writeFile(CSS_DOC, (await renderSass({ file: ROOT_SASS_DOC })).css);
+        await fs.writeFile(CSS_DOC, (await renderSass({ file: ROOT_SASS_DOC })).css);
     });
 }
 

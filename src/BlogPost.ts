@@ -1,4 +1,4 @@
-import { readFile } from "fs/promises";
+import { promises as fs } from "fs";
 import MarkdownIt from "markdown-it";
 import frontmatter from "front-matter";
 import readingTime from "reading-time";
@@ -29,7 +29,7 @@ const renderStrfunc: (data: string, globals: {[key: string]: string|object}) => 
 
 export class BlogPost {
     public static async readFromFile(filename: string): Promise<BlogPost> {
-        const text = await readFile(filename, "utf-8");
+        const text = await fs.readFile(filename, "utf-8");
         const content = frontmatter<object>(text);
         const attributes: FrontMatterAttributes = content.attributes as FrontMatterAttributes;
         const tags = attributes.tags ? attributes.tags.split(" ") : [];
