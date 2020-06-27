@@ -1,3 +1,11 @@
-body{
-    background: green;
+@import '../../node_modules/milligram/src/milligram.sass';
+@import '../../node_modules/prismjs/themes/prism';
+
+nav img {
+    width: 1em;
+}
+
+pre[class*="language-"]{
+    margin-left: 2vw;
+    margin-right: 2vw;
 }

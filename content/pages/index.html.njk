@@ -1,6 +1,8 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="main.css">
-<title>{{ globals.title }}</title>
-<h1>{{ globals.title }}</h1>
-<p> Test </p>
+{% include "../components/head.html.njk" %}
+<h1>{{ title }}</h1>
+<nav>
+  <ul>
+    <li> <img src="/icons/chat.svg"/> <a rel="noreferrer noopener" href="/log.html"> Log Files </a>
+  </ul>
+</nav>
+{% include "../components/foot.html.njk" %}
