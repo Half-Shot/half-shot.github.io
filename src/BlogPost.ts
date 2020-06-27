@@ -2,16 +2,17 @@ import { readFile } from "fs/promises";
 import MarkdownIt from "markdown-it";
 import frontmatter from "front-matter";
 import readingTime from "reading-time";
-import { TemplateCallback, renderString } from "nunjucks";
+import { renderString } from "nunjucks";
 import { promisify } from "util";
 import { BuildContext } from "./pageRender";
 import path from "path";
-import { PAGES_OUT_DIR } from "./directories";
 
 export interface BlogPostAttributes {
     title: string;
+    subtitle?: string;
     published: string;
     url: string;
+    tags?: string[];
 }
 
 const md = new MarkdownIt({
@@ -19,6 +20,8 @@ const md = new MarkdownIt({
     linkify: true,
     typographer: true,
 });
+
+type FrontMatterAttributes = {[key: string]: string};
 
 md.use(require("markdown-it-prism"));
 
@@ -28,7 +31,15 @@ export class BlogPost {
     public static async readFromFile(filename: string): Promise<BlogPost> {
         const text = await readFile(filename, "utf-8");
         const content = frontmatter<object>(text);
-        return new BlogPost(content.attributes as any, content.body, filename);
+        const attributes: FrontMatterAttributes = content.attributes as FrontMatterAttributes;
+        const tags = attributes.tags ? attributes.tags.split(" ") : [];
+        return new BlogPost({
+            title: attributes.title,
+            subtitle: attributes.subtitle,
+            tags: tags,
+            published: attributes.published,
+            url: "" // To be filled in,
+        }, content.body, filename);
     }
 
     constructor(public readonly attributes: BlogPostAttributes, private markdown: string, public readonly sourceFile: string) {

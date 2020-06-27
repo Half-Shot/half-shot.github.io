@@ -1,9 +1,16 @@
 {% include "./head.html.njk" %}
-<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide Atom feed" />
-<h1>{{ post.title }}</h1>
-<section class="metadata">
-    <span> 🕒 Reading time: {{ post.readingTime.text }}</span>
-    <span> ✏️ Published: {{ post.published }}</span>
-</section>
-{% block content %}{% endblock %}
+<article>
+    <hgroup>
+        <h1 class="title">{{ post.title }}</h1>
+        {% if post.subtitle %}
+        <h2>{{ post.subtitle }}</h2>
+        {% endif %}
+    </hgroup>
+    <aside class="metadata">
+        <span> 🕒 Reading time: {{ post.readingTime.text }}</span>
+        <span> ✏️ Published: {{ post.published }}</span>
+        <p> Tags: {% for tag in post.tags %} <span>#{{ tag }}</span> {% endfor %} </p>
+    </aside>
+    {% block content %}{% endblock %}
+</article>
 {% include "./foot.html.njk" %}

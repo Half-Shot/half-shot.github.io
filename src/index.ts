@@ -2,7 +2,7 @@ import { readConfig, AppConfig } from "./config";
 import { renderPage, configureRenderer, BuildContext } from "./pageRender";
 import { createWriteStream } from "fs";
 import { writeFile, readdir } from "fs/promises";
-import { PAGES_IN_DIR, ROOT_SASS_DOC, CSS_DOC, CONTENT_DIR, COMPONENTS_DIR, SCSS_DIR, ICONS_DIR, ICONS_OUT, PAGES_OUT_DIR, POSTS_IN_DIR, POSTS_OUT_DIR } from "./directories";
+import { PAGES_IN_DIR, ROOT_SASS_DOC, CSS_DOC, CONTENT_DIR, COMPONENTS_DIR, SCSS_DIR, ICONS_DIR, ICONS_OUT, PAGES_OUT_DIR, POSTS_IN_DIR, POSTS_OUT_DIR, IMAGES_DIR, IMAGES_OUT } from "./directories";
 import ncpSync from "ncp";
 import chokidar from "chokidar";
 import { BlogPost, BlogPostAttributes } from "./BlogPost";
@@ -34,6 +34,7 @@ async function buildSite(config: AppConfig): Promise<BuildContext> {
         await buildPage(page, context);
     }
     await writeFile(CSS_DOC, (await renderSass({ file: ROOT_SASS_DOC })).css);
+    await ncp(IMAGES_DIR, IMAGES_OUT);
     await ncp(ICONS_DIR, ICONS_OUT);
     return context;
 }

@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="utf-8">
+<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide Atom feed" />
 <link rel="stylesheet" type="text/css" href="/main.css">
-<title>{{ title }}</title>
-<h1> Half-Shot</h1>
-<small> 👨‍💻 Programmer | 🖌️ Aspiring Artist | ✍️ Occasional Writer | 🐶 Canine Appreciator</small> 
-<nav class="social">
-  <ul>
-    <span> <img src="/icons/chat.svg"/> <a rel="noreferrer noopener" target="_blank" href="https://github.com/Half-Shot/half-shot.uk"> Matrix </a> </span>
-    <span> <img src="/icons/twitter.svg"/> <a rel="noreferrer noopener" target="_blank" href="https://twitter.com/Half_Shot"> Twitter </a> </span>
-    <span> <img src="/icons/github.svg"/> <a rel="noreferrer noopener" target="_blank" href="https://github.com/Half-Shot"> GitHub </a> </span>
-  </ul>
+<title>{{ globals.title }}{% if post.title %} - {{ post.title }} {% endif %}</title>
+<span> Half-Shot.uk </span>
+<nav>
+    <span>  <a rel="noreferrer noopener" href="/"> Home </a> </span>
+    <span>  <a rel="noreferrer noopener" href="/log.html"> Log Files </a> </span>
 </nav>
