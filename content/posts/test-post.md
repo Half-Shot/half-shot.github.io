@@ -1,7 +1,7 @@
 ---
 title: Test Post
 subtitle: Testing all the way
-published: Friday
+published: '2020-06-27'
 ---
 
 This is a post to test out the new blogging engine for my site!
