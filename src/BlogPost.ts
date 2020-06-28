@@ -6,6 +6,7 @@ import { renderString } from "nunjucks";
 import { promisify } from "util";
 import { BuildContext } from "./pageRender";
 import path from "path";
+import moment from "moment";
 
 export interface BlogPostAttributes {
     title: string;
@@ -42,10 +43,16 @@ export class BlogPost {
         }, content.body, filename);
     }
 
+    public readonly creationTime: number = 0;
+
     constructor(public readonly attributes: BlogPostAttributes, private markdown: string, public readonly sourceFile: string) {
         attributes.url = `/log/${path.basename(sourceFile, ".md")}.html`;
+        if (this.attributes.published) {
+            const ts = moment(this.attributes.published.trim());
+            this.creationTime = ts.unix();
+            this.attributes.published = moment(this.attributes.published.trim()).format("dddd, MMMM Do YYYY");
+        }
     }
-
 
     public async render(buildContext: BuildContext): Promise<string> {
         const htmlContent = md.render(this.markdown);

@@ -4,8 +4,10 @@
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide Atom feed" />
 <link rel="stylesheet" type="text/css" href="/main.css">
 <title>{{ globals.title }}{% if post.title %} - {{ post.title }} {% endif %}</title>
-<span> Half-Shot.uk </span>
-<nav>
-    <span>  <a rel="noreferrer noopener" href="/"> Home </a> </span>
-    <span>  <a rel="noreferrer noopener" href="/log.html"> Log Files </a> </span>
-</nav>
+<header>
+    <span> {{ globals.title }} </span>
+    <nav>
+        <span>  <a rel="noreferrer noopener" href="/"> Home </a> </span>
+        <span>  <a rel="noreferrer noopener" href="/log.html"> Logs </a> </span>
+    </nav>
+</header>

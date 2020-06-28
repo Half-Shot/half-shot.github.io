@@ -9,7 +9,9 @@
     <aside class="metadata">
         <span> 🕒 Reading time: {{ post.readingTime.text }}</span>
         <span> ✏️ Published: {{ post.published }}</span>
+        {% if post.tags %}
         <p> Tags: {% for tag in post.tags %} <span>#{{ tag }}</span> {% endfor %} </p>
+        {% endif %}
     </aside>
     {% block content %}{% endblock %}
 </article>

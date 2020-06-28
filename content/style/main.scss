@@ -1,3 +1,12 @@
+$color-initial: #fff !default;
+/* Halfy colours */
+$color-primary: #e3b53b !default;
+$color-secondary: #353332 !default;
+$color-tertiary: #c6c6c6 !default;
+
+$color-quaternary: #d1d1d1 !default;
+$color-quinary: #e1e1e1 !default;
+
 @import '../../node_modules/milligram/src/milligram.sass';
 @import '../../node_modules/prismjs/themes/prism';
 @import './typography.scss';
@@ -5,8 +14,48 @@ nav img {
     width: 1em;
 }
 
+body {
+  padding: 1vh 1rem;
+  min-height: 98vh;
+}
+
 @media screen and (min-width: 900px) {
     body {
-      padding: 1rem 10rem;
+      padding: 1vh 10rem;
     }
+}
+
+main {
+  min-height: 85vh;
+}
+
+#links > * {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+footer {
+  position: relative; 
+  bottom:0; 
+}
+
+#links {
+  top: 25vh;
+  font-size: 20pt;
+  position: relative;
+}
+
+.page-title {
+  font-size: 24pt;
+}
+
+.blog-index > * {
+  list-style-type: none;
+}
+
+header {
+  font-size: 18pt;
+  nav {
+    font-size: 16pt;
+  }
 }

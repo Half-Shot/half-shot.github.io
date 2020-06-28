@@ -24,7 +24,7 @@ async function buildSite(config: AppConfig): Promise<BuildContext> {
     const blogPosts = await Promise.all((await findAllInDir(POSTS_IN_DIR, ".md")).map(name => BlogPost.readFromFile(name)));
     const context = {
         globals: config.globals,
-        blogPosts: blogPosts.map(b => b.attributes),
+        blogPosts: blogPosts.sort((postA, postB) => postB.creationTime - postA.creationTime).map(b => b.attributes),
     };
     for (const post of blogPosts) {
         await buildBlogPost(post, context);
@@ -110,6 +110,10 @@ async function watchSite(config: AppConfig) {
     chokidar.watch(SCSS_DIR).on('all', async (eventType: string, fileName: string) => {
         console.log(eventType, fileName);
         await fs.writeFile(CSS_DOC, (await renderSass({ file: ROOT_SASS_DOC })).css);
+    });
+    chokidar.watch("./site.toml").on('all', async (eventType: string, fileName: string) => {
+        console.log(eventType, fileName);
+        config = await readConfig("./site.toml");
     });
 }
 

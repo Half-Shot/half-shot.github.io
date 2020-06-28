@@ -16,6 +16,7 @@
     "markdown-it": "^11.0.0",
     "markdown-it-prism": "^2.0.5",
     "milligram": "^1.4.1",
+    "moment": "^2.27.0",
     "ncp": "^2.0.0",
     "nunjucks": "^3.2.1",
     "reading-time": "^1.2.0",

@@ -1,8 +1,8 @@
 {% include "../components/head.html.njk" %}
-<h1>Log Files</h1>
-<ul>
+<h1 class="page-title">Logs</h1>
+<ul class="blog-index">
 {% for post in blogPosts %}
-  <li><a href="{{ post.url }}">{{ post.title }}</li>
+  <li> <span>{{ post.published }}</span> <a href="{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 {% include "../components/foot.html.njk" %}
