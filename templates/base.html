@@ -15,12 +15,15 @@
     <img title="Skraps, the kobold" id="logo" alt="Kobold Head Logo" src="/headshot.webp" />
   </a>
   <div>
-  <h1>half-shot.uk</h1>
-  <p id="subtitle">Writings, arts, softwares, etc etc</p>
+    <h1>half-shot.uk</h1>
+    <p id="subtitle">Writings, arts, softwares, etc etc</p>
   </div>
 </header>
 
 <main>
+  {% if page.title %}
+  <h1 id="pagetitle">{{ page.title }}</h1>
+  {% endif %}
   {% block content %} {% endblock %}
 </main>
 
@@ -30,6 +33,7 @@
     <li><a rel="me" href="https://mastodon.half-shot.uk/@halfy">Mastodon</a></li>
     <li><a href="https://github.com/Half-Shot/half-shot.github.io">Source</a></li>
     <li><a href="/contact">Contact</a></li>
+    <li><a href="https://cv.half-shot.uk">CV</a></li>
   </menu>
   
   <p> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><abbr title="Attribution-NonCommercial-ShareAlike 4.0 International">CC BY-NC-SA 4.0</abbr> License</a>.</p>

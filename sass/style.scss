@@ -1,6 +1,7 @@
 
 :root {
     --text: #313131;
+    --bg: #f8f8f8;
     --highlight: #df8b1c;
     --links: #9b561e;
     --subheading: #666666;
@@ -11,6 +12,7 @@ body {
     font-size: 12pt;
     color: var(--text);
     max-width: 98vw;
+    background: var(--bg);
 }
 
 a {
@@ -27,6 +29,16 @@ main {
     margin-top: 2rem;
     font-size: 1.5rem;
     line-height: 2.25rem;
+}
+
+.gallery {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+
+    img {
+        width: 100%;
+    }
 }
 
 header {
@@ -56,12 +68,12 @@ header {
 }
 
 footer {
-    position:absolute;
     bottom:0;
     margin-bottom: 2rem;
     text-align: center;
-    width: 95%;
-    text-align: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 
     menu {
         padding: 0;
@@ -72,5 +84,35 @@ footer {
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+#pagetitle {
+    font-size: 2.5rem;
+}
+
+article {
+    h1,h2,h3,h4 {
+        font-weight: 600;
+        color: var(--highlight);
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.75rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+    article:nth-child(even) {
+        margin-left: 4rem;
+        margin-right: auto;
+        width: fit-content;
+    }
+    article:nth-child(odd) {
+        margin-right: 6rem;
+        margin-left: auto;
+        width: fit-content;
     }
 }
