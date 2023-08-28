@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article>
+{{ page.content | default(value=section.content | safe) | safe }}
+</article>
+{% endblock content %}
