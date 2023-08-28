@@ -2,6 +2,7 @@
 :root {
     --text: #313131;
     --highlight: #df8b1c;
+    --links: #9b561e;
     --subheading: #666666;
 }
 
@@ -9,44 +10,31 @@ body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
     font-size: 12pt;
     color: var(--text);
+    max-width: 98vw;
 }
 
 a {
-    color: var(--highlight);
+    color: var(--links);
 }
 
 main {
     margin-left: auto;
     margin-right: auto;
-    max-width: 50rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     width: fit-content;
+    max-width: 800px;
     margin-top: 2rem;
-    font-size: 15pt;
-}
-
-footer {
-    position:absolute;
-    bottom:0;
-    margin-bottom: 2rem;
-    text-align: center;
-    width: 100%;
-    text-align: center;
-
-    menu {
-        list-style: none;
-        display: flex;
-        gap: 1rem;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    font-size: 1.5rem;
+    line-height: 2.25rem;
 }
 
 header {
-    margin-top: 40vh;
-    max-width: 68rem;
+    margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
+    width: 50rem;
+    max-width: 95%;
     display: flex;
     gap: 2rem;
     > div {
@@ -62,7 +50,27 @@ header {
         color: var(--subheading);
         font-size: 1.5rem;
     }
-    > #logo {
+    #logo {
         max-height: 6rem;
+    }
+}
+
+footer {
+    position:absolute;
+    bottom:0;
+    margin-bottom: 2rem;
+    text-align: center;
+    width: 95%;
+    text-align: center;
+
+    menu {
+        padding: 0;
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        width: fit-content;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
