@@ -29,6 +29,17 @@ main {
     font-size: 1.33rem;
     line-height: 2.25rem;
     min-height: 75vh;
+
+    header {
+        display: flex;
+        gap: 0.5rem;
+        h1 {
+            margin: 0;
+        }
+        .subtitle {
+            line-height: 2;
+        }
+    }
 }
 
 .gallery {
@@ -41,7 +52,7 @@ main {
     }
 }
 
-header {
+body > header {
     margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
@@ -92,6 +103,27 @@ footer {
     font-size: 2.5rem;
 }
 
+div.subtitle {
+    font-weight: 600;
+    color: var(--subheading);
+}
+
+time {
+    color: var(--subheading);
+}
+
+.categories {
+    color: var(--subheading);
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    display: flex;
+    gap: 0.5rem;
+    text-decoration: underline;
+    list-style: none;
+}
+
 article {
     h1,h2,h3,h4 {
         font-weight: 600;
@@ -123,7 +155,7 @@ figure {
     max-width: 60vw;
     margin-left: auto;
     margin-right: auto;
-    > img {
+    img {
         border: 1px solid var(--highlight);
         display: block;
         margin-left: auto;
@@ -132,7 +164,7 @@ figure {
         max-width: 100%;
         max-height: 50rem;
     }
-    > figcaption {
+    figcaption {
         font-style: italic;
         margin-top: 2rem;
         text-align: center;
@@ -145,9 +177,9 @@ pre {
 }
 
 video {
-    max-width: 70vw;
+    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
-    padding: 2rem;
+    padding: 5%;
     display: block;
 }

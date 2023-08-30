@@ -1,6 +1,9 @@
 +++
 title = "New frontiers"
+description = "Breaking into an Internet Radio"
 date = 2023-08-30
+[taxonomies]
+categories = ["hacking", "javascript", "audio"]
 +++
 
 ## Preface
@@ -15,7 +18,7 @@ out of speakers and a Pi...but that's now a thing *I* have to spec and maintain.
 And so, the often forgotten little entry-level internet radios appeared before me. Amazon is littered with internet radios from different providers
 but the one I bought ended up being a [LEMEGA IR1](https://www.amazon.co.uk/gp/product/B089D8BV99). 
 
-{{ figure(src="https://mastodon-media.half-shot.uk/media_attachments/files/110/967/348/610/898/990/small/42986795cafe0620.jpg", alt="A picture of the radio, with the wifi screen", caption="The UX for the wifi password screen left something to be desired") }}
+{{ figure(src="/blog/new-frontiers/wifi_interface.jpg", alt="A picture of the radio, with the wifi screen", caption="The UX for the wifi password screen left something to be desired") }}
 
 ## Frontier Silicon
 
@@ -68,7 +71,7 @@ I ran the proxy and routed traffic to the real host aaaand...🎉 voila! It spil
 you could see how it was pulling the data.
 
 {{ figure(
-    src="https://mastodon-media.half-shot.uk/media_attachments/files/110/974/659/944/511/034/small/68e5584f159a9caa.png",
+    src="/blog/new-frontiers/requests_view.png",
     caption="And now it all makes sense!",
     alt="Screen capture of mitmproxy showing two requests from wifiradionetworks.com")
 }}
@@ -76,7 +79,7 @@ you could see how it was pulling the data.
 So now that the API was revealed it was fairly trivial to work with. I wrote a simple node server to handle the requests which let me play a MP3 file (sadly no vorbis support) through it.
 I could then also connect it to `mpd` (Music Player Daemon) and play a whole playlist. Also, I added my own "brand".
 
-<video alt="Video of the stream working" src="../new_frontiers/success.webm" controls> </video>
+<video alt="Video of the stream working" src="success.webm" controls> </video>
 
 So that's that, we've broken in and found ourselves a way to add arbitrary streams to it!
 

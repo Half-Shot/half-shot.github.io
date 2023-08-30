@@ -1,4 +1,5 @@
+{% set image = resize_image(path=src, height=600, op="fit_height", format="webp") %}
 <figure>
-  <img src="{{ src }}" alt="{{ alt }}" />
+  <a href="{{ src | safe }}" target="_blank"><img src="{{ image.url | safe }}" alt="{{ alt }}" /></a>
   <figcaption>{{ caption }}</figcaption>
 </figure>

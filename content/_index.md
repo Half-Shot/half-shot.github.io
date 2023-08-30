@@ -11,6 +11,7 @@ My activites include writing, occasional flecks of music and art and I've recent
 started to become an enthusiastic runner.
 
 This site mainly exists as a testament to the things that [I have worked on](/works).
+I also occasionally [blog about things.](/blog)
 
 I am also always on the lookout for new work, so feel free to [contact me](/contact)
 if you have something that might fit my skillset.

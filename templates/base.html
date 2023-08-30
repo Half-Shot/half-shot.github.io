@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="/style.css" />
   <link rel="icon" href="/site-icon.webp" />
   <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" />
+  {% block rss %}
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
+  {% endblock %}
 </head>
 
 <header role="banner">
@@ -21,9 +24,14 @@
 </header>
 
 <main>
-  {% if page.title %}
-  <h1 id="pagetitle">{{ page.title }}</h1>
-  {% endif %}
+  <header>
+    {% if page.title %}
+    <h1 id="pagetitle">{{ page.title }}</h1>
+    {% endif %}
+    {% if page.description %}
+    <div class="subtitle">{{ page.description }}</div>
+    {% endif %}
+  </header>
   {% block content %} {% endblock %}
 </main>
 
@@ -34,6 +42,7 @@
     <li><a href="https://github.com/Half-Shot/half-shot.github.io">Source</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="https://cv.half-shot.uk">CV</a></li>
+    <li><a href="{{ get_url(path="atom.xml", trailing_slash=false) }}">Feed</a></li>
   </menu>
   
   <p> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><abbr title="Attribution-NonCommercial-ShareAlike 4.0 International">CC BY-NC-SA 4.0</abbr> License</a>.</p>

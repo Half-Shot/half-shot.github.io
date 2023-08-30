@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p class="subtitle"><strong>{{ page.date }}</strong></p>
+<div id="post-metadata">
+  <time datetime="{{ page.date }}">{{ page.date }}</time>
+  <ul class="categories">
+  {% for category in page.taxonomies.categories %}
+    <li>{{ category }}</li>
+  {% endfor %}
+  </ul>
+</div>
 <article>
   {{ page.content | safe }}
 </article>
