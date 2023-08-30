@@ -18,7 +18,12 @@ out of speakers and a Pi...but that's now a thing *I* have to spec and maintain.
 And so, the often forgotten little entry-level internet radios appeared before me. Amazon is littered with internet radios from different providers
 but the one I bought ended up being a [LEMEGA IR1](https://www.amazon.co.uk/gp/product/B089D8BV99). 
 
-{{ figure(src="/blog/new_frontiers/wifi_interface.jpg", alt="A picture of the radio, with the wifi screen", caption="The UX for the wifi password screen left something to be desired") }}
+{{ figure(
+    src="/blog/new_frontiers/wifi_interface.jpg",
+    href="/blog/new-frontiers/wifi_interface.jpg",
+    alt="A picture of the radio, with the wifi screen",
+    caption="The UX for the wifi password screen left something to be desired"
+) }}
 
 ## Frontier Silicon
 
@@ -72,6 +77,7 @@ you could see how it was pulling the data.
 
 {{ figure(
     src="/blog/new_frontiers/requests_view.png",
+    href="/blog/new-frontiers/requests_view.png",
     caption="And now it all makes sense!",
     alt="Screen capture of mitmproxy showing two requests from wifiradionetworks.com")
 }}
