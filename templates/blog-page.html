@@ -2,5 +2,7 @@
 
 {% block content %}
 <p class="subtitle"><strong>{{ page.date }}</strong></p>
-{{ page.content | safe }}
+<article>
+  {{ page.content | safe }}
+</article>
 {% endblock content %}
