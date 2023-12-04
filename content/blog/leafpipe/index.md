@@ -1,17 +1,27 @@
 +++
-title = "Pipes to Lights"
-description = "Pretty lights from beep boops"
+title = "Leafpipe"
+description = "Turning lots and lots of audio/visual into pretty stimuli"
 date = 2023-12-04
 [taxonomies]
 categories = ["hacking", "rust", "audio", "video", "rgb", "leafpipe"]
 +++
 
-A few years ago after moving into a flat, I was staring at a white wall. A friend of mine suggested that the wall really could do
-with some RGB lights, and being the sort of person who is naturally attracted to flashy rainbows...I went and purchased [Nanoleaf](https://nanoleaf.me) lights.
+A few years ago after moving into a flat, I was staring at a white wall (I presume this isn't unique to the UK, walls are always boring and white).
+A friend of mine suggested that the wall really could do with some RGB lights, and being the sort of person who is naturally attracted to flashy
+rainbows...I went and purchased some [Nanoleaf](https://nanoleaf.me) lights.
+
 Nanoleaf make "Shapes" panels which are neat little diffuse LED hexagons, that can be connected like LEGO to each other. You can stick them to walls
 and make the prettiest of displays.
 
-However, there is one feature that **sucks**. The audio-driven panel effects.
+{{ figure(
+    src="/blog/leafpipe/nanoleaf.webp",
+    href="/blog/leafpipe/nanoleaf.webp",
+    caption="Marketing impression of how you are meant to arrange your lights. Totally not my wall! Image: © Nanoleaf",
+    alt="A picture of some hexagonal Nanoleaf Shape lights against a wall.")
+}}
+
+
+*However*. There is one feature that **sucks**: the audio-driven panel effects.
 
 Although you can arrange the panels nicely and apply some pretty effects to music, they process audio
 though a built-in microphone (so the quality is a bit crap). There is no video feed for them, so they cannot adapt to any inputs
@@ -30,17 +40,27 @@ It should be noted that some models allow you to clip in a 3.5" jack for better 
 
 ## Leafpipe
 
-I built leafpipe to basically take input from my PC and send it onto the lights to make the aformentioned pretty displays. It uses a combination
+I built leafpipe to basically take input from my PC and send it onto the lights to make the aforementioned pretty displays. It uses a combination
 of Pipewire, and the Wayland screencopy protocol. It's a little Rust daemon that sits there relentlessly capturing data and spewing out packets
 to the Nanoleaf controller. 
+
+<figure>
+  <img src="architecture.svg" alt="{{ alt }}" />
+  <figcaption>Rough outline of how this all fits together</figcaption>
+</figure>
+
 
 I'll explain roughly how the process works.
 
 ### Video processing
 
 For the visual side, we take a copy of a chosen display every `33ms`. The frame is copied into a buffer, and then split into chunks of 4 bytes
-to make up a set of pixels (RGBA). We then further split things so we only read every 8th pixel (to save on processing time) to achieve a sort
-of rough approximation of what's on screen. Finally, we split each of the pixels horizontally by the number of panels we have. So if we
+to make up a set of pixels (RGBA). 
+
+We then further split things so we only read every 8th pixel (to save on processing time) to achieve a sort
+of rough approximation of what's on screen.
+
+Finally, we split each of the pixels horizontally by the number of panels we have. So if we
 have 8 Nanoleaf panels, we split the frame by 8. These pixels are converted to HSL so we can evaluate the lightness aspect of them, which will come
 in handy in just a second.
 
@@ -68,7 +88,10 @@ pub fn determine_prominent_color(frame_copy: FrameCopy, heatmap: &mut [Vec<Vec<V
 ```
 
 We then take these samples, and apply some simple evaluations to each pixel to skip anything that might be "dull" (really light or really dark
-colours tend to be a bit boring on a RGB display). Within each panel, we take a heatmap of the pixels and choose whichever pixel ranks highest.
+colours tend to be a bit boring on a RGB display).
+
+Within each panel, we take a heatmap of the pixels and choose whichever pixel ranks highest. The heatmap is effectively a 4 dimensional array of
+all the panels x [possible hue values] x [possible saturation values] x [possible lightness values].
 
 ```rust
         // Reject any really dark colours.
@@ -98,7 +121,8 @@ colours tend to be a bit boring on a RGB display). Within each panel, we take a 
 }
 ```
 
-So the end result is we end up with N RGB (well, HSL) values which can be sent to the panels for display.
+Again for resource reasons, we approximate the values of these and round up into blocks. For instance, a pixel of H: 15, S: 20, and L: 50
+would be put in heatmap block `[1][4][10]`. Once all the pixels have been evaluated, we can return a set of most prominent values.
 
 ### Audio processing
 
@@ -114,32 +138,36 @@ of how much we should then tweak the lightness for the latest frame.
 ```rust
 // https://github.com/Half-Shot/leafpipe/blob/9d5f3d1ec0eaea00c700c224c2e284a4fc491f13/src/main.rs#L56
     let mut window = SlidingWindow::new(64);
-    // ... loop {
+    let color = hsl_color_from_video_processing;
+    // This would loop
     if let Some(audio_data) = buffer_manager.write().unwrap().fft_interval(LIGHT_INTERVAL, panels.num_panels) {
-        let mut effect = NanoleafEffectPayload::new(panels.num_panels);
-        for (panel_index, panel) in sorted_panels.iter().enumerate() {
-            if let Some(color) = color_set.get(panel_index) {
-                let (min, max) = window.submit_new(audio_data[panel_index]);
-                let base_int = color.get_lightness() - 10.0;
-                let intensity = (base_int + ((audio_data[panel_index] + min) / max) * intensity_modifier * (panel_index as f32 + 1.0f32).powf(1.05f32)).clamp(5.0, 80.0);
-                let hsl = Hsl::from(color.get_hue(), color.get_saturation(), intensity);
-                let rgb = hsl.to_rgb().as_tuple();
-                let r = rgb.0.round() as u8;
-                let g = rgb.1.round() as u8;
-                let b = rgb.2.round() as u8;
-                effect.write_effect(panel.panel_id, r, g, b, 1);
-            }
-        }
-        if let Err(err) = nanoleaf.send_effect(&effect) {
-            log::warn!("Failed to send effect to nanoleaf {:?}", err);
+        for (panel_index, _panel) in sorted_panels.iter().enumerate() {
+            // Submit our value, and return min,max.
+            let (min, max) = window.submit_new(audio_data[panel_index]);
+            let base_int = color.get_lightness() - 10.0;
+            let intensity = (base_int + ((audio_data[panel_index] + min) / max) * intensity_modifier * (panel_index as f32 + 1.0f32).powf(1.05f32)).clamp(5.0, 80.0);
+            let hsl = Hsl::from(color.get_hue(), color.get_saturation(), intensity);
+            let rgb = hsl.to_rgb().as_tuple();
+            let r = rgb.0.round() as u8;
+            let g = rgb.1.round() as u8;
+            let b = rgb.2.round() as u8;
+            // And write this result to the nanoleaf
         }
     }
 ```
 
-The intensity algorithm ends up looking like `intensity = (base_colour_intensity + relative_recent_intensity) * intensity_modifier`
+The intensity algorithm ends up looking like:
 
-So then it becomes a simple matter that for each panel, we take our relative computed amplitude value and multiply the pixel lightness value
-by that. And that's about it! **Oh wait, no**. How do we get that data to the panel?
+`intensity = clamp((base_colour_intensity + relative_recent_intensity) * intensity_modifier * panel_index^1.05, 5, 80)`. 
+
+We allow the user to specify a modifier value (defaulting to `15`) in case they would like to turn up or tone down the effect. We also clamp the value
+to prevent blinding users or turning the lights off completely.
+
+Once we have our final RGB value, that's it!
+
+**Oh wait, no!**
+
+How do we get that data to the panel?
 
 ### Sending the data
 
@@ -151,9 +179,9 @@ curl -X PUT --data '{"write":{"command": "display", "animType": "extControl", "e
 ```
 
 It's really cool! It uses UDP, so you can effectively fire off new frames as fast as you like to control each panel. (Although in my testing anything
-higher than 100ms would cause it to melt). We therefore send a new payload of data to the controller every 100ms which contains the
+higher than 100ms would cause it to melt). We therefore send a new payload of data to the controller every `100ms` which contains the
 values calculated. You need to give the effect a "transition time" because it likes to do a fade-effect between colours, so we set that to
-100ms (or deciseconds).
+`100ms`.
 
 <figure>
   <video alt="Demo video of the final product" src="demo.webm" controls poster="demo.webp"> </video>
@@ -163,7 +191,10 @@ values calculated. You need to give the effect a "transition time" because it li
 ### Final thoughts
 
 This project was only made possible by the hard work of the Wayshot project for showing me how to capture a frame from a Wayland compositor, and
-BlankParenthesis for developing visualisation software for pipewire streams.
+BlankParenthesis for developing visualisation software for Pipewire streams.
+
+I'm sure you have noticed by now dear reader, that this could work for any set of network addressable lights rather than just a particular brands
+particular product. Yes. Definitely. But I think I'll leave that as a future idea for someone with other lights to pick up 😉.
 
 You can check out the code on [GitHub](https://github.com/Half-Shot/leafpipe) and it should compile and run for anyone with a Nanoleaf Shapes
 device (and of course, you must run a Linux setup with Wayland and Proton).
