@@ -9,6 +9,8 @@ build_search_index = true
 
 generate_feed = true
 
+title = "half-shot.uk"
+
 taxonomies = [
     {name = "categories", feed = true}
 ]
