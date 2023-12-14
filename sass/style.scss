@@ -1,4 +1,6 @@
 
+@import "mobile.scss";
+
 :root {
     --text: #313131;
     --bg: #f8f8f8;
@@ -9,9 +11,7 @@
 
 body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-    font-size: 11pt;
     color: var(--text);
-    max-width: 98vw;
     background: var(--bg);
 }
 
@@ -26,12 +26,13 @@ main {
     padding-right: 2rem;
     max-width: 1200px;
     margin-top: 2rem;
-    font-size: 1.33rem;
+    font-size: 1.33em;
     line-height: 2.25rem;
     min-height: 75vh;
 
     header {
         display: flex;
+        flex-wrap: wrap;
         gap: 0.5rem;
         h1 {
             margin: 0;
@@ -54,12 +55,11 @@ main {
 
 body > header {
     margin-top: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50rem;
-    max-width: 95%;
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
+    justify-content: center;
     > div {
         margin-top: auto;
         margin-bottom: auto;
@@ -85,7 +85,7 @@ footer {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.10rem;
+    font-size: 1.33em;
 
     menu {
         padding: 0;
@@ -152,7 +152,7 @@ article {
 
 figure {
     width: 100%;
-    max-width: 60vw;
+    max-width: 960px;
     margin-left: auto;
     margin-right: auto;
     img {
@@ -173,7 +173,8 @@ figure {
 
 pre {
     overflow: scroll;
-    font-size: 0.90rem;
+    font-size: 1.10rem;
+    padding: 1em;
 }
 
 video {
