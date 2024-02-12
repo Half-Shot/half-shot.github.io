@@ -8,9 +8,7 @@
   <link rel="stylesheet" href="/style.css" />
   <link rel="icon" href="/site-icon.webp" />
   <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" />
-  {% block rss %}
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
-  {% endblock %}
+  {% block rss %}<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">{% endblock %}
 </head>
 
 <header role="banner">
@@ -24,6 +22,7 @@
 </header>
 
 <main>
+  {% if page.title and page.description %}
   <header>
     {% if page.title %}
     <h1 id="pagetitle">{{ page.title }}</h1>
@@ -32,6 +31,7 @@
     <div class="subtitle">{{ page.description }}</div>
     {% endif %}
   </header>
+  {% endif %}
   {% block content %} {% endblock %}
 </main>
 
@@ -48,5 +48,4 @@
   <p> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><abbr title="Attribution-NonCommercial-ShareAlike 4.0 International">CC BY-NC-SA 4.0</abbr> License</a>.</p>
   <p> Artwork of Skraps is by <a href="https://mastodon.half-shot.uk/@tsunderdog@plush.city">Tsunderdog</a> </p>
 </footer>
-
 </html>
