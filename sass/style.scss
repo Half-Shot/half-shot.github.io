@@ -9,7 +9,7 @@
     --subheading: #666666;
 }
 
-@media all and (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     :root {
         --text: #bdbdbd;
         --bg: #2e2e2e;
@@ -38,7 +38,6 @@ main {
     max-width: 1200px;
     margin-top: 2rem;
     font-size: 1.33em;
-    line-height: 2.25rem;
     min-height: 73vh;
 
     header {
