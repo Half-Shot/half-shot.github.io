@@ -9,6 +9,16 @@
     --subheading: #666666;
 }
 
+@media all and (prefers-color-scheme: dark) {
+    :root {
+        --text: #bdbdbd;
+        --bg: #2e2e2e;
+        --highlight: #b96724;
+        --links: #df8b1c;
+        --subheading: #adadad;
+    }
+}
+
 body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
     color: var(--text);
