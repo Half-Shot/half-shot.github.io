@@ -12,7 +12,7 @@ connection, power, and space in their cabinet at home.
 
 And for a long time the arrangement worked out fine. We installed a standard power monitoring brick which would tell him how much power
 I had used, and we'd multiply that by the kilowatt per hour cost from their power supplier. I'd end up paying anywhere between
-£30 to £40 depending on usage and the variance of bills.
+£30 to £40 per month depending on usage and the variance of bills.
 
 Things then changed with [Agile Octopus](https://octopus.energy/smart/agile/).
 
