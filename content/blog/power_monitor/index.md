@@ -115,4 +115,6 @@ welcome cost savings.
 
 If you are interested in something like this, or would just like to see how it's put together then please check out [https://github.com/Half-Shot/autopowerbill](https://github.com/Half-Shot/autopowerbill).
 
+And if you have any questions, you can always ask on [the mastodon thread](https://mastodon.half-shot.uk/@halfy/112446159375587479)
+
 Thanks for reading!
