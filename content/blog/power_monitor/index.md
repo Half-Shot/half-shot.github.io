@@ -7,35 +7,41 @@ categories = ["hacking", "iot", "smart plug", "rust"]
 +++
 
 I run half-shot.uk, and various other services off actual server hardware at home. A few years back a friend convinced me to stop relying
-on cloud servers, and instead switch to running it at home. And honestly it's been a fun adventure to manage it all, and have more
-control over it. The friend houses the server for me, and provides me an internet connection and power with space in their cabinet at home.
+on cloud servers, and instead just buy a second hand box and run with it. The friend houses the server for me, and provides me an internet
+connection, power, and space in their cabinet at home.
 
 And for a long time the arrangement worked out fine. We installed standard IoT power monitoring brick which would tell him how much power
-I had used, and we'd multiply that by their contractual kilowatt per hour cost from their power supplier. I'd end up paying anywhere between
+I had used, and we'd multiply that by the kilowatt per hour cost from their power supplier. I'd end up paying anywhere between
 £30 to £40 depending on usage and the variance of bills.
 
-And then, enter [Agile Octopus](https://octopus.energy/smart/agile/).
+Things then changed with [Agile Octopus](https://octopus.energy/smart/agile/).
 
 ### Agility
 
 I promise it's got nothing to do with Agile software development delivered by eight-limbed molluscs. Octopus (a major UK energy company)
-have a plan where power costs rapidly change every half hour. The customer is notified a day or so before, so they can plan to eat dinner
-earlier/later or generally plan to use energy in off-peak sessions. Obviously with the intention to balance out power demand across the UK.
+have a plan where kilowatt per hour costs change every half hour. The customer is notified a day or so before, so they can plan to eat their 
+dinner earlier/later or generally plan to use energy in off-peak sessions; The intention to balance out power demand across the UK.
 
 Because the UK has a pretty sizable [renewable energy](https://grid.iamkate.com/) sector, power costs can vary greatly based on the weather
 conditions. There are some days when it's miserable and the power costs tend to go up over the next few days, and some times we get a lot of
 wind and sunshine and the power costs drop (I've seen it drop below a penny per kwh!).
 
-This is great, except it utterly destroys the way I pay for the server! You can take averages sure, but my usage is never constant as my
+This is great, except it utterly ruins the way I pay for the server! You can take averages sure, but my usage is never constant as my
 traffic patterns vary. And if I choose to do my heavy full disk backups in off peak periods, then I'd lose out on those potential savings.
 
-A solution it seems, was needed.
+A better solution it seems, was needed.
 
 ### Smart Plugs
 
 The first thing that needed to be improved was the data collection system. The current smart plug could only capture daily usage,
-and had no functionality to export the data to a third-party. You had to use the crappy app, and enter the data manually into a spreadsheet.
-Nobody was going for that idea.
+and had no functionality to export the data to a third-party. 
+
+{{ figure(
+    src="/blog/power_monitor/old-app.png",
+    href="/blog/power-monitor/old-app.png",
+    alt="Screenshot of a basic Android app showing power usage per month.",
+    caption="The process involved reading from this, and enter the data manually into a spreadsheet. Nobody was going for that idea."
+) }}
 
 In the end the solution was a MQTT-compatible smart plug that offered at least half hourly reporting. While I could have
 bought any old plug off the internet and hardware modded it...I do not trust my skills or my attention span. Instead,
