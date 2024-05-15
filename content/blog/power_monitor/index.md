@@ -10,7 +10,7 @@ I run half-shot.uk, and various other services off actual server hardware at hom
 on cloud servers, and instead just buy a second hand box and run with it. The friend houses the server for me, and provides me an internet
 connection, power, and space in their cabinet at home.
 
-And for a long time the arrangement worked out fine. We installed standard IoT power monitoring brick which would tell him how much power
+And for a long time the arrangement worked out fine. We installed a standard power monitoring brick which would tell him how much power
 I had used, and we'd multiply that by the kilowatt per hour cost from their power supplier. I'd end up paying anywhere between
 £30 to £40 depending on usage and the variance of bills.
 
