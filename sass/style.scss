@@ -196,3 +196,10 @@ video {
     padding: 5%;
     display: block;
 }
+
+.blog-post-link {
+    p {
+        margin-top: 0.1em;
+    }
+    list-style: '- ';
+}

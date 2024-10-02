@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article>
+{{ page.content | default(value=section.content | safe) | safe }}
+</article>
+
+
+<h2> Recent Blog Posts </h2>
+{% set blog_section = get_section(path="blog/_index.md") %}
+<ol>
+{% for post in blog_section.pages | sort(attribute="date") | reverse | slice(end=5) %}
+    <li class="blog-post-link">
+        <a href="{{ post.permalink }}">{{ post.title }}</a> 
+        <time datetime="{{ post.date }}">{{ post.date }}</time>
+        <p>{{ post.description }}</p>
+    </li>
+{% endfor %}
+    <a href="/blog">See all posts</a>
+    <a target="_blank" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">Atom Feed</a>
+</ol>
+
+{% endblock content %}
