@@ -4,6 +4,8 @@ description = "Accurate power monitoring and billing for your home server."
 date = 2024-05-15
 [taxonomies]
 categories = ["hacking", "iot", "smart plug", "rust"]
+[extra]
+project_url="https://github.com/Half-Shot/autopowerbill"
 +++
 
 I run half-shot.uk, and various other services off actual server hardware at home. A few years back a friend convinced me to stop relying

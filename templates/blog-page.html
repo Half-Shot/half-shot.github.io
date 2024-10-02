@@ -8,6 +8,9 @@
     <li>{{ category }}</li>
   {% endfor %}
   </ul>
+  {% if page.extra.project_url %}
+  <a target="_blank" rel="noopener" href="{{ page.extra.project_url }}">Project Page</a>
+  {% endif %}
 </div>
 <article>
   {{ page.content | safe }}

@@ -4,6 +4,8 @@ description = "Breaking into an Internet Radio"
 date = 2023-08-30
 [taxonomies]
 categories = ["hacking", "javascript", "audio"]
+[extra]
+project_url="https://github.com/Half-Shot/fairable"
 +++
 
 ## Preface
