@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>half-shot.uk | Power Monitor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/site-icon.webp" />
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="https://half-shot.uk/atom.xml">
+</head>
+
+<header role="banner">
+  <a href="/">
+    <img title="Skraps, the kobold" id="logo" alt="Kobold Head Logo" src="/headshot.webp" />
+  </a>
+  <div>
+    <h1><a href="https://half-shot.uk"/>half-shot.uk</a></h1>
+    <p id="subtitle">Writings, arts, softwares, etc etc</p>
+  </div>
+</header>
+
+<main>
+  
+  <header>
+    
+    <h1 id="pagetitle">Power Monitor</h1>
+    
+    
+    <div class="subtitle">Accurate power monitoring and billing for your home server.</div>
+    
+  </header>
+  
+  
+<div id="post-metadata">
+  <time datetime="2024-05-15">2024-05-15</time>
+  <ul class="categories">
+  
+    <li>hacking</li>
+  
+    <li>iot</li>
+  
+    <li>smart plug</li>
+  
+    <li>rust</li>
+  
+  </ul>
+  
+  <a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;autopowerbill">Project Page</a>
+  
+</div>
+<article>
+  <p>I run half-shot.uk, and various other services off actual server hardware at home. A few years back a friend convinced me to stop relying
+on cloud servers, and instead just buy a second hand box and run with it. The friend houses the server for me, and provides me an internet
+connection, power, and space in their cabinet at home.</p>
+<p>And for a long time the arrangement worked out fine. We installed a standard power monitoring brick which would tell him how much power
+I had used, and we'd multiply that by the kilowatt per hour cost from their power supplier. I'd end up paying anywhere between
+£30 to £40 per month depending on usage and the variance of bills.</p>
+<p>Things then changed with <a href="https://octopus.energy/smart/agile/">Agile Octopus</a>.</p>
+<h3 id="agility">Agility</h3>
+<p>I promise it's got nothing to do with Agile software development delivered by eight-limbed molluscs. Octopus (a major UK energy company)
+have a plan where kilowatt per hour costs change every half hour. The customer is notified a day or so before, so they can plan to eat their
+dinner earlier/later or generally plan to use energy in off-peak sessions; The intention to balance out power demand across the UK.</p>
+<p>Because the UK has a pretty sizable <a href="https://grid.iamkate.com/">renewable energy</a> sector, power costs can vary greatly based on the weather
+conditions. There are some days when it's miserable and the power costs tend to go up over the next few days, and some times we get a lot of
+wind and sunshine and the power costs drop (I've seen it drop below a penny per kwh!).</p>
+<p>This is great, except it utterly ruins the way I pay for the server! You can take averages sure, but my usage is never constant as my
+traffic patterns vary. And if I choose to do my heavy full disk backups in off peak periods, then I'd lose out on those potential savings.</p>
+<p>A better solution it seems, was needed.</p>
+<h3 id="smart-plugs">Smart Plugs</h3>
+<p>The first thing that needed to be improved was the data collection system. The current smart plug could only capture daily usage,
+and had no functionality to export the data to a third-party.</p>
+
+<figure>
+  <a href="/blog/power-monitor/old-app.png" target="_blank"><img src="https://half-shot.uk/processed_images/old-app.d2b60ff7bbf11275.webp" title="Screenshot of a basic Android app showing power usage per month." alt="Screenshot of a basic Android app showing power usage per month." /></a>
+  <figcaption>The process involved reading from this, and enter the data manually into a spreadsheet. Nobody was going for that idea.</figcaption>
+</figure>
+<p>In the end the solution was a MQTT-compatible smart plug that offered at least half hourly reporting. While I could have
+bought any old plug off the internet and hardware modded it...I do not trust my skills or my attention span. Instead,
+a supplier in the UK sells reasonably priced pre-modded ones <a href="https://www.mylocalbytes.com/products/smart-plug-pm?variant=41600621510847">here</a>.
+Thanks Local Bytes!</p>
+
+<figure>
+  <a href="/blog/power-monitor/plug.png" target="_blank"><img src="https://half-shot.uk/processed_images/plug.0b2934a745dfe328.webp" title="A hand holding a smart plug with the words Local Bytes written on it." alt="A hand holding a smart plug with the words Local Bytes written on it." /></a>
+  <figcaption>Fairly unassuming!</figcaption>
+</figure>
+<p>The next steps were to setup a MQTT broker on the server; <a href="https://mosquitto.org/">Mosquitto</a> was very easy to get started with
+so I just plonked that on and connected my plug to it. Then all I needed was the logic to convert the power readings into power costs.</p>
+<h3 id="autopowerbill">Autopowerbill</h3>
+<p>(I tried to think of an imaginative name for this project, but...ah well)</p>
+<p>I wrote a little Rust daemon process that does essentially 3 things forever. It pulls in the latest prices from Octopus, roughly
+every few hours. It subscribes to the power usage statistics topic from the smart plug, and then it calculates between the last
+window and present time how much power has been used. This is then costed and pushed into a PostgreSQL database.</p>
+<p>The algorithm ended up something like this:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">if</span><span> usage &gt; </span><span style="color:#d08770;">0.0 </span><span>{
+</span><span>    </span><span style="color:#65737e;">// Find the price that matches this period
+</span><span>    </span><span style="color:#b48ead;">let</span><span> usage_cost: </span><span style="color:#b48ead;">f32 </span><span>= </span><span style="color:#b48ead;">match</span><span> octopus.</span><span style="color:#96b5b4;">get_price_for_period</span><span>(last_date, date).await {
+</span><span>        Ok((matched_cost, Some(second_cost))) =&gt; {
+</span><span>            </span><span style="color:#65737e;">// We fall inside a second bucket, so fetch that price too.
+</span><span>            </span><span style="color:#65737e;">// Calculate the delta between the two timestamps
+</span><span>            </span><span style="color:#b48ead;">let</span><span> total_delta = (date-last_date).</span><span style="color:#96b5b4;">num_seconds</span><span>() as </span><span style="color:#b48ead;">f32</span><span>;
+</span><span>            </span><span style="color:#b48ead;">let</span><span> mult_a = (matched_cost.to - last_date).</span><span style="color:#96b5b4;">num_seconds</span><span>() as </span><span style="color:#b48ead;">f32 </span><span>/ total_delta;
+</span><span>            </span><span style="color:#b48ead;">let</span><span> mult_b = (date - second_cost.from).</span><span style="color:#96b5b4;">num_seconds</span><span>() as </span><span style="color:#b48ead;">f32  </span><span>/ total_delta;
+</span><span>            </span><span style="color:#65737e;">// And thus determine how much power was used (approx) in each period.
+</span><span>            (matched_cost.cost * (usage * mult_a)) + second_cost.cost * (usage * mult_b)
+</span><span>        },
+</span><span>        Ok((matched_cost, None)) =&gt; {
+</span><span>            </span><span style="color:#65737e;">// Otherwise, straightforward to calculate.
+</span><span>            matched_cost.cost * usage
+</span><span>        }
+</span><span>        Err(e) =&gt; {
+</span><span>            panic!(&quot;</span><span style="color:#a3be8c;">Failure to handle cost at {:?}. No applicable cost found: {:}</span><span>&quot;, date, e)
+</span><span>        },
+</span><span>    };
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">Calculated </span><span style="color:#d08770;">{:?}</span><span style="color:#a3be8c;"> for </span><span style="color:#d08770;">{:?}</span><span style="color:#a3be8c;"> (</span><span style="color:#d08770;">{:?}</span><span style="color:#a3be8c;"> kwh)</span><span>&quot;, usage_cost, date, kwh);
+</span><span>    PowerUsage { date, usage, total_usage: kwh, cost: usage_cost }
+</span><span>} </span><span style="color:#b48ead;">else </span><span>{
+</span><span>    PowerUsage { date, usage, total_usage: kwh, cost: </span><span style="color:#d08770;">0.0 </span><span>}
+</span><span>}
+</span></code></pre>
+<p>Definitely feel like Rust is starting to click for me a little bit now too.</p>
+<h3 id="everyone-loves-a-graph">Everyone loves a graph</h3>
+<p>Of course now the data was being entered into PostgreSQL, it was then trivial to put together a Grafana dashboard. So I did:</p>
+
+<figure>
+  <a href="/blog/power-monitor/grafana.png" target="_blank"><img src="https://half-shot.uk/processed_images/grafana.b08d45067af24e81.webp" title="Grafana dashboard showing Usage Per Day (kwh), Cost Per Day, Monthly Cost and Total usage. The graphs show that there is a significant cost saving over constant rate power." alt="Grafana dashboard showing Usage Per Day (kwh), Cost Per Day, Monthly Cost and Total usage. The graphs show that there is a significant cost saving over constant rate power." /></a>
+  <figcaption>The yellow column is how much power I would have used if we kept on the old plan.</figcaption>
+</figure>
+<p>Evidently this turned out to be a good idea. We've had some terrific weather in the UK recently, and it's translated into some pretty
+welcome cost savings.</p>
+<p>If you are interested in something like this, or would just like to see how it's put together then please check out <a href="https://github.com/Half-Shot/autopowerbill">https://github.com/Half-Shot/autopowerbill</a>.</p>
+<p>And if you have any questions, you can always ask on <a href="https://mastodon.half-shot.uk/@halfy/112446159375587479">the mastodon thread</a></p>
+<p>Thanks for reading!</p>
+
+</article>
+
+</main>
+
+<footer>
+  <menu>
+    <li><a href="https://github.com/Half-Shot">GitHub</a></li>
+    <li><a rel="me" href="https://mastodon.half-shot.uk/@halfy">Mastodon</a></li>
+    <li><a href="https://github.com/Half-Shot/half-shot.github.io">Source</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="https://cv.half-shot.uk">CV</a></li>
+    <li><a href="https://half-shot.uk/atom.xml">Feed</a></li>
+  </menu>
+  
+  <p> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><abbr title="Attribution-NonCommercial-ShareAlike 4.0 International">CC BY-NC-SA 4.0</abbr> License</a>.</p>
+  <p> This website strives to be fully accessible for all users. If you believe half-shot.uk is falling short, please <a href="/contact">contact me</a>.</p>
+  <p> Artwork of Skraps is by <a href="https://mastodon.half-shot.uk/@tsunderdog@plush.city">Tsunderdog</a> </p>
+</footer>
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>half-shot.uk - javascript</title>
+    <link rel="self" type="application/atom+xml" href="https://half-shot.uk/categories/javascript/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://half-shot.uk"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-08-30T00:00:00+00:00</updated>
+    <id>https://half-shot.uk/categories/javascript/atom.xml</id>
+    <entry xml:lang="en">
+        <title>New frontiers</title>
+        <published>2023-08-30T00:00:00+00:00</published>
+        <updated>2023-08-30T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/new-frontiers/"/>
+        <id>https://half-shot.uk/blog/new-frontiers/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/new-frontiers/">&lt;h2 id=&quot;preface&quot;&gt;Preface&lt;&#x2F;h2&gt;
+&lt;p&gt;I bought an Internet Radio. Yes, one of those things from the late 2000s where you could make a radio
+connect to your WiFi and hook into a MP3 stream. I bought one because I was unsatisifed with the solutions out there to get audio around your house.&lt;&#x2F;p&gt;
+&lt;p&gt;Bluetooth is cumbersome, you have to connect it and then you have to locate an app on your phone to get
+the media you want...ugh. I want a thing that turns on and immediately plays. Yes, I could have built one
+out of speakers and a Pi...but that&#x27;s now a thing &lt;em&gt;I&lt;&#x2F;em&gt; have to spec and maintain. I just want a Wifi-enabled streaming device.&lt;&#x2F;p&gt;
+&lt;p&gt;And so, the often forgotten little entry-level internet radios appeared before me. Amazon is littered with internet radios from different providers
+but the one I bought ended up being a &lt;a href=&quot;https:&#x2F;&#x2F;www.amazon.co.uk&#x2F;gp&#x2F;product&#x2F;B089D8BV99&quot;&gt;LEMEGA IR1&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+
+&lt;figure&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;new-frontiers&#x2F;wifi_interface.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;wifi_interface.7360ba19f36d7212.webp&quot; title=&quot;A picture of the radio, with the wifi screen&quot; alt=&quot;A picture of the radio, with the wifi screen&quot; &#x2F;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;The UX for the wifi password screen left something to be desired&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h2 id=&quot;frontier-silicon&quot;&gt;Frontier Silicon&lt;&#x2F;h2&gt;
+&lt;p&gt;A lot of the cheapo radios use the same OS and hardware under the hood. I&#x27;ve by no means done a thorough investigation, but &quot;Pure radios&quot; may
+be another seller. Either way, they&#x27;re all using &lt;a href=&quot;https:&#x2F;&#x2F;www.frontiersmart.com&#x2F;&quot;&gt;Frontier Silicon&lt;&#x2F;a&gt;. These seem to be a Cambridge outfit that
+build purpose-made PCBs for internet-radio-shaped devices. They also provide an operating system based on RTOS, which is closed source. I used
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;huaracheguarache&#x2F;Frontier-Silicon-Argon-Firmware&#x2F;tree&#x2F;master&quot;&gt;this GitHub project&lt;&#x2F;a&gt; as a good starting point.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;breaking-in&quot;&gt;Breaking in&lt;&#x2F;h2&gt;
+&lt;p&gt;To start with, we needed to know what it was connecting to. To do that, I pointed the radio at my home DNS resolver (what do you mean you don&#x27;t have one?). This showed me that it was connecting to &lt;code&gt;airable.wifiradionetworks.com&lt;&#x2F;code&gt;. Great!&lt;&#x2F;p&gt;
+&lt;p&gt;Now I had initially assumed it was unencrypted and simply pointing it to a web server would be enough. Not at all! The call was made directly as HTTPS so simply responding on port 80 would do...nothing.&lt;&#x2F;p&gt;
+&lt;p&gt;I poked about a bit and ended up looking at port 514, which when connected to via &lt;code&gt;telnet&lt;&#x2F;code&gt; will spam out logs. However, nothing useful was sent...&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;Escape character is &amp;#39;^]&amp;#39;.
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     28.992309] UI     (2): Timer1---873
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     28.992478] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     29.306109] NET    (2): Notify Wlan Link i&#x2F;f 0 UP
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     29.992315] UI     (2): Timer1---872
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     30.992313] UI     (2): Timer1---871
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     30.992489] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     31.992320] UI     (2): Timer1---870
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     32.992317] UI     (2): Timer1---869
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     32.992490] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     33.992310] UI     (2): Timer1---868
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     34.992310] UI     (2): Timer1---867
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     34.992486] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     35.339301] NET    (2): Notify IP i&#x2F;f 0 (192.168.1.203) UP
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     35.348842] CB     (1): airable_cb_module_SetInfo(): item index = 0, item id = &amp;#39;airable:&#x2F;&#x2F;frontiersmart&#x2F;radio&#x2F;102296330081
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     35.356550] CB     (1): airable_cb_module_PostImmediateConnect(): connecting to &amp;#39;airable:&#x2F;&#x2F;frontiersmart&#x2F;radio&#x2F;10229633008
+&lt;&#x2F;span&gt;&lt;span&gt;(Thread1): [     35.357703] IB     (2): Browsing into &amp;#39;&amp;lt;no folder name&amp;gt;&amp;#39; (-1 - -1)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;em&gt;it&#x27;s cute how they have their little protocol handler&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The next thing to try was the API used to control these devices via an app. Yes, a lovely insecure API protected by a 4 digit pin (the default is easily guessed and enabled by default, yay).&lt;&#x2F;p&gt;
+&lt;p&gt;This API even features a web interface you can reach by hitting the 8080 port on the radio, but it wasn&#x27;t very useful.
+You can control the media volume, set some presets and see what&#x27;s playing but critically you &lt;strong&gt;cannot&lt;&#x2F;strong&gt; modify what is playing.&lt;&#x2F;p&gt;
+&lt;p&gt;So then what? After a chat with some lovely folks on Mastodon, it was suggested to try &lt;code&gt;mitmproxy&lt;&#x2F;code&gt;. &lt;a href=&quot;https:&#x2F;&#x2F;mitmproxy.org&#x2F;&quot;&gt;mitmproxy&lt;&#x2F;a&gt; is a simple tool that
+allows you to serve encrypted HTTPS traffic and view the contents. it has a proxy mode, but it also has a &lt;em&gt;reverse proxy mode&lt;&#x2F;em&gt;. This means you can serve up
+a server, and redirect all requests to the real server &lt;em&gt;while&lt;&#x2F;em&gt; inspecting the contents of the messages. Neat!&lt;&#x2F;p&gt;
+&lt;p&gt;Critically the radio does not verify the certificates for the host at all, so the target domain was set to my devbox&#x27;s IP address.
+I ran the proxy and routed traffic to the real host aaaand...🎉 voila! It spilled the beans and by clicking around on the interface,
+you could see how it was pulling the data.&lt;&#x2F;p&gt;
+
+&lt;figure&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;new-frontiers&#x2F;requests_view.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;requests_view.14dc69dd344ee2eb.webp&quot; title=&quot;Screen capture of mitmproxy showing two requests from wifiradionetworks.com&quot; alt=&quot;Screen capture of mitmproxy showing two requests from wifiradionetworks.com&quot; &#x2F;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;And now it all makes sense!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;So now that the API was revealed it was fairly trivial to work with. I wrote a simple node server to handle the requests which let me play a MP3 file (sadly no vorbis support) through it.
+I could then also connect it to &lt;code&gt;mpd&lt;&#x2F;code&gt; (Music Player Daemon) and play a whole playlist. Also, I added my own &quot;brand&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;video alt=&quot;Video of the stream working&quot; src=&quot;success.webm&quot; controls&gt; &lt;&#x2F;video&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;So that&#x27;s that, we&#x27;ve broken in and found ourselves a way to add arbitrary streams to it!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;You can now use &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;fairable&quot;&gt;fairable&lt;&#x2F;a&gt; as a rudimentary replacement service for this radio series. I plan to add
+support for things like &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;badaix&#x2F;snapcast&quot;&gt;Snapcast&lt;&#x2F;a&gt; so I can stream arbitrary audio to it but that will require a lot more
+effort than what is put here.&lt;&#x2F;p&gt;
+&lt;p&gt;Ultimately, this project will be useful as part of my home automation stack (think: morning alarm playlists without the need for Spotify).&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;d like to thank the Mastodon community, the Watercooler group on Matrix, the previous hackers who wrote some tremendously useful info.
+and my poor partner who suffered my enthusiasm for days on end 😁.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;ve got any questions on this, hit me up on &lt;a href=&quot;&#x2F;contact&quot;&gt;Matrix&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;references&quot;&gt;References&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;110967351685629045&quot;&gt;The Mastodon thread&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;fairable&quot;&gt;Fairable&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>
