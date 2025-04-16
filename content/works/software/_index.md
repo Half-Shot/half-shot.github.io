@@ -1,6 +1,5 @@
 +++
 title = "Software"
 sort_by = "weight"
+weight = 1
 +++
-
-A full list of what I've worked on can be found on [GitHub](https://github.com/Half-Shot)

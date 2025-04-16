@@ -14,4 +14,4 @@ This site mainly exists as a testament to the things that [I have worked on](/wo
 I also occasionally blog about things.
 
 I am also always on the lookout for new work, so feel free to [contact me](/contact)
-if you have something that might fit my skillset.
+if you have something that might fit my [skillset](/hireme).
