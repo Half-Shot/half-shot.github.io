@@ -32,7 +32,6 @@ a {
 main {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5em;
     padding-left: 2rem;
     padding-right: 2rem;
     max-width: 1200px;
@@ -77,6 +76,9 @@ body > header {
     h1 {
         font-size: 2rem;
         margin-bottom: 0.5rem;
+        > a {
+            text-decoration: none;
+        }
     }
     #subtitle {
         margin-top: 0;
@@ -92,6 +94,7 @@ footer {
     margin-bottom: 2rem;
     text-align: center;
     width: fit-content;
+    margin-top: 4em;
     margin-left: auto;
     margin-right: auto;
     max-width: 95vw;
@@ -156,14 +159,9 @@ article {
     h3 {
         font-size: 1.5rem;
     }
-    article:nth-child(even) {
+    article {
         margin-left: 4rem;
         margin-right: auto;
-        width: fit-content;
-    }
-    article:nth-child(odd) {
-        margin-right: 6rem;
-        margin-left: auto;
         width: fit-content;
     }
 }
