@@ -4,7 +4,7 @@ template = "home.html"
 +++
 
 Hi there! I'm Halfy and I work on things that make the internet better! This might be
-open and secure communcations protocols, accessible web design or just contributing
+open and secure communications protocols, accessible web design or just contributing
 code where code is needed. Either way, I'm looking to help!
 
 My activites include writing, occasional flecks of music and art and running long distances
