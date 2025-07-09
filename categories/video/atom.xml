@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>half-shot.uk - video</title>
+    <link rel="self" type="application/atom+xml" href="https://half-shot.uk/categories/video/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://half-shot.uk"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-12-04T00:00:00+00:00</updated>
+    <id>https://half-shot.uk/categories/video/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Leafpipe</title>
+        <published>2023-12-04T00:00:00+00:00</published>
+        <updated>2023-12-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/leafpipe/"/>
+        <id>https://half-shot.uk/blog/leafpipe/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/leafpipe/">&lt;p&gt;A few years ago after moving into a flat, I was staring at a white wall (I presume this isn&#x27;t unique to the UK, walls are always boring and white).
+A friend of mine suggested that the wall really could do with some RGB lights, and being the sort of person who is naturally attracted to flashy
+rainbows...I went and purchased some &lt;a href=&quot;https:&#x2F;&#x2F;nanoleaf.me&quot;&gt;Nanoleaf&lt;&#x2F;a&gt; lights.&lt;&#x2F;p&gt;
+&lt;p&gt;Nanoleaf make &quot;Shapes&quot; panels which are neat little diffuse LED hexagons, that can be connected like LEGO to each other. You can stick them to walls
+and make the prettiest of displays.&lt;&#x2F;p&gt;
+
+&lt;figure&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;leafpipe&#x2F;nanoleaf.webp&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;nanoleaf.d47b94ca00dc4590.webp&quot; title=&quot;A picture of some hexagonal Nanoleaf Shape lights against a wall.&quot; alt=&quot;A picture of some hexagonal Nanoleaf Shape lights against a wall.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Marketing impression of how you are meant to arrange your lights. Totally not my wall! Image: © Nanoleaf&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;&lt;em&gt;However&lt;&#x2F;em&gt;. There is one feature that &lt;strong&gt;sucks&lt;&#x2F;strong&gt;: the audio-driven panel effects.&lt;&#x2F;p&gt;
+&lt;p&gt;Although you can arrange the panels nicely and apply some pretty effects to music, they process audio
+though a built-in microphone (so the quality is a bit crap). There is no video feed for them, so they cannot adapt to any inputs
+to produce a pleasing hue to the music either. You end up with panels that sort of adjust to your music, providing you are playing loudly enough.
+However, since this is all happening on the controller the performance isn&#x27;t &lt;em&gt;great&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Otherwise, the kit is pretty solid. They connect to the Wi-Fi and can be controlled via a standard REST API.
+It would be better if the &lt;a href=&quot;https:&#x2F;&#x2F;forum.nanoleaf.me&#x2F;docs&quot;&gt;API docs&lt;&#x2F;a&gt; were accessible without a forum account though,
+despite industry trends it just seems redundant.&lt;&#x2F;p&gt;
+&lt;p&gt;It should be noted that some models allow you to clip in a 3.5&quot; jack for better quality audio, but:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;This is only for the more expensive models.&lt;&#x2F;li&gt;
+&lt;li&gt;You still have to process the effects on the lower-powered controller.&lt;&#x2F;li&gt;
+&lt;li&gt;Still no ability to capture video.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;leafpipe&quot;&gt;Leafpipe&lt;&#x2F;h2&gt;
+&lt;p&gt;I built leafpipe to basically take input from my PC and send it onto the lights to make the aforementioned pretty displays. It uses a combination
+of Pipewire, and the Wayland screencopy protocol. It&#x27;s a little Rust daemon that sits there relentlessly capturing data and spewing out packets
+to the Nanoleaf controller.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+  &lt;img src=&quot;architecture.svg&quot; alt=&quot;{{ alt }}&quot; &#x2F;&gt;
+  &lt;figcaption&gt;Rough outline of how this all fits together&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;I&#x27;ll explain roughly how the process works.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;video-processing&quot;&gt;Video processing&lt;&#x2F;h3&gt;
+&lt;p&gt;For the visual side, we take a copy of a chosen display every &lt;code&gt;33ms&lt;&#x2F;code&gt;. The frame is copied into a buffer, and then split into chunks of 4 bytes
+to make up a set of pixels (RGBA).&lt;&#x2F;p&gt;
+&lt;p&gt;We then further split things so we only read every 8th pixel (to save on processing time) to achieve a sort
+of rough approximation of what&#x27;s on screen.&lt;&#x2F;p&gt;
+&lt;p&gt;Finally, we split each of the pixels horizontally by the number of panels we have. So if we
+have 8 Nanoleaf panels, we split the frame by 8. These pixels are converted to HSL so we can evaluate the lightness aspect of them, which will come
+in handy in just a second.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; From https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe&#x2F;blob&#x2F;c4537c564def652b57bf9daa54f4538d7e61bd29&#x2F;src&#x2F;visual&#x2F;prominent_color.rs#L27
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;**
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt; * How many pixels to skip in a chunk, for performance.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt; *&#x2F;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;SKIP_PIXEL&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;usize &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;8&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;pub fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;determine_prominent_color&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;frame_copy&lt;&#x2F;span&gt;&lt;span&gt;: FrameCopy, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;heatmap&lt;&#x2F;span&gt;&lt;span&gt;: &amp;amp;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;mut&lt;&#x2F;span&gt;&lt;span&gt; [Vec&amp;lt;Vec&amp;lt;Vec&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;u32&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;&amp;gt;&amp;gt;]) -&amp;gt; Vec&amp;lt;Hsl&amp;gt; {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;ColorType::Rgba8 != frame_copy.frame_color_type {
+&lt;&#x2F;span&gt;&lt;span&gt;        panic!(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Cannot handle frame!&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;    };
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; split_by = heatmap.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let mut&lt;&#x2F;span&gt;&lt;span&gt; most_prominent = vec![Hsl::from(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.0&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.0&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.0&lt;&#x2F;span&gt;&lt;span&gt;); split_by];
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let mut&lt;&#x2F;span&gt;&lt;span&gt; most_prominent_idx: Vec&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;u32&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; = vec![&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;; split_by];
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; split_width: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;u32 &lt;&#x2F;span&gt;&lt;span&gt;= frame_copy.width &#x2F; split_by as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;u32&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; chunk_size = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;4 &lt;&#x2F;span&gt;&lt;span&gt;+ (&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;SKIP_PIXEL&lt;&#x2F;span&gt;&lt;span&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;4&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;    
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;(chunk_idx, chunk) in frame_copy.data.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;chunks_exact&lt;&#x2F;span&gt;&lt;span&gt;(chunk_size).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;enumerate&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; x = ((chunk_idx * chunk_size) &#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;4&lt;&#x2F;span&gt;&lt;span&gt;) % frame_copy.width as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;usize&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; panel_idx = (x as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32 &lt;&#x2F;span&gt;&lt;span&gt;&#x2F; split_width as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;floor&lt;&#x2F;span&gt;&lt;span&gt;().&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;min&lt;&#x2F;span&gt;&lt;span&gt;(split_by as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32 &lt;&#x2F;span&gt;&lt;span&gt;- &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1.0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;) as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;usize&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; hsl = Rgb::from(chunk[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;] as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;, chunk[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;] as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;, chunk[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;2&lt;&#x2F;span&gt;&lt;span&gt;] as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;to_hsl&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We then take these samples, and apply some simple evaluations to each pixel to skip anything that might be &quot;dull&quot; (really light or really dark
+colours tend to be a bit boring on a RGB display).&lt;&#x2F;p&gt;
+&lt;p&gt;Within each panel, we take a heatmap of the pixels and choose whichever pixel ranks highest. The heatmap is effectively a 4 dimensional array of
+all the panels x [possible hue values] x [possible saturation values] x [possible lightness values].&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; Reject any really dark colours.
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;LIGHTNESS_MAX &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt; hsl.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;get_lightness&lt;&#x2F;span&gt;&lt;span&gt;() || hsl.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;get_lightness&lt;&#x2F;span&gt;&lt;span&gt;() &amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;LIGHTNESS_MIN &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;continue&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        }
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if&lt;&#x2F;span&gt;&lt;span&gt; hsl.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;get_saturation&lt;&#x2F;span&gt;&lt;span&gt;() &amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;SATURATION_MIN &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;continue&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        }
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; Split into 36 blocks
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; h_index = (hsl.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;get_hue&lt;&#x2F;span&gt;&lt;span&gt;() as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;usize&lt;&#x2F;span&gt;&lt;span&gt;) &#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;10&lt;&#x2F;span&gt;&lt;span&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; 0-255
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; s_index = (hsl.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;get_saturation&lt;&#x2F;span&gt;&lt;span&gt;() as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;usize&lt;&#x2F;span&gt;&lt;span&gt;) &#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;5&lt;&#x2F;span&gt;&lt;span&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; 0-100
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; l_index = (hsl.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;get_lightness&lt;&#x2F;span&gt;&lt;span&gt;() as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;usize&lt;&#x2F;span&gt;&lt;span&gt;) &#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;5&lt;&#x2F;span&gt;&lt;span&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; 0-100
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; new_prominence = heatmap[panel_idx][h_index][s_index][l_index] + &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; With what&amp;#39;s left, primary focus on getting the most prominent colour in the frame.
+&lt;&#x2F;span&gt;&lt;span&gt;        heatmap[panel_idx][h_index][s_index][l_index] = new_prominence;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if&lt;&#x2F;span&gt;&lt;span&gt; new_prominence &amp;gt; most_prominent_idx[panel_idx] {
+&lt;&#x2F;span&gt;&lt;span&gt;            most_prominent[panel_idx] = Hsl::from(
+&lt;&#x2F;span&gt;&lt;span&gt;                (h_index * &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;10&lt;&#x2F;span&gt;&lt;span&gt;) as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;                (s_index * &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;5&lt;&#x2F;span&gt;&lt;span&gt;) as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;                (l_index * &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;5&lt;&#x2F;span&gt;&lt;span&gt;) as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;            );
+&lt;&#x2F;span&gt;&lt;span&gt;            most_prominent_idx[panel_idx] = new_prominence;
+&lt;&#x2F;span&gt;&lt;span&gt;        }
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt;    most_prominent
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Again for resource reasons, we approximate the values of these and round up into blocks. For instance, a pixel of H: 15, S: 20, and L: 50
+would be put in heatmap block &lt;code&gt;[1][4][10]&lt;&#x2F;code&gt;. Once all the pixels have been evaluated, we can return a set of most prominent values.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;audio-processing&quot;&gt;Audio processing&lt;&#x2F;h3&gt;
+&lt;p&gt;While that&#x27;s ongoing, we also process the audio through Pipewire. I can&#x27;t pretend to say I did any of the work on processing it.
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;BlankParenthesis&quot;&gt;BlankParenthesis&lt;&#x2F;a&gt; wrote a beautiful visualisation program for audio which I repurposed to be used in this.
+I can&#x27;t begin to explain how it all works, but the end result is that for a given frame of audio data we get a amplitude value for each frequency.&lt;&#x2F;p&gt;
+&lt;p&gt;We take this computed value of amplitude and put it in a sliding window. The idea here is that we want to get an idea of &quot;relative&quot; power
+across an given length of audio (in this case, 64 frames). If we&#x27;re playing some really quiet music we don&#x27;t want the lights to be
+virtually off. The sliding window stores every value computed, and gives us the min&#x2F;max of the last 64 values. The min&#x2F;max give us an idea
+of how much we should then tweak the lightness for the latest frame.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe&#x2F;blob&#x2F;9d5f3d1ec0eaea00c700c224c2e284a4fc491f13&#x2F;src&#x2F;main.rs#L56
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let mut&lt;&#x2F;span&gt;&lt;span&gt; window = SlidingWindow::new(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;64&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; color = hsl_color_from_video_processing;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; This would loop
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if let &lt;&#x2F;span&gt;&lt;span&gt;Some(audio_data) = buffer_manager.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;().&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;unwrap&lt;&#x2F;span&gt;&lt;span&gt;().&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;fft_interval&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;LIGHT_INTERVAL&lt;&#x2F;span&gt;&lt;span&gt;, panels.num_panels) {
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;(panel_index, _panel) in sorted_panels.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;iter&lt;&#x2F;span&gt;&lt;span&gt;().&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;enumerate&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; Submit our value, and return min,max.
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span&gt;(min, max) = window.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;submit_new&lt;&#x2F;span&gt;&lt;span&gt;(audio_data[panel_index]);
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; base_int = color.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;get_lightness&lt;&#x2F;span&gt;&lt;span&gt;() - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;10.0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; intensity = (base_int + ((audio_data[panel_index] + min) &#x2F; max) * intensity_modifier * (panel_index as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32 &lt;&#x2F;span&gt;&lt;span&gt;+ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1.0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;powf&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1.05&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f32&lt;&#x2F;span&gt;&lt;span&gt;)).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;clamp&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;5.0&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;80.0&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; hsl = Hsl::from(color.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;get_hue&lt;&#x2F;span&gt;&lt;span&gt;(), color.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;get_saturation&lt;&#x2F;span&gt;&lt;span&gt;(), intensity);
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; rgb = hsl.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;to_rgb&lt;&#x2F;span&gt;&lt;span&gt;().&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;as_tuple&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; r = rgb.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;round&lt;&#x2F;span&gt;&lt;span&gt;() as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;u8&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; g = rgb.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;round&lt;&#x2F;span&gt;&lt;span&gt;() as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;u8&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; b = rgb.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;2.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;round&lt;&#x2F;span&gt;&lt;span&gt;() as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;u8&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; And write this result to the nanoleaf
+&lt;&#x2F;span&gt;&lt;span&gt;        }
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The intensity algorithm ends up looking like:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;intensity = clamp((base_colour_intensity + relative_recent_intensity) * intensity_modifier * panel_index^1.05, 5, 80)&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;We allow the user to specify a modifier value (defaulting to &lt;code&gt;15&lt;&#x2F;code&gt;) in case they would like to turn up or tone down the effect. We also clamp the value
+to prevent blinding users or turning the lights off completely.&lt;&#x2F;p&gt;
+&lt;p&gt;Once we have our final RGB value, that&#x27;s it!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Oh wait, no!&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;How do we get that data to the panel?&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;sending-the-data&quot;&gt;Sending the data&lt;&#x2F;h3&gt;
+&lt;p&gt;So the Nanoleafs have a feature where you can enable &lt;code&gt;extControl&lt;&#x2F;code&gt; mode where the controller sort of turns off its brain and just interprets
+raw data for each of the panels.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;curl -X&lt;&#x2F;span&gt;&lt;span&gt; PUT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --data &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&amp;quot;write&amp;quot;:{&amp;quot;command&amp;quot;: &amp;quot;display&amp;quot;, &amp;quot;animType&amp;quot;: &amp;quot;extControl&amp;quot;, &amp;quot;extControlVersion&amp;quot;: &amp;quot;v2&amp;quot;}}&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;http:&#x2F;&#x2F;{hostname}:16021&#x2F;api&#x2F;v1&#x2F;}{token}&#x2F;effects
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It&#x27;s really cool! It uses UDP, so you can effectively fire off new frames as fast as you like to control each panel. (Although in my testing anything
+higher than 100ms would cause it to melt). We therefore send a new payload of data to the controller every &lt;code&gt;100ms&lt;&#x2F;code&gt; which contains the
+values calculated. You need to give the effect a &quot;transition time&quot; because it likes to do a fade-effect between colours, so we set that to
+&lt;code&gt;100ms&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+  &lt;video alt=&quot;Demo video of the final product&quot; src=&quot;demo.webm&quot; controls poster=&quot;demo.webp&quot;&gt; &lt;&#x2F;video&gt;
+  &lt;figcaption&gt;Video taken from &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=eoY1Mc70uTo&quot;&gt;Blender 4.0 - Reel&lt;&#x2F;a&gt;&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h3 id=&quot;final-thoughts&quot;&gt;Final thoughts&lt;&#x2F;h3&gt;
+&lt;p&gt;This project was only made possible by the hard work of the Wayshot project for showing me how to capture a frame from a Wayland compositor, and
+BlankParenthesis for developing visualisation software for Pipewire streams.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m sure you have noticed by now dear reader, that this could work for any set of network addressable lights rather than just a particular brands
+particular product. Yes. Definitely. But I think I&#x27;ll leave that as a future idea for someone with other lights to pick up 😉.&lt;&#x2F;p&gt;
+&lt;p&gt;You can check out the code on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe&quot;&gt;GitHub&lt;&#x2F;a&gt; and it should compile and run for anyone with a Nanoleaf Shapes
+device (and of course, you must run a Linux setup with Wayland and Proton).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe&quot;&gt;Leafpipe&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;pxlha&quot;&gt;pxlha&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;BlankParenthesis&#x2F;visualiser&quot;&gt;BlankParenthesis&#x2F;visualiser&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;waycrate&#x2F;wayshot&quot;&gt;wayshot&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>
