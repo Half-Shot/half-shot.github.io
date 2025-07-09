@@ -47,9 +47,9 @@
   <nav aria-label="Buttons!">
     {% for button in load_data(path="content/buttons.yml") %}
     {% if button.link %}
-    <a class="webbutton" referrerpolicy="no-referrer" title="{{ button.alt }}" href="{{ button.link }}">
+    <a referrerpolicy="no-referrer" title="{{ button.alt }}" href="{{ button.link }}">
     {% endif %}
-      <img alt="Button for {{ button.alt }}" src="{{ button.url }}">
+      <img class="webbutton" alt="Button for {{ button.alt }}" src="{{ button.url }}">
     {% if button.link %}
     </a>
     {% endif %}
