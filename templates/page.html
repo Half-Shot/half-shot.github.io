@@ -2,6 +2,7 @@
 
 {% block content %}
 <article>
-{{ page.content | default(value=section.content | safe) | safe }}
+    <h2>{{ page.title }}</h2>
+    {{ page.content | default(value=section.content | safe) | safe }}
 </article>
 {% endblock content %}

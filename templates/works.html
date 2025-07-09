@@ -2,15 +2,16 @@
 
 {% block content %}
 <article>
+<h2>{{ section.title }}</h2>
 {{ section.content | safe }}
 {% for subsection in section.subsections %}
 {% set subs = get_section(path=subsection) %}
 <section>
-    <h2>{{ subs.title }}</h2>
+    <h3>{{ subs.title }}</h3>
     {{ subs.content | safe }}
     {% for page in subs.pages %}
         <article>
-        <h3>{{ page.title }}</h3>
+        <h4>{{ page.title }}</h4>
         {{ page.content | safe }}
         </article>
     {% endfor %}

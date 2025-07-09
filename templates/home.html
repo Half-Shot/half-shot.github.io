@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<article>
+<div>
 {{ page.content | default(value=section.content | safe) | safe }}
-</article>
+</div>
 
 
 <section>
@@ -16,9 +16,9 @@
             <p>{{ post.description }}</p>
         </li>
     {% endfor %}
-        <a href="/blog">See all posts</a>
-        <a target="_blank" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">Atom Feed</a>
     </ol>
+    <a href="/blog">See all posts</a>
+    <a target="_blank" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">Atom Feed</a>
 </section>
 
 <section class="fediring-section">
@@ -29,13 +29,15 @@
         I participate in these <a target="_blank" referrerpolicy="no-referrer" href="https://en.wikipedia.org/wiki/Webring">webrings</a>.
     </p>
     <ul>
-        {% for ring in load_data(path="content/webrings.yml") %}
-        <nav aria-label="{{ ring.name }} webring navigation">
-            <a aria-label="Go to previous website" title="Go to previous page" href="{{ ring.url }}/previous?host=half-shot.uk">←</a>
-            <a title="{{ ring.name }}" href="{{ ring.url }}"><img src="{{ ring.icon }}" /></a>
-            <a aria-label="Go to next website" title="Go to next page" href="{{ ring.url }}/next?host=half-shot.uk">→</a>
-        </nav>
-        {% endfor %}
+        <li>
+            {% for ring in load_data(path="content/webrings.yml") %}
+            <nav aria-label="{{ ring.name }} webring navigation">
+                <a aria-label="Go to previous website" title="Go to previous page" href="{{ ring.url }}/previous?host=half-shot.uk">←</a>
+                <a title="{{ ring.name }}" href="{{ ring.url }}"><img alt="{{ ring.name }} icon" src="{{ ring.icon }}" ></a>
+                <a aria-label="Go to next website" title="Go to next page" href="{{ ring.url }}/next?host=half-shot.uk">→</a>
+            </nav>
+            {% endfor %}
+        </li>
     </ul>
 </section>
 

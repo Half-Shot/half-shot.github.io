@@ -5,18 +5,18 @@
   <meta charset="utf-8">
   <title>half-shot.uk | {{ page.title | default(value=section.title) }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/style.css" />
-  <link rel="icon" href="/site-icon.webp" />
-  <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" />
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/site-icon.webp">
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
   {% block rss %}<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">{% endblock %}
 </head>
 
-<header role="banner">
+<header>
   <a href="/">
-    <img title="Skraps, the kobold" id="logo" alt="Kobold Head Logo" src="/headshot.webp" />
+    <img title="Skraps, the kobold" id="logo" alt="Kobold Head Logo" src="/headshot.webp">
   </a>
   <div>
-    <h1><a href="{{ get_url(path="/", trailing_slash=false) }}"/>half-shot.uk</a></h1>
+    <h1><a href="{{ get_url(path="/", trailing_slash=false) }}">half-shot.uk</a></h1>
     <p id="subtitle">Writings, arts, softwares, etc etc</p>
   </div>
 </header>
@@ -37,16 +37,19 @@
 
 <footer>
   <nav aria-label="Social / suplimentary links">
-    <li><a href="https://github.com/Half-Shot">GitHub</a></li>
-    <li><a rel="me" href="https://mastodon.half-shot.uk/@halfy">Mastodon</a></li>
-    <li><a href="https://github.com/Half-Shot/half-shot.github.io">Source</a></li>
-    <li><a href="/contact">Contact</a></li>
-    <li><a href="https://cv.half-shot.uk">CV</a></li>
-    <li><a href="{{ get_url(path="atom.xml", trailing_slash=false) }}">Feed</a></li>
+    <a href="https://github.com/Half-Shot">GitHub</a>
+    <a rel="me" href="https://mastodon.half-shot.uk/@halfy">Mastodon</a>
+    <a href="https://github.com/Half-Shot/half-shot.github.io">Source</a>
+    <a href="/contact">Contact</a>
+    <a href="https://cv.half-shot.uk">CV</a>
+    <a href="{{ get_url(path="atom.xml", trailing_slash=false) }}">Feed</a>
+  </nav>
+  <nav aria-label="Buttons!">
+    {% for button in load_data(path="content/buttons.yml") %}
+    <a class="webbutton" referrerpolicy="no-referrer" title="{{ button.alt }}" href="{{ button.link }}"><img alt="Button for {{ button.alt }}" src="{{ button.url }}"></a>
+    {% endfor %}
   </nav>
   
-  <p> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><abbr title="Attribution-NonCommercial-ShareAlike 4.0 International">CC BY-NC-SA 4.0</abbr> License</a>.</p>
-  <p> This website strives to be fully accessible for all users. If you believe half-shot.uk is falling short, please <a href="/contact">contact me</a>.</p>
-  <p> Artwork of Skraps is by <a href="https://mastodon.half-shot.uk/@tsunderdog@plush.city">Tsunderdog</a> </p>
+  <p> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><abbr title="Attribution-NonCommercial-ShareAlike 4.0 International">CC BY-NC-SA 4.0</abbr> License</a>. This website strives to be fully accessible for all users. If you believe half-shot.uk is falling short, please <a href="/contact">contact me</a>. Artwork of Skraps is by <a href="https://mastodon.half-shot.uk/@tsunderdog@plush.city">Tsunderdog</a> </p>
 </footer>
 </html>
