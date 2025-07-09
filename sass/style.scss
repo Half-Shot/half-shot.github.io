@@ -100,7 +100,7 @@ footer {
     max-width: 95vw;
     font-size: 1.15em;
 
-    menu {
+    nav {
         padding: 0;
         list-style: none;
         display: flex;
@@ -206,4 +206,18 @@ video {
         margin-top: 0.1em;
     }
     list-style: '- ';
+}
+
+.fediring-section {
+    ul {
+        list-style: none;
+        nav {
+            display: flex;
+            a {
+                text-decoration: none;
+                font-weight: 800;
+                font-size: 18pt;
+            }
+        }
+    }
 }
