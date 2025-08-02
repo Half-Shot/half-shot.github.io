@@ -231,3 +231,15 @@ video {
     width: 88px;
     height: 31px;
 }
+
+.footnote-definition {
+    sup {
+        font-size: 1em;
+        font-weight: 600;
+        color: var(--highlight);
+    }
+    margin-bottom: 0.5em;
+    p {
+        display: inline;
+    }
+}
