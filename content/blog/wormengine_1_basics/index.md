@@ -8,29 +8,35 @@ categories = ["gamedev", "worms", "javascript", "hobby", "kobold-kombat"]
 project_url="https://github.com/Half-Shot/wormgine"
 +++
 
+
+This is going to be a *series* of blog posts discussing the various bits and pieces about one of my most proudest achievements;
+I've spent the last 2 years[^1] working on building a fully functional clone of [Worms Armageddon](https://en.wikipedia.org/wiki/Worms_Armageddon).
+
+For those less familiar with the series, you control a group of small characters on a island of randomly generated breakable terrain. You have
+a bunch of weapons, nearly all cartoonish and primed to inflict horrible painful deaths on your enemies (the name we use to refer to people you've convinced
+to huddle round your PC to play a game).
+
 {{ figure(
     src="/blog/wormengine_1_basics/screenshot.webp",
     href="/blog/wormengine-1-basics/screenshot.webp",
-    alt="Screenshot of the game. The level is a cutout of a skatepark halfpipe with my Skraps character sprayed on. The UI has a toast which says 'Look who's up, it's Halfy's Angel!'",
-    caption="One of the levels I used to test automatic terrain generation. "
+    alt="Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says 'Look who's up, it's Halfy's Angel!'. The team names are 'Team Halfy' and 'Chuckle Brothers'",
+    caption="Look, when you've played your own game for so long you have to start to get a bit creative with the levels. "
 ) }}
 
-This is going to be a *series* of blog posts discussing the various bits and pieces about one of my most produest achivements.
-I've spent the last 2 years[^1] working on building a fully functional clone of [Worms Armageddon](https://en.wikipedia.org/wiki/Worms_Armageddon).
-
-For those less familar with the series, you control a group of small characters with on a island of randomly generated (usually) breakable terrain. You have
-a bunch of weapons, and nearly all cartoonish and primed to inflict horrible painful deaths on your enemies (the name we use to refer to people you've convinced
-to huddle round your PC to play a game).
 
 ### What's the project ultimately about.
 
-I will be writing the game from scratch, targeting web browser specifically. Every last line of code and as much of the assets as possible being open source, no strings attached.
-I wanted this to be entirely public domain work, in so far that there will be no peeking at code or asset reuse from the base game. This will also not just be
-another worms game but a game in it's own right, with it's own characters and weapons and modes and so on. This is already starting to take form. There
-are also plenty of shortcomings of games in this era (notably, accessible game design) which I am to fix without impacting the core experience.
+I will be writing the game from scratch, targeting web browser specifically. And most importantly:
 
-Ultimately what got me into programming was video games, and it's about time I returned to what I love to work on most. And if I can make it a resource
-that others can built on, and learn from then so much the better!
+**Every last line of code and as much of the assets as possible will be open source**
+
+This game will be entirely within the public domain. No reverse engineering will be used, simply observation and reimplementation. This will also not just be
+another Worms game, but a game in its own right. It will have its own characters and weapons and modes and so on. There are also plenty of shortcomings of games
+in this era (notably, accessible game design) which I am to fix without impacting the core experience. And of course finally, this game is intended to outgrow
+its roots, and take its own identity (hence the name Kobold Kombat, with cute little murderous kobolds :>)
+
+Ultimately what got me into programming was video games, and **it's about time I returned to what I love to work on most**. If I can make it a resource
+that others can built on and learn from, then so much the better!
 
 ### So, what's on the menu?
 
@@ -42,7 +48,7 @@ However, this blog post has sat in a half completed form for the best part of a 
 deep dives on specific topics later. **With that in mind, here are some of the topics I'd like to cover**.
 
  - So, you want to build a web game in 2025.
- - Bug squshing, automated game testing, and how many GitHub issues is too many.
+ - Bug squashing, automated game testing, and how many GitHub issues is too many.
  - Welding Pixi.JS to a Physics engine, and how I can prevent you from going mad.
  - The bluffers guide to music production and sound design.
  - Why you should have thought about networking before your first commit.
