@@ -79,7 +79,7 @@ I plan to really work to shore up testing and code quality so I can then start t
  - More sounds
  - And finally, a big pass on accessibility design and teaching the game to new players.
 
-And if you have any questions, you can always ask on [the mastodon thread](https://mastodon.half-shot.uk/@halfy/halfy-fill-this-in)
+And if you have any questions, you can always ask on [the mastodon thread](https://mastodon.half-shot.uk/@halfy/114963948231166102)
 
 Thanks for reading!
 
