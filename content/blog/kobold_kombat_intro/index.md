@@ -19,7 +19,7 @@ to huddle round your PC to play a game).
 
 {{ figure(
     src="/blog/kobold_kombat_intro/screenshot.webp",
-    href="/blog/kobold_kombat_intro/screenshot.webp",
+    href="/blog/kobold-kombat-intro/screenshot.webp",
     alt="Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says 'Look who's up, it's Halfy's Angel!'. The team names are 'Team Halfy' and 'Chuckle Brothers'",
     caption="Look, when you've played your own game for so long you have to start to get a bit creative with the levels. "
 ) }}
