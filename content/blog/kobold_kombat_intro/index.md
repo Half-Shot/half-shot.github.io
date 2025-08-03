@@ -2,6 +2,7 @@
 title = "Kobold Kombat: Building an entirely free software Worms clone."
 description = "How I turned love and frustration of old video games into a hobby project"
 date = 2025-08-02
+aliases = ["/blog/wormengine-1-basics"]
 [taxonomies]
 categories = ["gamedev", "worms", "javascript", "hobby", "kobold-kombat"]
 [extra]
@@ -17,8 +18,8 @@ a bunch of weapons, nearly all cartoonish and primed to inflict horrible painful
 to huddle round your PC to play a game).
 
 {{ figure(
-    src="/blog/wormengine_1_basics/screenshot.webp",
-    href="/blog/wormengine-1-basics/screenshot.webp",
+    src="/blog/kobold_kombat_intro/screenshot.webp",
+    href="/blog/kobold_kombat_intro/screenshot.webp",
     alt="Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says 'Look who's up, it's Halfy's Angel!'. The team names are 'Team Halfy' and 'Chuckle Brothers'",
     caption="Look, when you've played your own game for so long you have to start to get a bit creative with the levels. "
 ) }}
