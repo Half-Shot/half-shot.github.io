@@ -243,3 +243,11 @@ video {
         display: inline;
     }
 }
+
+.content-warning {
+    border: 2px var(--highlight) dotted;
+    padding: 0 0.5em;
+    h1 {
+        font-size: 1.25em;
+    }
+}
