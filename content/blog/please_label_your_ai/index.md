@@ -42,7 +42,10 @@ I can't see the joy in filling a prompt and getting some output. That's just hir
 joy for you. The computer can't feel joy, so nobody wins. What a result.
 
 And aside from the occasional bit of faux-enjoyment where a Reddit post turns out to be fake, I'm managing to
-dodge AI. In truth, I'm hoping it eventually fades the same way blockchain, NFTs and the other monsters did.
+dodge AI. So far, I'm lucky to work for a place where AI is not enforced like some work places and my friends
+and family largely do not buy into the hype. And I have a hackerspace to camp in if things get too bad.
+
+In truth, I'm hoping it eventually fades the same way blockchain, NFTs and the other monsters did.
 
 ## But I'm angry
 
