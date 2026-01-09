@@ -1,11 +1,9 @@
 +++
 title = "Please label your AI"
 description = "Your LLMs aren't oiling the gears, they are filling them with mud"
-date = 2025-01-08
+date = 2026-01-08
 [taxonomies]
 categories = ["llms", "AI", "open source"]
-[extra]
-project_url="https://github.com/Half-Shot/fairable"
 +++
 
 Halfy blog posts are like buses, you wait half a year for one and then two come along at once.
