@@ -2,20 +2,24 @@
 @import "mobile.scss";
 
 :root {
-    --text: #313131;
-    --bg: #f8f8f8;
-    --highlight: #df8b1c;
-    --links: #9b561e;
-    --subheading: #666666;
+    --text: lch(18% 0 296);
+    --bg: lch(95% 0 296);
+    --highlight: lch(60% 71 67);
+    --links: lch(48% 55.85 49.92);
+    --subheading: lch(65% 0 296);
+
+    --primary-1: #df8b1c;
+    --primary-2: #2074e3;
+    --primary-3: #e2216a;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --text: #bdbdbd;
-        --bg: #2e2e2e;
-        --highlight: #b96724;
-        --links: #df8b1c;
-        --subheading: #adadad;
+        --text: lch(80% 0 296);
+        --bg: lch(18% 0 296);
+        --highlight: lch(52.29% 55.85 49.92);
+        --links: lch(64% 71 67);
+        --subheading: lch(85% 0 296);
     }
 }
 
@@ -190,6 +194,9 @@ figure {
         margin-top: 2rem;
         text-align: center;
     }
+    &.borderless img {
+        border: none;
+    }
 }
 
 pre {
@@ -249,5 +256,34 @@ video {
     padding: 0 0.5em;
     h1 {
         font-size: 1.25em;
+    }
+}
+
+.post-kind-clip {
+    margin: 1em 0;
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.post-kind {
+    min-width: 15vw;
+    width: fit-content;
+    padding: 1em 1em;
+    border: 5px solid;
+    border-radius: 25px;
+    border-image: linear-gradient(
+        45deg,
+        var(--primary-1) 0%,
+        hsl(11deg 92% 63%) 20%,
+        hsl(274deg 55% 60%) 80%,
+        var(--primary-2) 100%
+    ) 1;
+    h2 {
+        text-transform: capitalize;
+        margin: 0;
+    }
+    p {
+        margin: 0.2em 0;
     }
 }

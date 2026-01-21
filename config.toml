@@ -12,13 +12,9 @@ generate_feeds = true
 title = "half-shot.uk"
 
 taxonomies = [
-    {name = "categories", feed = true}
+    {name = "categories", feed = true},
+    {name = "kind", feed = true }
 ]
-
-[markdown]
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = true
 
 
 [extra]
