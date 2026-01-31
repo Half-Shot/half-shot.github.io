@@ -76,7 +76,7 @@ to allow us to flash on new firmware. This is shown below <span style="color: re
 
 {{ figure(
     src="/blog/clip_plus/pcb.webp",
-    caption="Original Fuzev1, Clipv1 and Clip+ pictures copyright Â© 2005-2009 EnzoTen Media. All rights reserved.",
+    caption="Original Clip+ picture copyright © 2005-2009 EnzoTen Media. All rights reserved.",
     href="/blog/clip-plus/pcb.webp",
     alt="Clip Plus PCB with the correct pins in red.")
 }}
