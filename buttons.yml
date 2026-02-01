@@ -1,0 +1,30 @@
+- url: https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png
+  alt: Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+  link: https://creativecommons.org/licenses/by-nc-sa/4.0/
+- url: /badges/valid-html5.svg
+  alt: This site is valid HTML5
+  link: https://github.com/bradleytaunt/html5-valid-badge
+- url: /badges/1080p.gif
+  alt: Site best viewed in 1920x1080
+- url: /badges/tcrf.gif
+  alt: The Cutting Room Floor
+  link: https://tcrf.net
+- url: /badges/human-made.gif
+  alt: Human Made
+- url: /badges/no_ai.gif
+  link: https://mastodon.half-shot.uk/@halfy/114822095837652835
+  alt: Don't feed the AI
+- url: /badges/internetarchive.gif
+  alt: Internet Archive
+  link: https://archive.org
+- url: /badges/firefox.gif
+  alt: Firefox
+  link: https://mozilla.org/firefox
+- url: /badges/wormsv1.png
+  alt: Fight me on Worms
+- url: /badges/pulch.png
+  alt: The Pulch
+  link: https://www.youtube.com/watch?v=-2x8i0ewGdM
+- url: /badges/crablab.png
+  alt: crablab
+  link: https://crablab.uk
