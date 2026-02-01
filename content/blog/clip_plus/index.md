@@ -8,7 +8,7 @@ categories = ["hacking", "clip plus", "music"]
 kind = ["hacking"]
 [extra]
 project_url="https://www.rockbox.org/wiki/SansaAMS.html"
-fediverse_post="https://mastodon.half-shot.uk/@halfy/115990112148237007"
+fediverse_post="https://mastodon.half-shot.uk/@halfy/115994715067255954"
 +++
 
 ## Preamble
