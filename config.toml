@@ -11,6 +11,8 @@ generate_feeds = true
 
 title = "half-shot.uk"
 
+author = "Will Hunt"
+
 taxonomies = [
     {name = "categories", feed = true},
     {name = "kind", feed = true }
