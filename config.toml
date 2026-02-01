@@ -10,6 +10,7 @@ build_search_index = true
 generate_feeds = true
 
 title = "half-shot.uk"
+description = "Writings, arts, softwares"
 
 author = "Will Hunt"
 
@@ -17,7 +18,8 @@ taxonomies = [
     {name = "categories", feed = true},
     {name = "kind", feed = true }
 ]
-
+lazy_async_image = true
+default_language = "en"
 
 [extra]
 # Put all your custom variables here
