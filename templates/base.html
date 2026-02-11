@@ -9,6 +9,26 @@
   <link rel="icon" href="/site-icon.webp">
   <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
   {% block rss %}<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">{% endblock %}
+  {% set description = page.description | default(value="Writings, arts, softwares, etc etc") %}
+  <meta name="description" content="{{ description }}">
+  <meta property="og:url" content="{{ current_url | safe }}">
+  <meta property="og:site_name" content="half-shot.uk">
+  <meta property="og:locale" content="en_GB,en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="half-shot.uk | {{ page.title | default(value=section.title) }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:image" content="{{ get_url(path=(page.extra.image | default(value="headshot.webp")), trailing_slash=false) }}">
+{% if page.extra.image_alt %}
+  <meta property="og:image:alt" content="{{ page.extra.image_alt }}">
+{% endif %}
+{% if page.extra.image_alt %}
+  <meta property="article:published_time" content="{{ page.date }}">
+{% endif %}
+{% if page.taxonomies.categories %}
+{% for category in page.taxonomies.categories %}
+  <meta property="article:tag" content="{{ category }}">
+{% endfor %}
+{% endif %}
 </head>
 
 <header>
@@ -55,7 +75,7 @@
     {% endif %}
     {% endfor %}
   </nav>
-  
+
   <p> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><abbr title="Attribution-NonCommercial-ShareAlike 4.0 International">CC BY-NC-SA 4.0</abbr> License</a>. This website strives to be fully accessible for all users. If you believe half-shot.uk is falling short, please <a href="/contact">contact me</a>. Artwork of Skraps is by <a href="https://mastodon.half-shot.uk/@tsunderdog@plush.city">Tsunderdog</a> </p>
 </footer>
 </html>

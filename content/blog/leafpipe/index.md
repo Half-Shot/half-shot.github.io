@@ -6,6 +6,8 @@ date = 2023-12-04
 categories = ["hacking", "rust", "audio", "video", "rgb", "leafpipe"]
 [extra]
 project_url="https://github.com/Half-Shot/leafpipe"
+image="/blog/leafpipe/nanoleaf.webp"
+image_alt="A picture of some hexagonal Nanoleaf Shape lights against a wall."
 +++
 
 A few years ago after moving into a flat, I was staring at a white wall (I presume this isn't unique to the UK, walls are always boring and white).

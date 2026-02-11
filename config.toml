@@ -18,8 +18,10 @@ taxonomies = [
     {name = "categories", feed = true},
     {name = "kind", feed = true }
 ]
-lazy_async_image = true
 default_language = "en"
+
+[markdown]
+lazy_async_image = true
 
 [extra]
 # Put all your custom variables here

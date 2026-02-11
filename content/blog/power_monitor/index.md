@@ -6,6 +6,8 @@ date = 2024-05-15
 categories = ["hacking", "iot", "smart plug", "rust"]
 [extra]
 project_url="https://github.com/Half-Shot/autopowerbill"
+image="/blog/power-monitor/plug.png"
+image_alt="A hand holding a smart plug with the words Local Bytes written on it."
 +++
 
 I run half-shot.uk, and various other services off actual server hardware at home. A few years back a friend convinced me to stop relying

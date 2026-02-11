@@ -5,6 +5,9 @@ date = 2026-01-04
 aliases = ["/blog/2025-roundoff"]
 [taxonomies]
 categories = ["2025", "end-of-year"]
+[extra]
+image="/blog/2025-roundup/field_full.webp"
+image_alt="A picture of some yellow rapeseed fields split in the middle with a path."
 +++
 
 Hey friends! This post got stuck in a sludge of inaction for the last week, and has just been sanded down and ready for your consumption. 2025 was a reasonably
