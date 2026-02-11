@@ -7,7 +7,7 @@ categories = ["llms", "AI", "open source"]
 kind = ["opinion"]
 [extra]
 fediverse_post="https://mastodon.half-shot.uk/@halfy/115934208005005678"
-image="/blog/please-label-your-ai/flash.webp"
+image="/blog/please_label_your_ai/flash.webp"
 image_alt="Young Halfy playing with flash."
 +++
 

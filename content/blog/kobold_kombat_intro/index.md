@@ -7,7 +7,7 @@ aliases = ["/blog/wormengine-1-basics"]
 categories = ["gamedev", "worms", "javascript", "hobby", "kobold-kombat"]
 [extra]
 project_url="https://github.com/Half-Shot/wormgine"
-image="/blog/kobold-kombat-intro/screenshot.webp"
+image="/blog/kobold_kombat_intro/screenshot.webp"
 image_alt="Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says 'Look who's up, it's Halfy's Angel!'. The team names are 'Team Halfy' and 'Chuckle Brothers'."
 +++
 

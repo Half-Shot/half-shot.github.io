@@ -17,7 +17,8 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="half-shot.uk | {{ page.title | default(value=section.title) }}">
   <meta property="og:description" content="{{ description }}">
-  <meta property="og:image" content="{{ get_url(path=(page.extra.image | default(value="headshot.webp")), trailing_slash=false) }}">
+{% set image_path = page.extra.image | default(value="headshot.webp") %}
+  <meta property="og:image" content="{{ resize_image(path=image_path, width=1200, height=630, op="fit") }}">
 {% if page.extra.image_alt %}
   <meta property="og:image:alt" content="{{ page.extra.image_alt }}">
 {% endif %}

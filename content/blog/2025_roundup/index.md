@@ -6,7 +6,7 @@ aliases = ["/blog/2025-roundoff"]
 [taxonomies]
 categories = ["2025", "end-of-year"]
 [extra]
-image="/blog/2025-roundup/field_full.webp"
+image="/blog/2025_roundup/field_full.webp"
 image_alt="A picture of some yellow rapeseed fields split in the middle with a path."
 +++
 

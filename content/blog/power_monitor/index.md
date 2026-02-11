@@ -6,7 +6,7 @@ date = 2024-05-15
 categories = ["hacking", "iot", "smart plug", "rust"]
 [extra]
 project_url="https://github.com/Half-Shot/autopowerbill"
-image="/blog/power-monitor/plug.png"
+image="/blog/power_monitor/plug.png"
 image_alt="A hand holding a smart plug with the words Local Bytes written on it."
 +++
 

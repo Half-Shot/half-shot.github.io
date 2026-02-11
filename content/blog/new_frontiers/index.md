@@ -6,7 +6,7 @@ date = 2023-08-30
 categories = ["hacking", "javascript", "audio"]
 [extra]
 project_url="https://github.com/Half-Shot/fairable"
-image="/blog/new-frontiers/wifi_interface.jpg"
+image="/blog/new_frontiers/wifi_interface.jpg"
 image_alt="A picture of the radio, with the wifi screen."
 +++
 
