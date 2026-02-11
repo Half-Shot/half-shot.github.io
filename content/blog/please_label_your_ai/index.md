@@ -5,6 +5,8 @@ date = 2026-01-21
 [taxonomies]
 categories = ["llms", "AI", "open source"]
 kind = ["opinion"]
+[extra]
+fediverse_post="https://mastodon.half-shot.uk/@halfy/115934208005005678"
 +++
 
 ## Intro
