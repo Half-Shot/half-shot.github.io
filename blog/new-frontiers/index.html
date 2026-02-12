@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>half-shot.uk | New frontiers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/site-icon.webp">
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="https://half-shot.uk/atom.xml">
+  
+  <meta name="description" content="Breaking into an Internet Radio">
+  <meta property="og:url" content="https://half-shot.uk/blog/new-frontiers/">
+  <meta property="og:site_name" content="half-shot.uk">
+  <meta property="og:locale" content="en_GB,en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="half-shot.uk | New frontiers">
+  <meta property="og:description" content="Breaking into an Internet Radio">
+
+
+  <meta property="og:image" content="https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;wifi_interface.870aa03269675c92.jpg">
+
+  <meta property="og:image:alt" content="A picture of the radio, with the wifi screen.">
+
+
+  <meta property="article:published_time" content="2023-08-30">
+
+
+
+  <meta property="article:tag" content="hacking">
+
+  <meta property="article:tag" content="javascript">
+
+  <meta property="article:tag" content="audio">
+
+
+</head>
+
+<header>
+  <a href="/">
+    <img title="Skraps, the kobold" id="logo" alt="Kobold Head Logo" src="/headshot.webp">
+  </a>
+  <div>
+    <h1><a href="https://half-shot.uk">half-shot.uk</a></h1>
+    <p id="subtitle">Writings, arts, softwares, etc etc</p>
+  </div>
+</header>
+
+<main>
+  
+  <header>
+    
+    <h1 id="pagetitle">New frontiers</h1>
+    
+    
+    <div class="subtitle">Breaking into an Internet Radio</div>
+    
+  </header>
+  
+  
+<div id="post-metadata">
+  <time datetime="2023-08-30">2023-08-30</time>
+  <ul class="categories">
+  
+    <li>hacking</li>
+  
+    <li>javascript</li>
+  
+    <li>audio</li>
+  
+  </ul>
+  
+  <a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;fairable">Project Page</a>
+  
+  
+</div>
+
+<article>
+  <h2 id="preface">Preface</h2>
+<p>I bought an Internet Radio. Yes, one of those things from the late 2000s where you could make a radio
+connect to your WiFi and hook into a MP3 stream. I bought one because I was unsatisifed with the solutions out there to get audio around your house.</p>
+<p>Bluetooth is cumbersome, you have to connect it and then you have to locate an app on your phone to get
+the media you want...ugh. I want a thing that turns on and immediately plays. Yes, I could have built one
+out of speakers and a Pi...but that's now a thing <em>I</em> have to spec and maintain. I just want a Wifi-enabled streaming device.</p>
+<p>And so, the often forgotten little entry-level internet radios appeared before me. Amazon is littered with internet radios from different providers
+but the one I bought ended up being a <a href="https://www.amazon.co.uk/gp/product/B089D8BV99">LEMEGA IR1</a>.</p>
+
+<figure class="">
+  <a href="/blog/new-frontiers/wifi_interface.jpg" target="_blank" ><img src="https://half-shot.uk/processed_images/wifi_interface.e5cb64cde539357d.webp" title="A picture of the radio, with the wifi screen" alt="A picture of the radio, with the wifi screen"></a>
+  <figcaption>The UX for the wifi password screen left something to be desired</figcaption>
+</figure>
+<h2 id="frontier-silicon">Frontier Silicon</h2>
+<p>A lot of the cheapo radios use the same OS and hardware under the hood. I've by no means done a thorough investigation, but "Pure radios" may
+be another seller. Either way, they're all using <a href="https://www.frontiersmart.com/">Frontier Silicon</a>. These seem to be a Cambridge outfit that
+build purpose-made PCBs for internet-radio-shaped devices. They also provide an operating system based on RTOS, which is closed source. I used
+<a href="https://github.com/huaracheguarache/Frontier-Silicon-Argon-Firmware/tree/master">this GitHub project</a> as a good starting point.</p>
+<h2 id="breaking-in">Breaking in</h2>
+<p>To start with, we needed to know what it was connecting to. To do that, I pointed the radio at my home DNS resolver (what do you mean you don't have one?). This showed me that it was connecting to <code>airable.wifiradionetworks.com</code>. Great!</p>
+<p>Now I had initially assumed it was unencrypted and simply pointing it to a web server would be enough. Not at all! The call was made directly as HTTPS so simply responding on port 80 would do...nothing.</p>
+<p>I poked about a bit and ended up looking at port 514, which when connected to via <code>telnet</code> will spam out logs. However, nothing useful was sent...</p>
+<pre><code>Escape character is &#x27;^]&#x27;.
+(Thread1): [     28.992309] UI     (2): Timer1---873
+(Thread1): [     28.992478] UI     (2): BATT =&gt;&gt; 1023
+(Thread1): [     29.306109] NET    (2): Notify Wlan Link i&#x2F;f 0 UP
+(Thread1): [     29.992315] UI     (2): Timer1---872
+(Thread1): [     30.992313] UI     (2): Timer1---871
+(Thread1): [     30.992489] UI     (2): BATT =&gt;&gt; 1023
+(Thread1): [     31.992320] UI     (2): Timer1---870
+(Thread1): [     32.992317] UI     (2): Timer1---869
+(Thread1): [     32.992490] UI     (2): BATT =&gt;&gt; 1023
+(Thread1): [     33.992310] UI     (2): Timer1---868
+(Thread1): [     34.992310] UI     (2): Timer1---867
+(Thread1): [     34.992486] UI     (2): BATT =&gt;&gt; 1023
+(Thread1): [     35.339301] NET    (2): Notify IP i&#x2F;f 0 (192.168.1.203) UP
+(Thread1): [     35.348842] CB     (1): airable_cb_module_SetInfo(): item index = 0, item id = &#x27;airable:&#x2F;&#x2F;frontiersmart&#x2F;radio&#x2F;102296330081
+(Thread1): [     35.356550] CB     (1): airable_cb_module_PostImmediateConnect(): connecting to &#x27;airable:&#x2F;&#x2F;frontiersmart&#x2F;radio&#x2F;10229633008
+(Thread1): [     35.357703] IB     (2): Browsing into &#x27;&lt;no folder name&gt;&#x27; (-1 - -1)
+</code></pre>
+<p><em>it's cute how they have their little protocol handler</em></p>
+<p>The next thing to try was the API used to control these devices via an app. Yes, a lovely insecure API protected by a 4 digit pin (the default is easily guessed and enabled by default, yay).</p>
+<p>This API even features a web interface you can reach by hitting the 8080 port on the radio, but it wasn't very useful.
+You can control the media volume, set some presets and see what's playing but critically you <strong>cannot</strong> modify what is playing.</p>
+<p>So then what? After a chat with some lovely folks on Mastodon, it was suggested to try <code>mitmproxy</code>. <a href="https://mitmproxy.org/">mitmproxy</a> is a simple tool that
+allows you to serve encrypted HTTPS traffic and view the contents. it has a proxy mode, but it also has a <em>reverse proxy mode</em>. This means you can serve up
+a server, and redirect all requests to the real server <em>while</em> inspecting the contents of the messages. Neat!</p>
+<p>Critically the radio does not verify the certificates for the host at all, so the target domain was set to my devbox's IP address.
+I ran the proxy and routed traffic to the real host aaaand...🎉 voila! It spilled the beans and by clicking around on the interface,
+you could see how it was pulling the data.</p>
+
+<figure class="">
+  <a href="/blog/new-frontiers/requests_view.png" target="_blank" ><img src="https://half-shot.uk/processed_images/requests_view.1f39c6c76eaa5631.webp" title="Screen capture of mitmproxy showing two requests from wifiradionetworks.com" alt="Screen capture of mitmproxy showing two requests from wifiradionetworks.com"></a>
+  <figcaption>And now it all makes sense!</figcaption>
+</figure>
+<p>So now that the API was revealed it was fairly trivial to work with. I wrote a simple node server to handle the requests which let me play a MP3 file (sadly no vorbis support) through it.
+I could then also connect it to <code>mpd</code> (Music Player Daemon) and play a whole playlist. Also, I added my own "brand".</p>
+<p><video alt="Video of the stream working" src="success.webm" controls> </video></p>
+<p>So that's that, we've broken in and found ourselves a way to add arbitrary streams to it!</p>
+<h2 id="summary">Summary</h2>
+<p>You can now use <a href="https://github.com/Half-Shot/fairable">fairable</a> as a rudimentary replacement service for this radio series. I plan to add
+support for things like <a href="https://github.com/badaix/snapcast">Snapcast</a> so I can stream arbitrary audio to it but that will require a lot more
+effort than what is put here.</p>
+<p>Ultimately, this project will be useful as part of my home automation stack (think: morning alarm playlists without the need for Spotify).</p>
+<p>I'd like to thank the Mastodon community, the Watercooler group on Matrix, the previous hackers who wrote some tremendously useful info.
+and my poor partner who suffered my enthusiasm for days on end 😁.</p>
+<p>If you've got any questions on this, hit me up on <a href="/contact">Matrix</a>!</p>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="https://mastodon.half-shot.uk/@halfy/110967351685629045">The Mastodon thread</a></li>
+<li><a href="https://github.com/Half-Shot/fairable">Fairable</a></li>
+</ul>
+
+</article>
+
+</main>
+
+<footer>
+  <nav aria-label="Social / suplimentary links">
+    <a href="https://github.com/Half-Shot">GitHub</a>
+    <a rel="me" href="https://mastodon.half-shot.uk/@halfy">Mastodon</a>
+    <a href="https://github.com/Half-Shot/half-shot.github.io">Source</a>
+    <a href="/contact">Contact</a>
+    <a href="https://cv.half-shot.uk">CV</a>
+    <a href="https://half-shot.uk/atom.xml">Feed</a>
+  </nav>
+  <nav aria-label="Buttons!">
+    
+    
+    <a referrerpolicy="no-referrer" title="Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)" href="https:&#x2F;&#x2F;creativecommons.org&#x2F;licenses&#x2F;by-nc-sa&#x2F;4.0&#x2F;">
+    
+      <img class="webbutton" alt="Button for Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)" src="https:&#x2F;&#x2F;mirrors.creativecommons.org&#x2F;presskit&#x2F;buttons&#x2F;88x31&#x2F;png&#x2F;by-nc-sa.png">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="This site is valid HTML5" href="https:&#x2F;&#x2F;github.com&#x2F;bradleytaunt&#x2F;html5-valid-badge">
+    
+      <img class="webbutton" alt="Button for This site is valid HTML5" src="&#x2F;badges&#x2F;valid-html5.svg">
+    
+    </a>
+    
+    
+    
+      <img class="webbutton" alt="Button for Site best viewed in 1920x1080" src="&#x2F;badges&#x2F;1080p.gif">
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="The Cutting Room Floor" href="https:&#x2F;&#x2F;tcrf.net">
+    
+      <img class="webbutton" alt="Button for The Cutting Room Floor" src="&#x2F;badges&#x2F;tcrf.gif">
+    
+    </a>
+    
+    
+    
+      <img class="webbutton" alt="Button for Human Made" src="&#x2F;badges&#x2F;human-made.gif">
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="Don&#x27;t feed the AI" href="https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;114822095837652835">
+    
+      <img class="webbutton" alt="Button for Don&#x27;t feed the AI" src="&#x2F;badges&#x2F;no_ai.gif">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="Internet Archive" href="https:&#x2F;&#x2F;archive.org">
+    
+      <img class="webbutton" alt="Button for Internet Archive" src="&#x2F;badges&#x2F;internetarchive.gif">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="Firefox" href="https:&#x2F;&#x2F;mozilla.org&#x2F;firefox">
+    
+      <img class="webbutton" alt="Button for Firefox" src="&#x2F;badges&#x2F;firefox.gif">
+    
+    </a>
+    
+    
+    
+      <img class="webbutton" alt="Button for Fight me on Worms" src="&#x2F;badges&#x2F;wormsv1.png">
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="The Pulch" href="https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=-2x8i0ewGdM">
+    
+      <img class="webbutton" alt="Button for The Pulch" src="&#x2F;badges&#x2F;pulch.png">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="crablab" href="https:&#x2F;&#x2F;crablab.uk">
+    
+      <img class="webbutton" alt="Button for crablab" src="&#x2F;badges&#x2F;crablab.png">
+    
+    </a>
+    
+    
+  </nav>
+
+  <p> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><abbr title="Attribution-NonCommercial-ShareAlike 4.0 International">CC BY-NC-SA 4.0</abbr> License</a>. This website strives to be fully accessible for all users. If you believe half-shot.uk is falling short, please <a href="/contact">contact me</a>. Artwork of Skraps is by <a href="https://mastodon.half-shot.uk/@tsunderdog@plush.city">Tsunderdog</a> </p>
+</footer>
+</html>

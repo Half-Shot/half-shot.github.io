@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>half-shot.uk | Kobold Kombat: Building an entirely free software Worms clone.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/site-icon.webp">
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="https://half-shot.uk/atom.xml">
+  
+  <meta name="description" content="How I turned love and frustration of old video games into a hobby project">
+  <meta property="og:url" content="https://half-shot.uk/blog/kobold-kombat-intro/">
+  <meta property="og:site_name" content="half-shot.uk">
+  <meta property="og:locale" content="en_GB,en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="half-shot.uk | Kobold Kombat: Building an entirely free software Worms clone.">
+  <meta property="og:description" content="How I turned love and frustration of old video games into a hobby project">
+
+
+  <meta property="og:image" content="https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;screenshot.50f479a4f0ab25db.jpg">
+
+  <meta property="og:image:alt" content="Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says &#x27;Look who&#x27;s up, it&#x27;s Halfy&#x27;s Angel!&#x27;. The team names are &#x27;Team Halfy&#x27; and &#x27;Chuckle Brothers&#x27;.">
+
+
+  <meta property="article:published_time" content="2025-08-02">
+
+
+
+  <meta property="article:tag" content="gamedev">
+
+  <meta property="article:tag" content="worms">
+
+  <meta property="article:tag" content="javascript">
+
+  <meta property="article:tag" content="hobby">
+
+  <meta property="article:tag" content="kobold-kombat">
+
+
+</head>
+
+<header>
+  <a href="/">
+    <img title="Skraps, the kobold" id="logo" alt="Kobold Head Logo" src="/headshot.webp">
+  </a>
+  <div>
+    <h1><a href="https://half-shot.uk">half-shot.uk</a></h1>
+    <p id="subtitle">Writings, arts, softwares, etc etc</p>
+  </div>
+</header>
+
+<main>
+  
+  <header>
+    
+    <h1 id="pagetitle">Kobold Kombat: Building an entirely free software Worms clone.</h1>
+    
+    
+    <div class="subtitle">How I turned love and frustration of old video games into a hobby project</div>
+    
+  </header>
+  
+  
+<div id="post-metadata">
+  <time datetime="2025-08-02">2025-08-02</time>
+  <ul class="categories">
+  
+    <li>gamedev</li>
+  
+    <li>worms</li>
+  
+    <li>javascript</li>
+  
+    <li>hobby</li>
+  
+    <li>kobold-kombat</li>
+  
+  </ul>
+  
+  <a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;wormgine">Project Page</a>
+  
+  
+</div>
+
+<article>
+  <p>This is going to be a <em>series</em> of blog posts discussing the various bits and pieces about one of my most proudest achievements;
+I've spent the last 2 years<sup class="footnote-reference"><a href="#1">1</a></sup> working on building a fully functional clone of <a href="https://en.wikipedia.org/wiki/Worms_Armageddon">Worms Armageddon</a>.</p>
+<p>For those less familiar with the series, you control a group of small characters on a island of randomly generated breakable terrain. You have
+a bunch of weapons, nearly all cartoonish and primed to inflict horrible painful deaths on your enemies (the name we use to refer to people you've convinced
+to huddle round your PC to play a game).</p>
+
+<figure class="">
+  <a href="/blog/kobold-kombat-intro/screenshot.webp" target="_blank" ><img src="https://half-shot.uk/processed_images/screenshot.f4d01ba0fc6a7525.webp" title="Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says &#x27;Look who&#x27;s up, it&#x27;s Halfy&#x27;s Angel!&#x27;. The team names are &#x27;Team Halfy&#x27; and &#x27;Chuckle Brothers&#x27;" alt="Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says &#x27;Look who&#x27;s up, it&#x27;s Halfy&#x27;s Angel!&#x27;. The team names are &#x27;Team Halfy&#x27; and &#x27;Chuckle Brothers&#x27;"></a>
+  <figcaption>Look, when you&#x27;ve played your own game for so long you have to start to get a bit creative with the levels. </figcaption>
+</figure>
+<h3 id="what-s-the-project-ultimately-about">What's the project ultimately about.</h3>
+<p>I will be writing the game from scratch, targeting web browser specifically. And most importantly:</p>
+<p><strong>Every last line of code and as much of the assets as possible will be open source</strong></p>
+<p>This game will be entirely within the public domain. No reverse engineering will be used, simply observation and reimplementation. This will also not just be
+another Worms game, but a game in its own right. It will have its own characters and weapons and modes and so on. There are also plenty of shortcomings of games
+in this era (notably, accessible game design) which I am to fix without impacting the core experience. And of course finally, this game is intended to outgrow
+its roots, and take its own identity (hence the name Kobold Kombat, with cute little murderous kobolds :&gt;)</p>
+<p>Ultimately what got me into programming was video games, and <strong>it's about time I returned to what I love to work on most</strong>. If I can make it a resource
+that others can built on and learn from, then so much the better!</p>
+<h3 id="so-what-s-on-the-menu">So, what's on the menu?</h3>
+<p>I've spent the last year or so wanting to write more blog posts about this topic, because with every day spent working on games I have learnt more tricks and
+fallen into more pitfalls than I thought possible. And, to meet that educational goal I really 'aught to document everything that goes through my little developer
+brain.</p>
+<p>However, this blog post has sat in a half completed form for the best part of a year so I've instead decided to write a formal introduction post with the plan to do
+deep dives on specific topics later. <strong>With that in mind, here are some of the topics I'd like to cover</strong>.</p>
+<ul>
+<li>So, you want to build a web game in 2025.</li>
+<li>Bug squashing, automated game testing, and how many GitHub issues is too many.</li>
+<li>Welding Pixi.JS to a Physics engine, and how I can prevent you from going mad.</li>
+<li>The bluffers guide to music production and sound design.</li>
+<li>Why you should have thought about networking before your first commit.</li>
+<li>And finally, perhaps the thing I want to cover the most: Video game accessibility.</li>
+</ul>
+<p>I <em>hope</em> to get to all these topics because each one is fun! But making video games is also fun! Doing real life chore things is not fun, but since all of those
+things are currently unpaid and only one of them might leave me in serious hot water, I can't promise I'll manage them all.</p>
+<h3 id="i-m-here-for-video-games-is-this-in-a-functional-state">I'm here for video games, is this in a functional state.</h3>
+<p>It's certainly <a href="https://half-shot.github.io/wormgine/">playable</a><sup class="footnote-reference"><a href="#2">2</a></sup>, and I really encourage people to give it a go and file issues. The multiplayer section
+is heavily neglected while I shore up the fundamental game mechanics, but I hope to return to that soon. A local game between 2-or-more players should work without issue.</p>
+<p><video alt="Gameplay video" src="demo.webm" controls> </video></p>
+<h3 id="what-s-next">What's next!</h3>
+<p>I plan to really work to shore up testing and code quality so I can then start to tackle lots of interesting, critical features. The next up items are:</p>
+<ul>
+<li>Terrain generation</li>
+<li>Multiplayer improvements<sup class="footnote-reference"><a href="#3">3</a></sup></li>
+<li>More items</li>
+<li>More animations</li>
+<li>More sounds</li>
+<li>And finally, a big pass on accessibility design and teaching the game to new players.</li>
+</ul>
+<p>And if you have any questions, you can always ask on <a href="https://mastodon.half-shot.uk/@halfy/114963948231166102">the mastodon thread</a></p>
+<p>Thanks for reading!</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Yes, it <a href="https://github.com/Half-Shot/wormgine/tree/74656c1dac389043167f222f4e889111fb71df58">really has been that long</a>.</p>
+</div>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>Occasionally this gets stuck on first load, a refresh nearly always fixes it. It's a frustrating bug.</p>
+</div>
+<div class="footnote-definition" id="3"><sup class="footnote-definition-label">3</sup>
+<p>The current multiplayer system uses <a href="https://matrix.org/">Matrix</a> for interactions, and even on a tuned homeserver it was slow.</p>
+</div>
+
+</article>
+
+</main>
+
+<footer>
+  <nav aria-label="Social / suplimentary links">
+    <a href="https://github.com/Half-Shot">GitHub</a>
+    <a rel="me" href="https://mastodon.half-shot.uk/@halfy">Mastodon</a>
+    <a href="https://github.com/Half-Shot/half-shot.github.io">Source</a>
+    <a href="/contact">Contact</a>
+    <a href="https://cv.half-shot.uk">CV</a>
+    <a href="https://half-shot.uk/atom.xml">Feed</a>
+  </nav>
+  <nav aria-label="Buttons!">
+    
+    
+    <a referrerpolicy="no-referrer" title="Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)" href="https:&#x2F;&#x2F;creativecommons.org&#x2F;licenses&#x2F;by-nc-sa&#x2F;4.0&#x2F;">
+    
+      <img class="webbutton" alt="Button for Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)" src="https:&#x2F;&#x2F;mirrors.creativecommons.org&#x2F;presskit&#x2F;buttons&#x2F;88x31&#x2F;png&#x2F;by-nc-sa.png">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="This site is valid HTML5" href="https:&#x2F;&#x2F;github.com&#x2F;bradleytaunt&#x2F;html5-valid-badge">
+    
+      <img class="webbutton" alt="Button for This site is valid HTML5" src="&#x2F;badges&#x2F;valid-html5.svg">
+    
+    </a>
+    
+    
+    
+      <img class="webbutton" alt="Button for Site best viewed in 1920x1080" src="&#x2F;badges&#x2F;1080p.gif">
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="The Cutting Room Floor" href="https:&#x2F;&#x2F;tcrf.net">
+    
+      <img class="webbutton" alt="Button for The Cutting Room Floor" src="&#x2F;badges&#x2F;tcrf.gif">
+    
+    </a>
+    
+    
+    
+      <img class="webbutton" alt="Button for Human Made" src="&#x2F;badges&#x2F;human-made.gif">
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="Don&#x27;t feed the AI" href="https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;114822095837652835">
+    
+      <img class="webbutton" alt="Button for Don&#x27;t feed the AI" src="&#x2F;badges&#x2F;no_ai.gif">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="Internet Archive" href="https:&#x2F;&#x2F;archive.org">
+    
+      <img class="webbutton" alt="Button for Internet Archive" src="&#x2F;badges&#x2F;internetarchive.gif">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="Firefox" href="https:&#x2F;&#x2F;mozilla.org&#x2F;firefox">
+    
+      <img class="webbutton" alt="Button for Firefox" src="&#x2F;badges&#x2F;firefox.gif">
+    
+    </a>
+    
+    
+    
+      <img class="webbutton" alt="Button for Fight me on Worms" src="&#x2F;badges&#x2F;wormsv1.png">
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="The Pulch" href="https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=-2x8i0ewGdM">
+    
+      <img class="webbutton" alt="Button for The Pulch" src="&#x2F;badges&#x2F;pulch.png">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="crablab" href="https:&#x2F;&#x2F;crablab.uk">
+    
+      <img class="webbutton" alt="Button for crablab" src="&#x2F;badges&#x2F;crablab.png">
+    
+    </a>
+    
+    
+  </nav>
+
+  <p> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><abbr title="Attribution-NonCommercial-ShareAlike 4.0 International">CC BY-NC-SA 4.0</abbr> License</a>. This website strives to be fully accessible for all users. If you believe half-shot.uk is falling short, please <a href="/contact">contact me</a>. Artwork of Skraps is by <a href="https://mastodon.half-shot.uk/@tsunderdog@plush.city">Tsunderdog</a> </p>
+</footer>
+</html>

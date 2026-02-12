@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>half-shot.uk - end-of-year</title>
+    <subtitle>Writings, arts, softwares</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://half-shot.uk/categories/end-of-year/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://half-shot.uk"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-01-04T00:00:00+00:00</updated>
+    <id>https://half-shot.uk/categories/end-of-year/atom.xml</id>
+    <entry xml:lang="en">
+        <title>2025 Round-off</title>
+        <published>2026-01-04T00:00:00+00:00</published>
+        <updated>2026-01-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/2025-roundup/"/>
+        <id>https://half-shot.uk/blog/2025-roundup/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/2025-roundup/">&lt;p&gt;Hey friends! This post got stuck in a sludge of inaction for the last week, and has just been sanded down and ready for your consumption. 2025 was a reasonably
+busy year for projects and things that I got up to, so this is just a quick summary on the year.&lt;&#x2F;p&gt;
+&lt;div role=&quot;alert&quot; class=&quot;content-warning&quot;&gt;
+  &lt;h1&gt;Content Warning&lt;&#x2F;h1&gt;
+  &lt;p&gt;&lt;strong&gt;Food&lt;&#x2F;strong&gt; — &lt;span&gt;Some of this post contains pictures of food including meat. I&amp;#x27;ve left this section at the end, so feel free to skip by it.&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;2025-roundup&#x2F;field_full.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;field.a153a7841c92d7cb.webp&quot; title=&quot;A picture of some yellow rapeseed fields split in the middle with a path.&quot; alt=&quot;A picture of some yellow rapeseed fields split in the middle with a path.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;We hiked the Ridgeway this year. There was a lot of yellow.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h1 id=&quot;projects&quot;&gt;Projects&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;msc-crafter&quot;&gt;MSC Crafter&lt;&#x2F;h2&gt;
+&lt;p&gt;This year &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;msc-crafter&quot;&gt;MSC Crafter&lt;&#x2F;a&gt; was born, which is an ongoing attempt to build a better editor for the
+&lt;a href=&quot;https:&#x2F;&#x2F;spec.matrix.org&#x2F;proposals&#x2F;&quot;&gt;Matrix Spec Change&lt;&#x2F;a&gt; process.&lt;&#x2F;p&gt;
+&lt;p&gt;On the whole this was borne out of a mix of desires and frustrations from:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The process being so heavily dependant on GitHub, a platform which has in recent times got heavier, broken workflows, and occasionally just goes offline now.&lt;&#x2F;li&gt;
+&lt;li&gt;Information on MSCs (like which ones they link to, impls of those MSCs) being scattered around the place.&lt;&#x2F;li&gt;
+&lt;li&gt;Some MSCs range into the hundreds of comments territory, or go through several rounds of changes and reviews.&lt;&#x2F;li&gt;
+&lt;li&gt;Travelling along rail networks meant my internet would suddenly vanish, which was usually the times I wanted to spend writing docs. So offline modes would be useful.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;crafter.b09dd8d83dc7d45f.webp&quot; title=&quot;Preview of the interface showing the light&amp;#x2F;dark mode split on MSC4143: MatrixRTC.&quot; alt=&quot;Preview of the interface showing the light&amp;#x2F;dark mode split on MSC4143: MatrixRTC.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Pretty happy with how it came out looking!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;So all in all, there felt ample room for improving the workflow and if there is one thing I can do, it&#x27;s bash out a web app!&lt;&#x2F;p&gt;
+&lt;p&gt;My overall aim for 2026 is to get it to a state where it&#x27;s more useful, and feels snappier than GitHub is today. The end goal for the project is for the Matrix
+Foundation to promote it as a suggested tool for MSC writers and reviewers alike.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;kobold-kombat-wormgine&quot;&gt;Kobold Kombat (wormgine)&lt;&#x2F;h2&gt;
+&lt;p&gt;I wrote about about the project &lt;a href=&quot;&#x2F;blog&#x2F;kobold-kombat-intro&#x2F;&quot;&gt;in August&lt;&#x2F;a&gt; but haven&#x27;t kept up with it as much as I&#x27;d like to. The project is suffering a bit
+from a rotting architecture. It works well enough, most of the time in local play but trying to extend to multiplayer has brought a lot of bugs to the forefront.&lt;&#x2F;p&gt;
+&lt;p&gt;Primarily I would like to spend some of 2026 splitting out the rendering logic from the game logic, and decoupling it so that you could run and test the game entirely headless,
+which would then allow for smoother multiplayer games.&lt;&#x2F;p&gt;
+&lt;p&gt;Still though, I&#x27;m proud of where it is at!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;fitness&quot;&gt;Fitness&lt;&#x2F;h1&gt;
+&lt;p&gt;It was a good year for trying to keep fit! My usual ambition of running a few races a year split into 3 different tracks of:&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;paddleb.9f7fced9010179a1.webp&quot; title=&quot;Picture of a lake in the background, with a wooden deck and a paddle board sitting idle. It&amp;#x27;s a beautiful blue day.&quot; alt=&quot;Picture of a lake in the background, with a wooden deck and a paddle board sitting idle. It&amp;#x27;s a beautiful blue day.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;The lake! This doesn&amp;#x27;t do it justice. On a hot day, it was just beautiful.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;ul&gt;
+&lt;li&gt;Gym! Actually properly sticking to a routine. I&#x27;ve ended up with a spreadsheet and a finely crafted routine that I try to work towards most mornings.&lt;&#x2F;li&gt;
+&lt;li&gt;Paddle-boarding! We found out there was a nice lake to go paddle around in the heat of the summer, it was just beautiful.&lt;&#x2F;li&gt;
+&lt;li&gt;Running (still)!. I apparently ran ~650km in 2025, and PB&#x27;d my half marathon time at &lt;code&gt;1:49:22&lt;&#x2F;code&gt; so well happy with that.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;cooking&quot;&gt;Cooking&lt;&#x2F;h1&gt;
+&lt;p&gt;I occasionally post the good foods on socials, but I thought just for this post I&#x27;ll round off my favourite things I made this year
+(and critically, took a photo of before I ate!).&lt;&#x2F;p&gt;
+&lt;p&gt;
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;white-fish.761a49558148b32d.webp&quot; title=&quot;This one came out beautifully. Some tenderly poached white fish in sauce, with a few drips of hot honey on top.&quot; alt=&quot;This one came out beautifully. Some tenderly poached white fish in sauce, with a few drips of hot honey on top.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;This one came out beautifully. Some tenderly poached white fish in sauce, with a few drips of hot honey on top.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;chillib.244f6671b545c06c.webp&quot; title=&quot;Chilli beef that had marinaded for some time in chilli oil and soy sauce, laid atop rice and carrots.&quot; alt=&quot;Chilli beef that had marinaded for some time in chilli oil and soy sauce, laid atop rice and carrots.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Chilli beef that had marinaded for some time in chilli oil and soy sauce, laid atop rice and carrots.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;egg-fried-lamb.63cb41a2ac6367be.webp&quot; title=&quot;Egg fried rice with the most delicate lamb on top, alongside some duck spring rolls.&quot; alt=&quot;Egg fried rice with the most delicate lamb on top, alongside some duck spring rolls.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Egg fried rice with the most delicate lamb on top, alongside some duck spring rolls.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;steak.be253e61e7c3066e.webp&quot; title=&quot;A beautifully prepared sirloin steak. The leftover juices were used to cook up the mushrooms in butter, and those juices were then mixed with beer and cream for the sauce. Homemade chips too!&quot; alt=&quot;A beautifully prepared sirloin steak. The leftover juices were used to cook up the mushrooms in butter, and those juices were then mixed with beer and cream for the sauce. Homemade chips too!&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;A beautifully prepared sirloin steak. The leftover juices were used to cook up the mushrooms in butter, and those juices were then mixed with beer and cream for the sauce. Homemade chips too!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;beef-stew.aaf4d582685159f3.webp&quot; title=&quot;Coming into the holiday season, I stewed down some beef for a good few hours in more beer, and then added bacon. The result was a very rich stew, alongside some home roasted potatoes.&quot; alt=&quot;Coming into the holiday season, I stewed down some beef for a good few hours in more beer, and then added bacon. The result was a very rich stew, alongside some home roasted potatoes.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Coming into the holiday season, I stewed down some beef for a good few hours in more beer, and then added bacon. The result was a very rich stew, alongside some home roasted potatoes.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;banana-bread-tart.a5ed43fbb1ca8af0.webp&quot; title=&quot;And finally, banana bread! Well a tart, because my bread tin went missing! Still, it actually works!&quot; alt=&quot;And finally, banana bread! Well a tart, because my bread tin went missing! Still, it actually works!&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;And finally, banana bread! Well a tart, because my bread tin went missing! Still, it actually works!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h3 id=&quot;and-moving-into-2026&quot;&gt;And moving into 2026&lt;&#x2F;h3&gt;
+&lt;p&gt;Despite all the above, I&#x27;ve not actually cemented down what the goal of 2026 will be yet.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve got some thoughts about trying to be a better maintainer and working
+on some good habits to keep the overall cost to maintain low for the projects I&#x27;ve got on the burners. I probably plan to also do more
+hardware projects with the local hackspace, and post more of those on this very site!&lt;&#x2F;p&gt;
+&lt;p&gt;Anyway, that was a quick-ish post to give a general update of what I&#x27;ve been up to! Happy new year everyone!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

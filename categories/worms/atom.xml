@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>half-shot.uk - worms</title>
+    <subtitle>Writings, arts, softwares</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://half-shot.uk/categories/worms/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://half-shot.uk"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-08-02T00:00:00+00:00</updated>
+    <id>https://half-shot.uk/categories/worms/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Kobold Kombat: Building an entirely free software Worms clone.</title>
+        <published>2025-08-02T00:00:00+00:00</published>
+        <updated>2025-08-02T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/kobold-kombat-intro/"/>
+        <id>https://half-shot.uk/blog/kobold-kombat-intro/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/kobold-kombat-intro/">&lt;p&gt;This is going to be a &lt;em&gt;series&lt;&#x2F;em&gt; of blog posts discussing the various bits and pieces about one of my most proudest achievements;
+I&#x27;ve spent the last 2 years&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; working on building a fully functional clone of &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Worms_Armageddon&quot;&gt;Worms Armageddon&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For those less familiar with the series, you control a group of small characters on a island of randomly generated breakable terrain. You have
+a bunch of weapons, nearly all cartoonish and primed to inflict horrible painful deaths on your enemies (the name we use to refer to people you&#x27;ve convinced
+to huddle round your PC to play a game).&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;kobold-kombat-intro&#x2F;screenshot.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;screenshot.f4d01ba0fc6a7525.webp&quot; title=&quot;Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says &amp;#x27;Look who&amp;#x27;s up, it&amp;#x27;s Halfy&amp;#x27;s Angel!&amp;#x27;. The team names are &amp;#x27;Team Halfy&amp;#x27; and &amp;#x27;Chuckle Brothers&amp;#x27;&quot; alt=&quot;Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says &amp;#x27;Look who&amp;#x27;s up, it&amp;#x27;s Halfy&amp;#x27;s Angel!&amp;#x27;. The team names are &amp;#x27;Team Halfy&amp;#x27; and &amp;#x27;Chuckle Brothers&amp;#x27;&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Look, when you&amp;#x27;ve played your own game for so long you have to start to get a bit creative with the levels. &lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h3 id=&quot;what-s-the-project-ultimately-about&quot;&gt;What&#x27;s the project ultimately about.&lt;&#x2F;h3&gt;
+&lt;p&gt;I will be writing the game from scratch, targeting web browser specifically. And most importantly:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Every last line of code and as much of the assets as possible will be open source&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This game will be entirely within the public domain. No reverse engineering will be used, simply observation and reimplementation. This will also not just be
+another Worms game, but a game in its own right. It will have its own characters and weapons and modes and so on. There are also plenty of shortcomings of games
+in this era (notably, accessible game design) which I am to fix without impacting the core experience. And of course finally, this game is intended to outgrow
+its roots, and take its own identity (hence the name Kobold Kombat, with cute little murderous kobolds :&amp;gt;)&lt;&#x2F;p&gt;
+&lt;p&gt;Ultimately what got me into programming was video games, and &lt;strong&gt;it&#x27;s about time I returned to what I love to work on most&lt;&#x2F;strong&gt;. If I can make it a resource
+that others can built on and learn from, then so much the better!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;so-what-s-on-the-menu&quot;&gt;So, what&#x27;s on the menu?&lt;&#x2F;h3&gt;
+&lt;p&gt;I&#x27;ve spent the last year or so wanting to write more blog posts about this topic, because with every day spent working on games I have learnt more tricks and
+fallen into more pitfalls than I thought possible. And, to meet that educational goal I really &#x27;aught to document everything that goes through my little developer
+brain.&lt;&#x2F;p&gt;
+&lt;p&gt;However, this blog post has sat in a half completed form for the best part of a year so I&#x27;ve instead decided to write a formal introduction post with the plan to do
+deep dives on specific topics later. &lt;strong&gt;With that in mind, here are some of the topics I&#x27;d like to cover&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;So, you want to build a web game in 2025.&lt;&#x2F;li&gt;
+&lt;li&gt;Bug squashing, automated game testing, and how many GitHub issues is too many.&lt;&#x2F;li&gt;
+&lt;li&gt;Welding Pixi.JS to a Physics engine, and how I can prevent you from going mad.&lt;&#x2F;li&gt;
+&lt;li&gt;The bluffers guide to music production and sound design.&lt;&#x2F;li&gt;
+&lt;li&gt;Why you should have thought about networking before your first commit.&lt;&#x2F;li&gt;
+&lt;li&gt;And finally, perhaps the thing I want to cover the most: Video game accessibility.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I &lt;em&gt;hope&lt;&#x2F;em&gt; to get to all these topics because each one is fun! But making video games is also fun! Doing real life chore things is not fun, but since all of those
+things are currently unpaid and only one of them might leave me in serious hot water, I can&#x27;t promise I&#x27;ll manage them all.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;i-m-here-for-video-games-is-this-in-a-functional-state&quot;&gt;I&#x27;m here for video games, is this in a functional state.&lt;&#x2F;h3&gt;
+&lt;p&gt;It&#x27;s certainly &lt;a href=&quot;https:&#x2F;&#x2F;half-shot.github.io&#x2F;wormgine&#x2F;&quot;&gt;playable&lt;&#x2F;a&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, and I really encourage people to give it a go and file issues. The multiplayer section
+is heavily neglected while I shore up the fundamental game mechanics, but I hope to return to that soon. A local game between 2-or-more players should work without issue.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;video alt=&quot;Gameplay video&quot; src=&quot;demo.webm&quot; controls&gt; &lt;&#x2F;video&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-s-next&quot;&gt;What&#x27;s next!&lt;&#x2F;h3&gt;
+&lt;p&gt;I plan to really work to shore up testing and code quality so I can then start to tackle lots of interesting, critical features. The next up items are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Terrain generation&lt;&#x2F;li&gt;
+&lt;li&gt;Multiplayer improvements&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#3&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;More items&lt;&#x2F;li&gt;
+&lt;li&gt;More animations&lt;&#x2F;li&gt;
+&lt;li&gt;More sounds&lt;&#x2F;li&gt;
+&lt;li&gt;And finally, a big pass on accessibility design and teaching the game to new players.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And if you have any questions, you can always ask on &lt;a href=&quot;https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;114963948231166102&quot;&gt;the mastodon thread&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Thanks for reading!&lt;&#x2F;p&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;1&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;1&lt;&#x2F;sup&gt;
+&lt;p&gt;Yes, it &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;wormgine&#x2F;tree&#x2F;74656c1dac389043167f222f4e889111fb71df58&quot;&gt;really has been that long&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;2&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;2&lt;&#x2F;sup&gt;
+&lt;p&gt;Occasionally this gets stuck on first load, a refresh nearly always fixes it. It&#x27;s a frustrating bug.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;3&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;3&lt;&#x2F;sup&gt;
+&lt;p&gt;The current multiplayer system uses &lt;a href=&quot;https:&#x2F;&#x2F;matrix.org&#x2F;&quot;&gt;Matrix&lt;&#x2F;a&gt; for interactions, and even on a tuned homeserver it was slow.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+</content>
+        
+    </entry>
+</feed>

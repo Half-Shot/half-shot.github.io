@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>half-shot.uk | Leafpipe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/site-icon.webp">
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="https://half-shot.uk/atom.xml">
+  
+  <meta name="description" content="Turning lots and lots of audio&#x2F;visual into pretty stimuli">
+  <meta property="og:url" content="https://half-shot.uk/blog/leafpipe/">
+  <meta property="og:site_name" content="half-shot.uk">
+  <meta property="og:locale" content="en_GB,en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="half-shot.uk | Leafpipe">
+  <meta property="og:description" content="Turning lots and lots of audio&#x2F;visual into pretty stimuli">
+
+
+  <meta property="og:image" content="https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;nanoleaf.c9559fbdc323ce46.jpg">
+
+  <meta property="og:image:alt" content="A picture of some hexagonal Nanoleaf Shape lights against a wall.">
+
+
+  <meta property="article:published_time" content="2023-12-04">
+
+
+
+  <meta property="article:tag" content="hacking">
+
+  <meta property="article:tag" content="rust">
+
+  <meta property="article:tag" content="audio">
+
+  <meta property="article:tag" content="video">
+
+  <meta property="article:tag" content="rgb">
+
+  <meta property="article:tag" content="leafpipe">
+
+
+</head>
+
+<header>
+  <a href="/">
+    <img title="Skraps, the kobold" id="logo" alt="Kobold Head Logo" src="/headshot.webp">
+  </a>
+  <div>
+    <h1><a href="https://half-shot.uk">half-shot.uk</a></h1>
+    <p id="subtitle">Writings, arts, softwares, etc etc</p>
+  </div>
+</header>
+
+<main>
+  
+  <header>
+    
+    <h1 id="pagetitle">Leafpipe</h1>
+    
+    
+    <div class="subtitle">Turning lots and lots of audio&#x2F;visual into pretty stimuli</div>
+    
+  </header>
+  
+  
+<div id="post-metadata">
+  <time datetime="2023-12-04">2023-12-04</time>
+  <ul class="categories">
+  
+    <li>hacking</li>
+  
+    <li>rust</li>
+  
+    <li>audio</li>
+  
+    <li>video</li>
+  
+    <li>rgb</li>
+  
+    <li>leafpipe</li>
+  
+  </ul>
+  
+  <a target="_blank" rel="noopener" href="https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe">Project Page</a>
+  
+  
+</div>
+
+<article>
+  <p>A few years ago after moving into a flat, I was staring at a white wall (I presume this isn't unique to the UK, walls are always boring and white).
+A friend of mine suggested that the wall really could do with some RGB lights, and being the sort of person who is naturally attracted to flashy
+rainbows...I went and purchased some <a href="https://nanoleaf.me">Nanoleaf</a> lights.</p>
+<p>Nanoleaf make "Shapes" panels which are neat little diffuse LED hexagons, that can be connected like LEGO to each other. You can stick them to walls
+and make the prettiest of displays.</p>
+
+<figure class="">
+  <a href="/blog/leafpipe/nanoleaf.webp" target="_blank" ><img src="https://half-shot.uk/processed_images/nanoleaf.c117718a5e7798d6.webp" title="A picture of some hexagonal Nanoleaf Shape lights against a wall." alt="A picture of some hexagonal Nanoleaf Shape lights against a wall."></a>
+  <figcaption>Marketing impression of how you are meant to arrange your lights. Totally not my wall! Image: © Nanoleaf</figcaption>
+</figure>
+<p><em>However</em>. There is one feature that <strong>sucks</strong>: the audio-driven panel effects.</p>
+<p>Although you can arrange the panels nicely and apply some pretty effects to music, they process audio
+though a built-in microphone (so the quality is a bit crap). There is no video feed for them, so they cannot adapt to any inputs
+to produce a pleasing hue to the music either. You end up with panels that sort of adjust to your music, providing you are playing loudly enough.
+However, since this is all happening on the controller the performance isn't <em>great</em>.</p>
+<p>Otherwise, the kit is pretty solid. They connect to the Wi-Fi and can be controlled via a standard REST API.
+It would be better if the <a href="https://forum.nanoleaf.me/docs">API docs</a> were accessible without a forum account though,
+despite industry trends it just seems redundant.</p>
+<p>It should be noted that some models allow you to clip in a 3.5" jack for better quality audio, but:</p>
+<ol>
+<li>This is only for the more expensive models.</li>
+<li>You still have to process the effects on the lower-powered controller.</li>
+<li>Still no ability to capture video.</li>
+</ol>
+<h2 id="leafpipe">Leafpipe</h2>
+<p>I built leafpipe to basically take input from my PC and send it onto the lights to make the aforementioned pretty displays. It uses a combination
+of Pipewire, and the Wayland screencopy protocol. It's a little Rust daemon that sits there relentlessly capturing data and spewing out packets
+to the Nanoleaf controller.</p>
+<figure>
+  <img src="architecture.svg" alt="{{ alt }}" />
+  <figcaption>Rough outline of how this all fits together</figcaption>
+</figure>
+<p>I'll explain roughly how the process works.</p>
+<h3 id="video-processing">Video processing</h3>
+<p>For the visual side, we take a copy of a chosen display every <code>33ms</code>. The frame is copied into a buffer, and then split into chunks of 4 bytes
+to make up a set of pixels (RGBA).</p>
+<p>We then further split things so we only read every 8th pixel (to save on processing time) to achieve a sort
+of rough approximation of what's on screen.</p>
+<p>Finally, we split each of the pixels horizontally by the number of panels we have. So if we
+have 8 Nanoleaf panels, we split the frame by 8. These pixels are converted to HSL so we can evaluate the lightness aspect of them, which will come
+in handy in just a second.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; From https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe&#x2F;blob&#x2F;c4537c564def652b57bf9daa54f4538d7e61bd29&#x2F;src&#x2F;visual&#x2F;prominent_color.rs#L27
+&#x2F;**
+ * How many pixels to skip in a chunk, for performance.
+ *&#x2F;
+const SKIP_PIXEL: usize = 8;
+pub fn determine_prominent_color(frame_copy: FrameCopy, heatmap: &amp;mut [Vec&lt;Vec&lt;Vec&lt;u32&gt;&gt;&gt;]) -&gt; Vec&lt;Hsl&gt; {
+    if ColorType::Rgba8 != frame_copy.frame_color_type {
+        panic!(&quot;Cannot handle frame!&quot;)
+    };
+    let split_by = heatmap.len();
+    let mut most_prominent = vec![Hsl::from(0.0, 0.0, 0.0); split_by];
+    let mut most_prominent_idx: Vec&lt;u32&gt; = vec![0; split_by];
+    let split_width: u32 = frame_copy.width &#x2F; split_by as u32;
+    let chunk_size = 4 + (SKIP_PIXEL*4);
+    
+    for (chunk_idx, chunk) in frame_copy.data.chunks_exact(chunk_size).enumerate() {
+        let x = ((chunk_idx * chunk_size) &#x2F; 4) % frame_copy.width as usize;
+        let panel_idx = (x as f32 &#x2F; split_width as f32).floor().min(split_by as f32 - 1.0f32) as usize;
+
+        let hsl = Rgb::from(chunk[0] as f32, chunk[1] as f32, chunk[2] as f32).to_hsl();
+</code></pre>
+<p>We then take these samples, and apply some simple evaluations to each pixel to skip anything that might be "dull" (really light or really dark
+colours tend to be a bit boring on a RGB display).</p>
+<p>Within each panel, we take a heatmap of the pixels and choose whichever pixel ranks highest. The heatmap is effectively a 4 dimensional array of
+all the panels x [possible hue values] x [possible saturation values] x [possible lightness values].</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">        &#x2F;&#x2F; Reject any really dark colours.
+        if LIGHTNESS_MAX &lt; hsl.get_lightness() || hsl.get_lightness() &lt; LIGHTNESS_MIN {
+            continue;
+        }
+        if hsl.get_saturation() &lt; SATURATION_MIN {
+            continue;
+        }
+        &#x2F;&#x2F; Split into 36 blocks
+        let h_index = (hsl.get_hue() as usize) &#x2F; 10; &#x2F;&#x2F; 0-255
+        let s_index = (hsl.get_saturation() as usize) &#x2F; 5; &#x2F;&#x2F; 0-100
+        let l_index = (hsl.get_lightness() as usize) &#x2F; 5; &#x2F;&#x2F; 0-100
+        let new_prominence = heatmap[panel_idx][h_index][s_index][l_index] + 1;
+        &#x2F;&#x2F; With what&#x27;s left, primary focus on getting the most prominent colour in the frame.
+        heatmap[panel_idx][h_index][s_index][l_index] = new_prominence;
+        if new_prominence &gt; most_prominent_idx[panel_idx] {
+            most_prominent[panel_idx] = Hsl::from(
+                (h_index * 10) as f32,
+                (s_index * 5) as f32,
+                (l_index * 5) as f32,
+            );
+            most_prominent_idx[panel_idx] = new_prominence;
+        }
+    }
+    most_prominent
+}
+</code></pre>
+<p>Again for resource reasons, we approximate the values of these and round up into blocks. For instance, a pixel of H: 15, S: 20, and L: 50
+would be put in heatmap block <code>[1][4][10]</code>. Once all the pixels have been evaluated, we can return a set of most prominent values.</p>
+<h3 id="audio-processing">Audio processing</h3>
+<p>While that's ongoing, we also process the audio through Pipewire. I can't pretend to say I did any of the work on processing it.
+<a href="https://github.com/BlankParenthesis">BlankParenthesis</a> wrote a beautiful visualisation program for audio which I repurposed to be used in this.
+I can't begin to explain how it all works, but the end result is that for a given frame of audio data we get a amplitude value for each frequency.</p>
+<p>We take this computed value of amplitude and put it in a sliding window. The idea here is that we want to get an idea of "relative" power
+across an given length of audio (in this case, 64 frames). If we're playing some really quiet music we don't want the lights to be
+virtually off. The sliding window stores every value computed, and gives us the min/max of the last 64 values. The min/max give us an idea
+of how much we should then tweak the lightness for the latest frame.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe&#x2F;blob&#x2F;9d5f3d1ec0eaea00c700c224c2e284a4fc491f13&#x2F;src&#x2F;main.rs#L56
+    let mut window = SlidingWindow::new(64);
+    let color = hsl_color_from_video_processing;
+    &#x2F;&#x2F; This would loop
+    if let Some(audio_data) = buffer_manager.write().unwrap().fft_interval(LIGHT_INTERVAL, panels.num_panels) {
+        for (panel_index, _panel) in sorted_panels.iter().enumerate() {
+            &#x2F;&#x2F; Submit our value, and return min,max.
+            let (min, max) = window.submit_new(audio_data[panel_index]);
+            let base_int = color.get_lightness() - 10.0;
+            let intensity = (base_int + ((audio_data[panel_index] + min) &#x2F; max) * intensity_modifier * (panel_index as f32 + 1.0f32).powf(1.05f32)).clamp(5.0, 80.0);
+            let hsl = Hsl::from(color.get_hue(), color.get_saturation(), intensity);
+            let rgb = hsl.to_rgb().as_tuple();
+            let r = rgb.0.round() as u8;
+            let g = rgb.1.round() as u8;
+            let b = rgb.2.round() as u8;
+            &#x2F;&#x2F; And write this result to the nanoleaf
+        }
+    }
+</code></pre>
+<p>The intensity algorithm ends up looking like:</p>
+<p><code>intensity = clamp((base_colour_intensity + relative_recent_intensity) * intensity_modifier * panel_index^1.05, 5, 80)</code>.</p>
+<p>We allow the user to specify a modifier value (defaulting to <code>15</code>) in case they would like to turn up or tone down the effect. We also clamp the value
+to prevent blinding users or turning the lights off completely.</p>
+<p>Once we have our final RGB value, that's it!</p>
+<p><strong>Oh wait, no!</strong></p>
+<p>How do we get that data to the panel?</p>
+<h3 id="sending-the-data">Sending the data</h3>
+<p>So the Nanoleafs have a feature where you can enable <code>extControl</code> mode where the controller sort of turns off its brain and just interprets
+raw data for each of the panels.</p>
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh">curl -X PUT --data &#x27;{&quot;write&quot;:{&quot;command&quot;: &quot;display&quot;, &quot;animType&quot;: &quot;extControl&quot;, &quot;extControlVersion&quot;: &quot;v2&quot;}}&#x27; &#x27;http:&#x2F;&#x2F;{hostname}:16021&#x2F;api&#x2F;v1&#x2F;}{token}&#x2F;effects
+</code></pre>
+<p>It's really cool! It uses UDP, so you can effectively fire off new frames as fast as you like to control each panel. (Although in my testing anything
+higher than 100ms would cause it to melt). We therefore send a new payload of data to the controller every <code>100ms</code> which contains the
+values calculated. You need to give the effect a "transition time" because it likes to do a fade-effect between colours, so we set that to
+<code>100ms</code>.</p>
+<figure>
+  <video alt="Demo video of the final product" src="demo.webm" controls poster="demo.webp"> </video>
+  <figcaption>Video taken from <a href="https://www.youtube.com/watch?v=eoY1Mc70uTo">Blender 4.0 - Reel</a></figcaption>
+</figure>
+<h3 id="final-thoughts">Final thoughts</h3>
+<p>This project was only made possible by the hard work of the Wayshot project for showing me how to capture a frame from a Wayland compositor, and
+BlankParenthesis for developing visualisation software for Pipewire streams.</p>
+<p>I'm sure you have noticed by now dear reader, that this could work for any set of network addressable lights rather than just a particular brands
+particular product. Yes. Definitely. But I think I'll leave that as a future idea for someone with other lights to pick up 😉.</p>
+<p>You can check out the code on <a href="https://github.com/Half-Shot/leafpipe">GitHub</a> and it should compile and run for anyone with a Nanoleaf Shapes
+device (and of course, you must run a Linux setup with Wayland and Proton).</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/Half-Shot/leafpipe">Leafpipe</a></li>
+<li><a href="https://github.com/Half-Shot/pxlha">pxlha</a></li>
+<li><a href="https://github.com/BlankParenthesis/visualiser">BlankParenthesis/visualiser</a></li>
+<li><a href="https://github.com/waycrate/wayshot">wayshot</a></li>
+</ul>
+
+</article>
+
+</main>
+
+<footer>
+  <nav aria-label="Social / suplimentary links">
+    <a href="https://github.com/Half-Shot">GitHub</a>
+    <a rel="me" href="https://mastodon.half-shot.uk/@halfy">Mastodon</a>
+    <a href="https://github.com/Half-Shot/half-shot.github.io">Source</a>
+    <a href="/contact">Contact</a>
+    <a href="https://cv.half-shot.uk">CV</a>
+    <a href="https://half-shot.uk/atom.xml">Feed</a>
+  </nav>
+  <nav aria-label="Buttons!">
+    
+    
+    <a referrerpolicy="no-referrer" title="Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)" href="https:&#x2F;&#x2F;creativecommons.org&#x2F;licenses&#x2F;by-nc-sa&#x2F;4.0&#x2F;">
+    
+      <img class="webbutton" alt="Button for Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)" src="https:&#x2F;&#x2F;mirrors.creativecommons.org&#x2F;presskit&#x2F;buttons&#x2F;88x31&#x2F;png&#x2F;by-nc-sa.png">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="This site is valid HTML5" href="https:&#x2F;&#x2F;github.com&#x2F;bradleytaunt&#x2F;html5-valid-badge">
+    
+      <img class="webbutton" alt="Button for This site is valid HTML5" src="&#x2F;badges&#x2F;valid-html5.svg">
+    
+    </a>
+    
+    
+    
+      <img class="webbutton" alt="Button for Site best viewed in 1920x1080" src="&#x2F;badges&#x2F;1080p.gif">
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="The Cutting Room Floor" href="https:&#x2F;&#x2F;tcrf.net">
+    
+      <img class="webbutton" alt="Button for The Cutting Room Floor" src="&#x2F;badges&#x2F;tcrf.gif">
+    
+    </a>
+    
+    
+    
+      <img class="webbutton" alt="Button for Human Made" src="&#x2F;badges&#x2F;human-made.gif">
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="Don&#x27;t feed the AI" href="https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;114822095837652835">
+    
+      <img class="webbutton" alt="Button for Don&#x27;t feed the AI" src="&#x2F;badges&#x2F;no_ai.gif">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="Internet Archive" href="https:&#x2F;&#x2F;archive.org">
+    
+      <img class="webbutton" alt="Button for Internet Archive" src="&#x2F;badges&#x2F;internetarchive.gif">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="Firefox" href="https:&#x2F;&#x2F;mozilla.org&#x2F;firefox">
+    
+      <img class="webbutton" alt="Button for Firefox" src="&#x2F;badges&#x2F;firefox.gif">
+    
+    </a>
+    
+    
+    
+      <img class="webbutton" alt="Button for Fight me on Worms" src="&#x2F;badges&#x2F;wormsv1.png">
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="The Pulch" href="https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=-2x8i0ewGdM">
+    
+      <img class="webbutton" alt="Button for The Pulch" src="&#x2F;badges&#x2F;pulch.png">
+    
+    </a>
+    
+    
+    
+    <a referrerpolicy="no-referrer" title="crablab" href="https:&#x2F;&#x2F;crablab.uk">
+    
+      <img class="webbutton" alt="Button for crablab" src="&#x2F;badges&#x2F;crablab.png">
+    
+    </a>
+    
+    
+  </nav>
+
+  <p> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><abbr title="Attribution-NonCommercial-ShareAlike 4.0 International">CC BY-NC-SA 4.0</abbr> License</a>. This website strives to be fully accessible for all users. If you believe half-shot.uk is falling short, please <a href="/contact">contact me</a>. Artwork of Skraps is by <a href="https://mastodon.half-shot.uk/@tsunderdog@plush.city">Tsunderdog</a> </p>
+</footer>
+</html>

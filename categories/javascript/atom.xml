@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>half-shot.uk - javascript</title>
+    <subtitle>Writings, arts, softwares</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://half-shot.uk/categories/javascript/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://half-shot.uk"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-08-02T00:00:00+00:00</updated>
+    <id>https://half-shot.uk/categories/javascript/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Kobold Kombat: Building an entirely free software Worms clone.</title>
+        <published>2025-08-02T00:00:00+00:00</published>
+        <updated>2025-08-02T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/kobold-kombat-intro/"/>
+        <id>https://half-shot.uk/blog/kobold-kombat-intro/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/kobold-kombat-intro/">&lt;p&gt;This is going to be a &lt;em&gt;series&lt;&#x2F;em&gt; of blog posts discussing the various bits and pieces about one of my most proudest achievements;
+I&#x27;ve spent the last 2 years&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; working on building a fully functional clone of &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Worms_Armageddon&quot;&gt;Worms Armageddon&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For those less familiar with the series, you control a group of small characters on a island of randomly generated breakable terrain. You have
+a bunch of weapons, nearly all cartoonish and primed to inflict horrible painful deaths on your enemies (the name we use to refer to people you&#x27;ve convinced
+to huddle round your PC to play a game).&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;kobold-kombat-intro&#x2F;screenshot.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;screenshot.f4d01ba0fc6a7525.webp&quot; title=&quot;Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says &amp;#x27;Look who&amp;#x27;s up, it&amp;#x27;s Halfy&amp;#x27;s Angel!&amp;#x27;. The team names are &amp;#x27;Team Halfy&amp;#x27; and &amp;#x27;Chuckle Brothers&amp;#x27;&quot; alt=&quot;Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says &amp;#x27;Look who&amp;#x27;s up, it&amp;#x27;s Halfy&amp;#x27;s Angel!&amp;#x27;. The team names are &amp;#x27;Team Halfy&amp;#x27; and &amp;#x27;Chuckle Brothers&amp;#x27;&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Look, when you&amp;#x27;ve played your own game for so long you have to start to get a bit creative with the levels. &lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h3 id=&quot;what-s-the-project-ultimately-about&quot;&gt;What&#x27;s the project ultimately about.&lt;&#x2F;h3&gt;
+&lt;p&gt;I will be writing the game from scratch, targeting web browser specifically. And most importantly:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Every last line of code and as much of the assets as possible will be open source&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This game will be entirely within the public domain. No reverse engineering will be used, simply observation and reimplementation. This will also not just be
+another Worms game, but a game in its own right. It will have its own characters and weapons and modes and so on. There are also plenty of shortcomings of games
+in this era (notably, accessible game design) which I am to fix without impacting the core experience. And of course finally, this game is intended to outgrow
+its roots, and take its own identity (hence the name Kobold Kombat, with cute little murderous kobolds :&amp;gt;)&lt;&#x2F;p&gt;
+&lt;p&gt;Ultimately what got me into programming was video games, and &lt;strong&gt;it&#x27;s about time I returned to what I love to work on most&lt;&#x2F;strong&gt;. If I can make it a resource
+that others can built on and learn from, then so much the better!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;so-what-s-on-the-menu&quot;&gt;So, what&#x27;s on the menu?&lt;&#x2F;h3&gt;
+&lt;p&gt;I&#x27;ve spent the last year or so wanting to write more blog posts about this topic, because with every day spent working on games I have learnt more tricks and
+fallen into more pitfalls than I thought possible. And, to meet that educational goal I really &#x27;aught to document everything that goes through my little developer
+brain.&lt;&#x2F;p&gt;
+&lt;p&gt;However, this blog post has sat in a half completed form for the best part of a year so I&#x27;ve instead decided to write a formal introduction post with the plan to do
+deep dives on specific topics later. &lt;strong&gt;With that in mind, here are some of the topics I&#x27;d like to cover&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;So, you want to build a web game in 2025.&lt;&#x2F;li&gt;
+&lt;li&gt;Bug squashing, automated game testing, and how many GitHub issues is too many.&lt;&#x2F;li&gt;
+&lt;li&gt;Welding Pixi.JS to a Physics engine, and how I can prevent you from going mad.&lt;&#x2F;li&gt;
+&lt;li&gt;The bluffers guide to music production and sound design.&lt;&#x2F;li&gt;
+&lt;li&gt;Why you should have thought about networking before your first commit.&lt;&#x2F;li&gt;
+&lt;li&gt;And finally, perhaps the thing I want to cover the most: Video game accessibility.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I &lt;em&gt;hope&lt;&#x2F;em&gt; to get to all these topics because each one is fun! But making video games is also fun! Doing real life chore things is not fun, but since all of those
+things are currently unpaid and only one of them might leave me in serious hot water, I can&#x27;t promise I&#x27;ll manage them all.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;i-m-here-for-video-games-is-this-in-a-functional-state&quot;&gt;I&#x27;m here for video games, is this in a functional state.&lt;&#x2F;h3&gt;
+&lt;p&gt;It&#x27;s certainly &lt;a href=&quot;https:&#x2F;&#x2F;half-shot.github.io&#x2F;wormgine&#x2F;&quot;&gt;playable&lt;&#x2F;a&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, and I really encourage people to give it a go and file issues. The multiplayer section
+is heavily neglected while I shore up the fundamental game mechanics, but I hope to return to that soon. A local game between 2-or-more players should work without issue.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;video alt=&quot;Gameplay video&quot; src=&quot;demo.webm&quot; controls&gt; &lt;&#x2F;video&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-s-next&quot;&gt;What&#x27;s next!&lt;&#x2F;h3&gt;
+&lt;p&gt;I plan to really work to shore up testing and code quality so I can then start to tackle lots of interesting, critical features. The next up items are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Terrain generation&lt;&#x2F;li&gt;
+&lt;li&gt;Multiplayer improvements&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#3&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;More items&lt;&#x2F;li&gt;
+&lt;li&gt;More animations&lt;&#x2F;li&gt;
+&lt;li&gt;More sounds&lt;&#x2F;li&gt;
+&lt;li&gt;And finally, a big pass on accessibility design and teaching the game to new players.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And if you have any questions, you can always ask on &lt;a href=&quot;https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;114963948231166102&quot;&gt;the mastodon thread&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Thanks for reading!&lt;&#x2F;p&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;1&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;1&lt;&#x2F;sup&gt;
+&lt;p&gt;Yes, it &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;wormgine&#x2F;tree&#x2F;74656c1dac389043167f222f4e889111fb71df58&quot;&gt;really has been that long&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;2&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;2&lt;&#x2F;sup&gt;
+&lt;p&gt;Occasionally this gets stuck on first load, a refresh nearly always fixes it. It&#x27;s a frustrating bug.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;3&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;3&lt;&#x2F;sup&gt;
+&lt;p&gt;The current multiplayer system uses &lt;a href=&quot;https:&#x2F;&#x2F;matrix.org&#x2F;&quot;&gt;Matrix&lt;&#x2F;a&gt; for interactions, and even on a tuned homeserver it was slow.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>New frontiers</title>
+        <published>2023-08-30T00:00:00+00:00</published>
+        <updated>2023-08-30T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/new-frontiers/"/>
+        <id>https://half-shot.uk/blog/new-frontiers/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/new-frontiers/">&lt;h2 id=&quot;preface&quot;&gt;Preface&lt;&#x2F;h2&gt;
+&lt;p&gt;I bought an Internet Radio. Yes, one of those things from the late 2000s where you could make a radio
+connect to your WiFi and hook into a MP3 stream. I bought one because I was unsatisifed with the solutions out there to get audio around your house.&lt;&#x2F;p&gt;
+&lt;p&gt;Bluetooth is cumbersome, you have to connect it and then you have to locate an app on your phone to get
+the media you want...ugh. I want a thing that turns on and immediately plays. Yes, I could have built one
+out of speakers and a Pi...but that&#x27;s now a thing &lt;em&gt;I&lt;&#x2F;em&gt; have to spec and maintain. I just want a Wifi-enabled streaming device.&lt;&#x2F;p&gt;
+&lt;p&gt;And so, the often forgotten little entry-level internet radios appeared before me. Amazon is littered with internet radios from different providers
+but the one I bought ended up being a &lt;a href=&quot;https:&#x2F;&#x2F;www.amazon.co.uk&#x2F;gp&#x2F;product&#x2F;B089D8BV99&quot;&gt;LEMEGA IR1&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;new-frontiers&#x2F;wifi_interface.jpg&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;wifi_interface.e5cb64cde539357d.webp&quot; title=&quot;A picture of the radio, with the wifi screen&quot; alt=&quot;A picture of the radio, with the wifi screen&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;The UX for the wifi password screen left something to be desired&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h2 id=&quot;frontier-silicon&quot;&gt;Frontier Silicon&lt;&#x2F;h2&gt;
+&lt;p&gt;A lot of the cheapo radios use the same OS and hardware under the hood. I&#x27;ve by no means done a thorough investigation, but &quot;Pure radios&quot; may
+be another seller. Either way, they&#x27;re all using &lt;a href=&quot;https:&#x2F;&#x2F;www.frontiersmart.com&#x2F;&quot;&gt;Frontier Silicon&lt;&#x2F;a&gt;. These seem to be a Cambridge outfit that
+build purpose-made PCBs for internet-radio-shaped devices. They also provide an operating system based on RTOS, which is closed source. I used
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;huaracheguarache&#x2F;Frontier-Silicon-Argon-Firmware&#x2F;tree&#x2F;master&quot;&gt;this GitHub project&lt;&#x2F;a&gt; as a good starting point.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;breaking-in&quot;&gt;Breaking in&lt;&#x2F;h2&gt;
+&lt;p&gt;To start with, we needed to know what it was connecting to. To do that, I pointed the radio at my home DNS resolver (what do you mean you don&#x27;t have one?). This showed me that it was connecting to &lt;code&gt;airable.wifiradionetworks.com&lt;&#x2F;code&gt;. Great!&lt;&#x2F;p&gt;
+&lt;p&gt;Now I had initially assumed it was unencrypted and simply pointing it to a web server would be enough. Not at all! The call was made directly as HTTPS so simply responding on port 80 would do...nothing.&lt;&#x2F;p&gt;
+&lt;p&gt;I poked about a bit and ended up looking at port 514, which when connected to via &lt;code&gt;telnet&lt;&#x2F;code&gt; will spam out logs. However, nothing useful was sent...&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Escape character is &amp;#x27;^]&amp;#x27;.
+(Thread1): [     28.992309] UI     (2): Timer1---873
+(Thread1): [     28.992478] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+(Thread1): [     29.306109] NET    (2): Notify Wlan Link i&amp;#x2F;f 0 UP
+(Thread1): [     29.992315] UI     (2): Timer1---872
+(Thread1): [     30.992313] UI     (2): Timer1---871
+(Thread1): [     30.992489] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+(Thread1): [     31.992320] UI     (2): Timer1---870
+(Thread1): [     32.992317] UI     (2): Timer1---869
+(Thread1): [     32.992490] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+(Thread1): [     33.992310] UI     (2): Timer1---868
+(Thread1): [     34.992310] UI     (2): Timer1---867
+(Thread1): [     34.992486] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+(Thread1): [     35.339301] NET    (2): Notify IP i&amp;#x2F;f 0 (192.168.1.203) UP
+(Thread1): [     35.348842] CB     (1): airable_cb_module_SetInfo(): item index = 0, item id = &amp;#x27;airable:&amp;#x2F;&amp;#x2F;frontiersmart&amp;#x2F;radio&amp;#x2F;102296330081
+(Thread1): [     35.356550] CB     (1): airable_cb_module_PostImmediateConnect(): connecting to &amp;#x27;airable:&amp;#x2F;&amp;#x2F;frontiersmart&amp;#x2F;radio&amp;#x2F;10229633008
+(Thread1): [     35.357703] IB     (2): Browsing into &amp;#x27;&amp;lt;no folder name&amp;gt;&amp;#x27; (-1 - -1)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;em&gt;it&#x27;s cute how they have their little protocol handler&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The next thing to try was the API used to control these devices via an app. Yes, a lovely insecure API protected by a 4 digit pin (the default is easily guessed and enabled by default, yay).&lt;&#x2F;p&gt;
+&lt;p&gt;This API even features a web interface you can reach by hitting the 8080 port on the radio, but it wasn&#x27;t very useful.
+You can control the media volume, set some presets and see what&#x27;s playing but critically you &lt;strong&gt;cannot&lt;&#x2F;strong&gt; modify what is playing.&lt;&#x2F;p&gt;
+&lt;p&gt;So then what? After a chat with some lovely folks on Mastodon, it was suggested to try &lt;code&gt;mitmproxy&lt;&#x2F;code&gt;. &lt;a href=&quot;https:&#x2F;&#x2F;mitmproxy.org&#x2F;&quot;&gt;mitmproxy&lt;&#x2F;a&gt; is a simple tool that
+allows you to serve encrypted HTTPS traffic and view the contents. it has a proxy mode, but it also has a &lt;em&gt;reverse proxy mode&lt;&#x2F;em&gt;. This means you can serve up
+a server, and redirect all requests to the real server &lt;em&gt;while&lt;&#x2F;em&gt; inspecting the contents of the messages. Neat!&lt;&#x2F;p&gt;
+&lt;p&gt;Critically the radio does not verify the certificates for the host at all, so the target domain was set to my devbox&#x27;s IP address.
+I ran the proxy and routed traffic to the real host aaaand...🎉 voila! It spilled the beans and by clicking around on the interface,
+you could see how it was pulling the data.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;new-frontiers&#x2F;requests_view.png&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;requests_view.1f39c6c76eaa5631.webp&quot; title=&quot;Screen capture of mitmproxy showing two requests from wifiradionetworks.com&quot; alt=&quot;Screen capture of mitmproxy showing two requests from wifiradionetworks.com&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;And now it all makes sense!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;So now that the API was revealed it was fairly trivial to work with. I wrote a simple node server to handle the requests which let me play a MP3 file (sadly no vorbis support) through it.
+I could then also connect it to &lt;code&gt;mpd&lt;&#x2F;code&gt; (Music Player Daemon) and play a whole playlist. Also, I added my own &quot;brand&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;video alt=&quot;Video of the stream working&quot; src=&quot;success.webm&quot; controls&gt; &lt;&#x2F;video&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;So that&#x27;s that, we&#x27;ve broken in and found ourselves a way to add arbitrary streams to it!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;You can now use &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;fairable&quot;&gt;fairable&lt;&#x2F;a&gt; as a rudimentary replacement service for this radio series. I plan to add
+support for things like &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;badaix&#x2F;snapcast&quot;&gt;Snapcast&lt;&#x2F;a&gt; so I can stream arbitrary audio to it but that will require a lot more
+effort than what is put here.&lt;&#x2F;p&gt;
+&lt;p&gt;Ultimately, this project will be useful as part of my home automation stack (think: morning alarm playlists without the need for Spotify).&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;d like to thank the Mastodon community, the Watercooler group on Matrix, the previous hackers who wrote some tremendously useful info.
+and my poor partner who suffered my enthusiasm for days on end 😁.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;ve got any questions on this, hit me up on &lt;a href=&quot;&#x2F;contact&quot;&gt;Matrix&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;references&quot;&gt;References&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;110967351685629045&quot;&gt;The Mastodon thread&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;fairable&quot;&gt;Fairable&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>

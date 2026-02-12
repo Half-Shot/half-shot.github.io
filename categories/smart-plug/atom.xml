@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>half-shot.uk - smart plug</title>
+    <subtitle>Writings, arts, softwares</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://half-shot.uk/categories/smart-plug/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://half-shot.uk"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-05-15T00:00:00+00:00</updated>
+    <id>https://half-shot.uk/categories/smart-plug/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Power Monitor</title>
+        <published>2024-05-15T00:00:00+00:00</published>
+        <updated>2024-05-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/power-monitor/"/>
+        <id>https://half-shot.uk/blog/power-monitor/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/power-monitor/">&lt;p&gt;I run half-shot.uk, and various other services off actual server hardware at home. A few years back a friend convinced me to stop relying
+on cloud servers, and instead just buy a second hand box and run with it. The friend houses the server for me, and provides me an internet
+connection, power, and space in their cabinet at home.&lt;&#x2F;p&gt;
+&lt;p&gt;And for a long time the arrangement worked out fine. We installed a standard power monitoring brick which would tell him how much power
+I had used, and we&#x27;d multiply that by the kilowatt per hour cost from their power supplier. I&#x27;d end up paying anywhere between
+£30 to £40 per month depending on usage and the variance of bills.&lt;&#x2F;p&gt;
+&lt;p&gt;Things then changed with &lt;a href=&quot;https:&#x2F;&#x2F;octopus.energy&#x2F;smart&#x2F;agile&#x2F;&quot;&gt;Agile Octopus&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;agility&quot;&gt;Agility&lt;&#x2F;h3&gt;
+&lt;p&gt;I promise it&#x27;s got nothing to do with Agile software development delivered by eight-limbed molluscs. Octopus (a major UK energy company)
+have a plan where kilowatt per hour costs change every half hour. The customer is notified a day or so before, so they can plan to eat their
+dinner earlier&#x2F;later or generally plan to use energy in off-peak sessions; The intention to balance out power demand across the UK.&lt;&#x2F;p&gt;
+&lt;p&gt;Because the UK has a pretty sizable &lt;a href=&quot;https:&#x2F;&#x2F;grid.iamkate.com&#x2F;&quot;&gt;renewable energy&lt;&#x2F;a&gt; sector, power costs can vary greatly based on the weather
+conditions. There are some days when it&#x27;s miserable and the power costs tend to go up over the next few days, and some times we get a lot of
+wind and sunshine and the power costs drop (I&#x27;ve seen it drop below a penny per kwh!).&lt;&#x2F;p&gt;
+&lt;p&gt;This is great, except it utterly ruins the way I pay for the server! You can take averages sure, but my usage is never constant as my
+traffic patterns vary. And if I choose to do my heavy full disk backups in off peak periods, then I&#x27;d lose out on those potential savings.&lt;&#x2F;p&gt;
+&lt;p&gt;A better solution it seems, was needed.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;smart-plugs&quot;&gt;Smart Plugs&lt;&#x2F;h3&gt;
+&lt;p&gt;The first thing that needed to be improved was the data collection system. The current smart plug could only capture daily usage,
+and had no functionality to export the data to a third-party.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;power-monitor&#x2F;old-app.png&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;old-app.4f9a48a1fe211160.webp&quot; title=&quot;Screenshot of a basic Android app showing power usage per month.&quot; alt=&quot;Screenshot of a basic Android app showing power usage per month.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;The process involved reading from this, and enter the data manually into a spreadsheet. Nobody was going for that idea.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;In the end the solution was a MQTT-compatible smart plug that offered at least half hourly reporting. While I could have
+bought any old plug off the internet and hardware modded it...I do not trust my skills or my attention span. Instead,
+a supplier in the UK sells reasonably priced pre-modded ones &lt;a href=&quot;https:&#x2F;&#x2F;www.mylocalbytes.com&#x2F;products&#x2F;smart-plug-pm?variant=41600621510847&quot;&gt;here&lt;&#x2F;a&gt;.
+Thanks Local Bytes!&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;power-monitor&#x2F;plug.png&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;plug.25dd9d7e54b55c7e.webp&quot; title=&quot;A hand holding a smart plug with the words Local Bytes written on it.&quot; alt=&quot;A hand holding a smart plug with the words Local Bytes written on it.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Fairly unassuming!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;The next steps were to setup a MQTT broker on the server; &lt;a href=&quot;https:&#x2F;&#x2F;mosquitto.org&#x2F;&quot;&gt;Mosquitto&lt;&#x2F;a&gt; was very easy to get started with
+so I just plonked that on and connected my plug to it. Then all I needed was the logic to convert the power readings into power costs.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;autopowerbill&quot;&gt;Autopowerbill&lt;&#x2F;h3&gt;
+&lt;p&gt;(I tried to think of an imaginative name for this project, but...ah well)&lt;&#x2F;p&gt;
+&lt;p&gt;I wrote a little Rust daemon process that does essentially 3 things forever. It pulls in the latest prices from Octopus, roughly
+every few hours. It subscribes to the power usage statistics topic from the smart plug, and then it calculates between the last
+window and present time how much power has been used. This is then costed and pushed into a PostgreSQL database.&lt;&#x2F;p&gt;
+&lt;p&gt;The algorithm ended up something like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;if usage &amp;gt; 0.0 {
+    &amp;#x2F;&amp;#x2F; Find the price that matches this period
+    let usage_cost: f32 = match octopus.get_price_for_period(last_date, date).await {
+        Ok((matched_cost, Some(second_cost))) =&amp;gt; {
+            &amp;#x2F;&amp;#x2F; We fall inside a second bucket, so fetch that price too.
+            &amp;#x2F;&amp;#x2F; Calculate the delta between the two timestamps
+            let total_delta = (date-last_date).num_seconds() as f32;
+            let mult_a = (matched_cost.to - last_date).num_seconds() as f32 &amp;#x2F; total_delta;
+            let mult_b = (date - second_cost.from).num_seconds() as f32  &amp;#x2F; total_delta;
+            &amp;#x2F;&amp;#x2F; And thus determine how much power was used (approx) in each period.
+            (matched_cost.cost * (usage * mult_a)) + second_cost.cost * (usage * mult_b)
+        },
+        Ok((matched_cost, None)) =&amp;gt; {
+            &amp;#x2F;&amp;#x2F; Otherwise, straightforward to calculate.
+            matched_cost.cost * usage
+        }
+        Err(e) =&amp;gt; {
+            panic!(&amp;quot;Failure to handle cost at {:?}. No applicable cost found: {:}&amp;quot;, date, e)
+        },
+    };
+    println!(&amp;quot;Calculated {:?} for {:?} ({:?} kwh)&amp;quot;, usage_cost, date, kwh);
+    PowerUsage { date, usage, total_usage: kwh, cost: usage_cost }
+} else {
+    PowerUsage { date, usage, total_usage: kwh, cost: 0.0 }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Definitely feel like Rust is starting to click for me a little bit now too.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;everyone-loves-a-graph&quot;&gt;Everyone loves a graph&lt;&#x2F;h3&gt;
+&lt;p&gt;Of course now the data was being entered into PostgreSQL, it was then trivial to put together a Grafana dashboard. So I did:&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;power-monitor&#x2F;grafana.png&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;grafana.a0cdfbb13f60c085.webp&quot; title=&quot;Grafana dashboard showing Usage Per Day (kwh), Cost Per Day, Monthly Cost and Total usage. The graphs show that there is a significant cost saving over constant rate power.&quot; alt=&quot;Grafana dashboard showing Usage Per Day (kwh), Cost Per Day, Monthly Cost and Total usage. The graphs show that there is a significant cost saving over constant rate power.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;The yellow column is how much power I would have used if we kept on the old plan.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Evidently this turned out to be a good idea. We&#x27;ve had some terrific weather in the UK recently, and it&#x27;s translated into some pretty
+welcome cost savings.&lt;&#x2F;p&gt;
+&lt;p&gt;If you are interested in something like this, or would just like to see how it&#x27;s put together then please check out &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;autopowerbill&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;autopowerbill&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;And if you have any questions, you can always ask on &lt;a href=&quot;https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;112446159375587479&quot;&gt;the mastodon thread&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Thanks for reading!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

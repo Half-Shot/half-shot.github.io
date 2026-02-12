@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>half-shot.uk - hacking</title>
+    <subtitle>Writings, arts, softwares</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://half-shot.uk/kind/hacking/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://half-shot.uk"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-01-31T00:00:00+00:00</updated>
+    <id>https://half-shot.uk/kind/hacking/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Bringing a SanDisk Clip+ back to life</title>
+        <published>2026-01-31T00:00:00+00:00</published>
+        <updated>2026-01-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/clip-plus/"/>
+        <id>https://half-shot.uk/blog/clip-plus/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/clip-plus/">&lt;h2 id=&quot;preamble&quot;&gt;Preamble&lt;&#x2F;h2&gt;
+&lt;p&gt;My latest obsession has been trying to find a &quot;retro&quot; personal music player, and replace the all-too-easy
+lure of subscription services of my eternally chatty Android phone.&lt;&#x2F;p&gt;
+&lt;p&gt;I already have a sizeable collection of music bought from &lt;a href=&quot;https:&#x2F;&#x2F;bandcamp.com&quot;&gt;Bandcamp&lt;&#x2F;a&gt; or ripped from CDs,
+but having tried out a number of FOSS Android Music apps, they just don&#x27;t feel good to use. They&#x27;re &quot;fine&quot;,
+but it&#x27;s just another battery drainer and just lack the tactile feel of a player in your hands.&lt;&#x2F;p&gt;
+&lt;p&gt;So my adventure began to find a good player from the 2000s which could:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Looks cool. This is very important, my ego needs stroking by total strangers!.&lt;&#x2F;li&gt;
+&lt;li&gt;Sounds &lt;em&gt;good&lt;&#x2F;em&gt;. No crappy DACs.&lt;&#x2F;li&gt;
+&lt;li&gt;Storage can be expanded.&lt;&#x2F;li&gt;
+&lt;li&gt;Can be found online for a sensible amount of money.&lt;&#x2F;li&gt;
+&lt;li&gt;A stretch goal of being supported by &lt;a href=&quot;https:&#x2F;&#x2F;www.rockbox.org&#x2F;&quot;&gt;Rockbox&lt;&#x2F;a&gt;. Rockbox is awesome!&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;And the winner? A &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;SanDisk_portable_media_players#Sansa_Clip+&quot;&gt;SanDisk Clip +&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;clip-plus&#x2F;clipplus.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;clipplus.931284779a760ef9.webp&quot; title=&quot;A picture of me holding my Clip+ running Rockbox&quot; alt=&quot;A picture of me holding my Clip+ running Rockbox&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;It&amp;#x27;s aliiiiiiive!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;These things can be found from anywhere from £20 to up to £100, but you can save significant amounts of
+money by buying &quot;Spares&#x2F;Parts only&quot;, &lt;em&gt;if you can hack it&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Also, they can run &lt;a href=&quot;https:&#x2F;&#x2F;www.rockbox.org&#x2F;wiki&#x2F;SansaAMS.html&quot;&gt;the Sansa Rockbox port&lt;&#x2F;a&gt; which gives the little matchbox
+a significant number of cool features like FLAC support, gap-less playback and a dozens of fidget toys.&lt;&#x2F;p&gt;
+&lt;p&gt;You &lt;em&gt;might&lt;&#x2F;em&gt; think DOOM on a tiny portable is a gimmick, but it was very handy when my phone ran out out battery
+when I was travelling!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-hackers-gamble-game-die&quot;&gt;The hackers gamble 🎲&lt;&#x2F;h2&gt;
+&lt;p&gt;I got very lucky and snagged a Clip+ for £20. It was in pristine condition but could not boot. The specific
+bug was that it got stuck at the &quot;flower&quot; stage, which is where the device starts but can&#x27;t get further
+than the boot animation. This was a total gamble, but I assumed it might just need a hard reset.&lt;&#x2F;p&gt;
+&lt;p&gt;Nope.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;clip-plus&#x2F;bootup.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;bootup.589e813ee92be0a6.webp&quot; title=&quot;A picture of a Clip+ with a flower logo on it&amp;#x27;s LCD&quot; alt=&quot;A picture of a Clip+ with a flower logo on it&amp;#x27;s LCD&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;A sure sign your Clip+ isn&amp;#x27;t happy is showing you an eternal flower.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;The device seemed to recognise being plugged in via USB to my PC, but the PC didn&#x27;t register a smidge of
+data across the connection. No USB device detected, not even an attempt registered when I checked &lt;code&gt;dmesg&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;So something was seriously wrong. You can even put these devices into MSC mode, which means they boot
+and just expose the flash &#x2F; SD card as a filesystem directly. Super useful for modding&#x2F;debugging, but this
+device was so far gone that even that wasn&#x27;t possible. The firmware was almost certainly &lt;strong&gt;corrupted&lt;&#x2F;strong&gt;, and I
+was praying that the onboard flash was still good.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;digging-in&quot;&gt;Digging in.&lt;&#x2F;h3&gt;
+&lt;p&gt;We need to try and put new firmware on the board now.&lt;&#x2F;p&gt;
+&lt;p&gt;I followed the &lt;a href=&quot;https:&#x2F;&#x2F;www.ifixit.com&#x2F;Guide&#x2F;Repairing+Loose+Headphone+Jack&#x2F;29473&quot;&gt;iFixIt&lt;&#x2F;a&gt;
+guide to get the case off, which was easy-ish. You just have to be &lt;em&gt;gentle&lt;&#x2F;em&gt; with the prying as it uses
+tiny little clips to keep the case together.&lt;&#x2F;p&gt;
+&lt;p&gt;Next, you need to &lt;strong&gt;gently&lt;&#x2F;strong&gt; pull the battery off. I can not stress enough how gently, this thing has 3
+tiny wires soldering the battery to the PCB, and it&#x27;s stuck to the processor via a thermal pad.&lt;&#x2F;p&gt;
+&lt;p&gt;Once that&#x27;s done, you need to unscrew the board, This is the most straightforward bit.&lt;&#x2F;p&gt;
+&lt;p&gt;Then, a real test of skill. We need to bridge the two pins that force the device to expose the NAND
+to allow us to flash on new firmware. This is shown below &lt;span style=&quot;color: red; text-weight: bold;&quot;&gt;IN RED&lt;&#x2F;span&gt;.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;clip-plus&#x2F;pcb.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;pcb.159c324d21f42095.webp&quot; title=&quot;Clip Plus PCB with the correct pins in red.&quot; alt=&quot;Clip Plus PCB with the correct pins in red.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Original Clip+ picture copyright © 2005-2009 EnzoTen Media. All rights reserved.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;These steps are abridged from the sources mentioned at the bottom. I have just annotated things that related to my experience,
+and you should definitely be careful here. Please do as the source article says and reach out to Rockbox via their support channels
+if you do not feel comfortable doing this work!&lt;&#x2F;p&gt;
+&lt;ol start=&quot;0&quot;&gt;
+&lt;li&gt;Download the &lt;a href=&quot;https:&#x2F;&#x2F;download.rockbox.org&#x2F;sansa_fw&#x2F;clipplus01.02.16.zip&quot;&gt;original firmware&lt;&#x2F;a&gt; and unzip it.&lt;&#x2F;li&gt;
+&lt;li&gt;Plug the device in via USB. Remove the micro-SD card if you have one inserted.&lt;&#x2F;li&gt;
+&lt;li&gt;(Optional, strongly recommended) Have &lt;code&gt;dmesg -w&lt;&#x2F;code&gt; running so you can see what the USB port is doing.&lt;&#x2F;li&gt;
+&lt;li&gt;A second terminal running which allows you to see the output of &lt;code&gt;lsblk&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Turn the device OFF by holding the power button for 20s until the screen turns off.&lt;&#x2F;li&gt;
+&lt;li&gt;Bridge the &lt;span style=&quot;color: red; text-weight: bold;&quot;&gt;indicated ports&lt;&#x2F;span&gt;. This is fiddly, I used a screwdriver that was conductive.&lt;&#x2F;li&gt;
+&lt;li&gt;Turn the device on, the screen should end up &lt;strong&gt;blank&lt;&#x2F;strong&gt; if this worked.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Do not worry if this does not work the first, second, or 20th time. I had to take many attempts at this process. If you still get a stuck boot logo, just hard power off like in step 3 and retry.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;ol start=&quot;7&quot;&gt;
+&lt;li&gt;You can see a block device has appeared (you can also run &lt;code&gt;fdisk -l&lt;&#x2F;code&gt; to check).&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;ul&gt;
+&lt;li&gt;This block device should be 4G &#x2F; 8GB depending on your model (i.e. the whole flash storage). If it gives
+you a different value, &lt;strong&gt;do not persist any further&lt;&#x2F;strong&gt;. Your flash is likely faulty.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;ol start=&quot;8&quot;&gt;
+&lt;li&gt;Once that&#x27;s working, you can attempt to flash new firmware by using &lt;code&gt;dd if=orig_image.bin of=&#x2F;dev&#x2F;sdX status=progress&lt;&#x2F;code&gt;.  &lt;strong&gt;TRIPLE CHECK THE DEVICE YOU ARE WRITING TO!&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;This may take a while. In my case, it about 30 minutes. Much longer than you might expect to write ~16MB of data. If it looks like
+it&#x27;s hung, just wait a while and check back on it.&lt;&#x2F;li&gt;
+&lt;li&gt;When it&#x27;s completed, disconnect the device and power off again like in step 3.&lt;&#x2F;li&gt;
+&lt;li&gt;The device should now boot normally.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Congratulations, you have saved a device from the e-waste bin!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;rockbox&quot;&gt;Rockbox&lt;&#x2F;h3&gt;
+&lt;p&gt;I found the original firmware to be quite frankly, shit. It was slow to run, supported very little of my library or my 128GB Micro SD card.&lt;&#x2F;p&gt;
+&lt;p&gt;The instructions for doing this are very straight forward and listed on the &lt;a href=&quot;https:&#x2F;&#x2F;www.rockbox.org&#x2F;wiki&#x2F;SansaAMS.html#Installation&quot;&gt;Rockbox Sansa article&lt;&#x2F;a&gt;
+so I won&#x27;t repeat those here. Hopefully they were as straightforward for me as they were for you.&lt;&#x2F;p&gt;
+&lt;p&gt;Anyway, that covers everything I wanted to say on the Clip +. It&#x27;s a fantastic piece of kit, and I&#x27;ve already had a lot of good usage out of
+it. Do let me know if you found this article useful on the fediverse!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;acknowledgements&quot;&gt;Acknowledgements&lt;&#x2F;h3&gt;
+&lt;p&gt;This post is merely the net summary of knowledge of people who came before me, I want to give a shout out to the following posts:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The contributors to &lt;a href=&quot;https:&#x2F;&#x2F;www.ifixit.com&#x2F;Guide&#x2F;Repairing+Loose+Headphone+Jack&#x2F;29473&quot;&gt;https:&#x2F;&#x2F;www.ifixit.com&#x2F;Guide&#x2F;Repairing+Loose+Headphone+Jack&#x2F;29473&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;rockbox&#x2F;comments&#x2F;16bd2dj&#x2F;recovered_another_cheap_sansa_clipplus_for_the&#x2F;&quot;&gt;This reddit post&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;This &lt;a href=&quot;https:&#x2F;&#x2F;www.rockbox.org&#x2F;wiki&#x2F;SansaAMSUnbrick.html&quot;&gt;RockBox article&lt;&#x2F;a&gt; showing how to unbrick a device with this problem.&lt;&#x2F;li&gt;
+&lt;li&gt;The &lt;a href=&quot;http:&#x2F;&#x2F;www.anythingbutipod.com&#x2F;archives&#x2F;disassembly&#x2F;&quot;&gt;PCB image&lt;&#x2F;a&gt; from anythingbutipod.com.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>half-shot.uk - opinion</title>
+    <subtitle>Writings, arts, softwares</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://half-shot.uk/kind/opinion/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://half-shot.uk"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-01-21T00:00:00+00:00</updated>
+    <id>https://half-shot.uk/kind/opinion/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Please label your AI</title>
+        <published>2026-01-21T00:00:00+00:00</published>
+        <updated>2026-01-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/please-label-your-ai/"/>
+        <id>https://half-shot.uk/blog/please-label-your-ai/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/please-label-your-ai/">&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;&#x2F;h2&gt;
+&lt;p&gt;When I was around 8 years old, I fell in love with computers. This was the early 2000s when everyone had a big green
+hill and blue skies on their recently flattened monitors, and computers could now do everything!&lt;&#x2F;p&gt;
+&lt;p&gt;I used to make little websites that did horrible flashy effects, make animations in Macromedia Flash
+and play Worms Armageddon with my brothers. Grandfather Halfy was not so keen. He was a proud Luddite
+who at that age left me with the impression he was burning down warehouses full of computers on his weekends.
+I suspect that was no more true than the gold he hid under his floorboards, but I do remember the most advanced
+bit of tech in the house was a DVD recorder. Otherwise, nothing. And it fascinated me.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;borderless&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;please-label-your-ai&#x2F;flash.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;flash.75d1d724eab2efd9.webp&quot; title=&quot;Young Halfy playing with flash.&quot; alt=&quot;Young Halfy playing with flash.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Being able to animate stuff was an incredible power.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Growing up I remember that I did not want to be that person. I &lt;strong&gt;loved&lt;&#x2F;strong&gt; computers because I could do so much
+and later would make friends through computers, get paid through them and even fall in love through
+meeting people on those connections. The idea of burning down those would burn down my life&#x27;s ambitions.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m a strong believer in keeping up with the times and adapting to change. It&#x27;s not &lt;em&gt;me&lt;&#x2F;em&gt; to dig my feet into the
+ground for the sake of it, but try as I might I cannot love AI. LLMs appear constantly around what I do, and they
+never spark that joy. I&#x27;ve now connected with my late grandfather&#x27;s words about wanting to burn them down.&lt;&#x2F;p&gt;
+&lt;p&gt;With the ever increasing usage of ChatGTP&#x2F;Claude and the many many other models and tools out there, I think
+something needs to be said.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;this-does-not-spark-joy&quot;&gt;This does not spark joy&lt;&#x2F;h2&gt;
+&lt;p&gt;And I think the problem I fundamentally have with AI on a personal level is that computers are to me a way to
+express my creativity. I&#x27;ve gotten hired off that creative ability to reason around a problem, and I&#x27;ve given
+much fulfilment to my life through making music, drawing, photo-shopping or building random janky websites as
+a meme.&lt;&#x2F;p&gt;
+&lt;p&gt;I can&#x27;t see the joy in filling a prompt and getting some output. That&#x27;s just hiring someone to experience the
+joy for you. The computer can&#x27;t feel joy, so nobody wins. What a result.&lt;&#x2F;p&gt;
+&lt;p&gt;And aside from the occasional bit of faux-enjoyment where a Reddit post turns out to be fake, I&#x27;m managing to
+dodge AI. So far, I&#x27;m lucky to work for a place where AI is not enforced like some work places and my friends
+and family largely do not buy into the hype. And I have a hackerspace to camp in if things get too bad.&lt;&#x2F;p&gt;
+&lt;p&gt;In truth, I&#x27;m hoping it eventually fades the same way blockchain, NFTs and the other monsters did.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;but-i-m-angry&quot;&gt;But I&#x27;m angry&lt;&#x2F;h2&gt;
+&lt;p&gt;And right now I&#x27;m angry in the same way my Science teacher graded me down for not labelling my axis on a graph:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;PEOPLE ARE NOT LABELLING THEIR SHIT&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I get it, you like AI. That&#x27;s cool for you, and I don&#x27;t want to burn down your ambitions. But for sake of our
+collective sanity, When you generate some content, &lt;em&gt;disclose&lt;&#x2F;em&gt; that it was generated by a AI.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m reading Reddit posts pretending to be humans, I&#x27;m watching videos tricking my friends into believing fiction.
+I&#x27;m reviewing code from community members written by AI that will &lt;em&gt;never&lt;&#x2F;em&gt; work.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-impact-to-free-software-suck-too&quot;&gt;The impact to Free Software suck too&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;m noticing a much more worrying trend where AI has now allowed contributors to pick off issues they don&#x27;t like,
+generate some half baked code, and throwing it at the maintainer in the hope that it&#x27;ll get through review. If there
+is any feedback, they just throw another prompt at the machine until it works. Nobody is learning anything and
+both human and natural resources are wasted.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;please-label-your-ai&#x2F;evidence.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;evidence.21729fca6923882a.webp&quot; title=&quot;A GitHub Pull Request made mostly anonymous.&quot; alt=&quot;A GitHub Pull Request made mostly anonymous.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;This sort of PR is just pointless busywork. This is from a project I&amp;#x27;m involved with (censored)&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;In the &lt;em&gt;before times&lt;&#x2F;em&gt; we would see the occasional Pull Request come in for one of our projects and spend time
+reviewing it. It might be bad, but there was a genuine appreciation that someone had taken the time to download
+our project and attempt to learn how it works. I remember being that person a long time ago and getting a lot
+of training from maintainers on how to write good code, and how to be a team player. I want to believe over my
+maintainership years, I may have helped other people too.&lt;&#x2F;p&gt;
+&lt;p&gt;And sometimes I think this is lost on both maintainers and contributors. Yes, FOSS is about freedoms and the ability
+to read the code you run and contribute back. It&#x27;s a mechanism to level the playing field and that&#x27;s one of the reasons
+we get involved. But part of that is teaching people how to contribute forwards. It&#x27;s often times unpaid work, but
+we do it because we want&lt;&#x2F;p&gt;
+&lt;p&gt;But with the advent LLMs, it&#x27;s been impossible not to equate some of the bad code with someone using a LLM. And when
+we start to equate bad code with low effort, the &lt;strong&gt;real danger&lt;&#x2F;strong&gt; appears.&lt;&#x2F;p&gt;
+&lt;p&gt;We need bad code to be reviewed and nurtured because there is every chance a human being is on the other end of the line
+trying to actually learn the craft and maybe become a maintainer themselves in the future. We can&#x27;t simply disregard the
+unworkable stuff.&lt;&#x2F;p&gt;
+&lt;p&gt;So let me be clear to people out there using LLMs on projects they are not familiar with. You might think you are
+helping, oiling the gears of software that you know and love and trying to make them better. You are not doing this
+&lt;strong&gt;you are filling the gears with mud.&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;so-to-be-clear&quot;&gt;So to be clear&lt;&#x2F;h2&gt;
+&lt;p&gt;I am probably never going to get on with AI, however good it gets. I enjoy the learning curve of a craft, I
+get a lot out of fixing bugs with my human brain and I will play music and sing in terrible quality til the day
+I depart this Earth. I am not interested in the absolute quality or perceived productiveness, I get a thrill from
+just the experience.&lt;&#x2F;p&gt;
+&lt;p&gt;But I don&#x27;t want to trample on the fun people have with generating content, if that&#x27;s their bag then they
+may have their cake. All that I ask is that you let us Luddites know that you consulted an AI, roughly
+how much of that work is your own, and give us the &lt;em&gt;choice&lt;&#x2F;em&gt; to decide whether we want to engage with it.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>half-shot.uk - leafpipe</title>
+    <subtitle>Writings, arts, softwares</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://half-shot.uk/categories/leafpipe/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://half-shot.uk"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-12-04T00:00:00+00:00</updated>
+    <id>https://half-shot.uk/categories/leafpipe/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Leafpipe</title>
+        <published>2023-12-04T00:00:00+00:00</published>
+        <updated>2023-12-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/leafpipe/"/>
+        <id>https://half-shot.uk/blog/leafpipe/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/leafpipe/">&lt;p&gt;A few years ago after moving into a flat, I was staring at a white wall (I presume this isn&#x27;t unique to the UK, walls are always boring and white).
+A friend of mine suggested that the wall really could do with some RGB lights, and being the sort of person who is naturally attracted to flashy
+rainbows...I went and purchased some &lt;a href=&quot;https:&#x2F;&#x2F;nanoleaf.me&quot;&gt;Nanoleaf&lt;&#x2F;a&gt; lights.&lt;&#x2F;p&gt;
+&lt;p&gt;Nanoleaf make &quot;Shapes&quot; panels which are neat little diffuse LED hexagons, that can be connected like LEGO to each other. You can stick them to walls
+and make the prettiest of displays.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;leafpipe&#x2F;nanoleaf.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;nanoleaf.c117718a5e7798d6.webp&quot; title=&quot;A picture of some hexagonal Nanoleaf Shape lights against a wall.&quot; alt=&quot;A picture of some hexagonal Nanoleaf Shape lights against a wall.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Marketing impression of how you are meant to arrange your lights. Totally not my wall! Image: © Nanoleaf&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;&lt;em&gt;However&lt;&#x2F;em&gt;. There is one feature that &lt;strong&gt;sucks&lt;&#x2F;strong&gt;: the audio-driven panel effects.&lt;&#x2F;p&gt;
+&lt;p&gt;Although you can arrange the panels nicely and apply some pretty effects to music, they process audio
+though a built-in microphone (so the quality is a bit crap). There is no video feed for them, so they cannot adapt to any inputs
+to produce a pleasing hue to the music either. You end up with panels that sort of adjust to your music, providing you are playing loudly enough.
+However, since this is all happening on the controller the performance isn&#x27;t &lt;em&gt;great&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Otherwise, the kit is pretty solid. They connect to the Wi-Fi and can be controlled via a standard REST API.
+It would be better if the &lt;a href=&quot;https:&#x2F;&#x2F;forum.nanoleaf.me&#x2F;docs&quot;&gt;API docs&lt;&#x2F;a&gt; were accessible without a forum account though,
+despite industry trends it just seems redundant.&lt;&#x2F;p&gt;
+&lt;p&gt;It should be noted that some models allow you to clip in a 3.5&quot; jack for better quality audio, but:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;This is only for the more expensive models.&lt;&#x2F;li&gt;
+&lt;li&gt;You still have to process the effects on the lower-powered controller.&lt;&#x2F;li&gt;
+&lt;li&gt;Still no ability to capture video.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;leafpipe&quot;&gt;Leafpipe&lt;&#x2F;h2&gt;
+&lt;p&gt;I built leafpipe to basically take input from my PC and send it onto the lights to make the aforementioned pretty displays. It uses a combination
+of Pipewire, and the Wayland screencopy protocol. It&#x27;s a little Rust daemon that sits there relentlessly capturing data and spewing out packets
+to the Nanoleaf controller.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+  &lt;img src=&quot;architecture.svg&quot; alt=&quot;{{ alt }}&quot; &#x2F;&gt;
+  &lt;figcaption&gt;Rough outline of how this all fits together&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;I&#x27;ll explain roughly how the process works.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;video-processing&quot;&gt;Video processing&lt;&#x2F;h3&gt;
+&lt;p&gt;For the visual side, we take a copy of a chosen display every &lt;code&gt;33ms&lt;&#x2F;code&gt;. The frame is copied into a buffer, and then split into chunks of 4 bytes
+to make up a set of pixels (RGBA).&lt;&#x2F;p&gt;
+&lt;p&gt;We then further split things so we only read every 8th pixel (to save on processing time) to achieve a sort
+of rough approximation of what&#x27;s on screen.&lt;&#x2F;p&gt;
+&lt;p&gt;Finally, we split each of the pixels horizontally by the number of panels we have. So if we
+have 8 Nanoleaf panels, we split the frame by 8. These pixels are converted to HSL so we can evaluate the lightness aspect of them, which will come
+in handy in just a second.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; From https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Half-Shot&amp;#x2F;leafpipe&amp;#x2F;blob&amp;#x2F;c4537c564def652b57bf9daa54f4538d7e61bd29&amp;#x2F;src&amp;#x2F;visual&amp;#x2F;prominent_color.rs#L27
+&amp;#x2F;**
+ * How many pixels to skip in a chunk, for performance.
+ *&amp;#x2F;
+const SKIP_PIXEL: usize = 8;
+pub fn determine_prominent_color(frame_copy: FrameCopy, heatmap: &amp;amp;mut [Vec&amp;lt;Vec&amp;lt;Vec&amp;lt;u32&amp;gt;&amp;gt;&amp;gt;]) -&amp;gt; Vec&amp;lt;Hsl&amp;gt; {
+    if ColorType::Rgba8 != frame_copy.frame_color_type {
+        panic!(&amp;quot;Cannot handle frame!&amp;quot;)
+    };
+    let split_by = heatmap.len();
+    let mut most_prominent = vec![Hsl::from(0.0, 0.0, 0.0); split_by];
+    let mut most_prominent_idx: Vec&amp;lt;u32&amp;gt; = vec![0; split_by];
+    let split_width: u32 = frame_copy.width &amp;#x2F; split_by as u32;
+    let chunk_size = 4 + (SKIP_PIXEL*4);
+    
+    for (chunk_idx, chunk) in frame_copy.data.chunks_exact(chunk_size).enumerate() {
+        let x = ((chunk_idx * chunk_size) &amp;#x2F; 4) % frame_copy.width as usize;
+        let panel_idx = (x as f32 &amp;#x2F; split_width as f32).floor().min(split_by as f32 - 1.0f32) as usize;
+
+        let hsl = Rgb::from(chunk[0] as f32, chunk[1] as f32, chunk[2] as f32).to_hsl();
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We then take these samples, and apply some simple evaluations to each pixel to skip anything that might be &quot;dull&quot; (really light or really dark
+colours tend to be a bit boring on a RGB display).&lt;&#x2F;p&gt;
+&lt;p&gt;Within each panel, we take a heatmap of the pixels and choose whichever pixel ranks highest. The heatmap is effectively a 4 dimensional array of
+all the panels x [possible hue values] x [possible saturation values] x [possible lightness values].&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;        &amp;#x2F;&amp;#x2F; Reject any really dark colours.
+        if LIGHTNESS_MAX &amp;lt; hsl.get_lightness() || hsl.get_lightness() &amp;lt; LIGHTNESS_MIN {
+            continue;
+        }
+        if hsl.get_saturation() &amp;lt; SATURATION_MIN {
+            continue;
+        }
+        &amp;#x2F;&amp;#x2F; Split into 36 blocks
+        let h_index = (hsl.get_hue() as usize) &amp;#x2F; 10; &amp;#x2F;&amp;#x2F; 0-255
+        let s_index = (hsl.get_saturation() as usize) &amp;#x2F; 5; &amp;#x2F;&amp;#x2F; 0-100
+        let l_index = (hsl.get_lightness() as usize) &amp;#x2F; 5; &amp;#x2F;&amp;#x2F; 0-100
+        let new_prominence = heatmap[panel_idx][h_index][s_index][l_index] + 1;
+        &amp;#x2F;&amp;#x2F; With what&amp;#x27;s left, primary focus on getting the most prominent colour in the frame.
+        heatmap[panel_idx][h_index][s_index][l_index] = new_prominence;
+        if new_prominence &amp;gt; most_prominent_idx[panel_idx] {
+            most_prominent[panel_idx] = Hsl::from(
+                (h_index * 10) as f32,
+                (s_index * 5) as f32,
+                (l_index * 5) as f32,
+            );
+            most_prominent_idx[panel_idx] = new_prominence;
+        }
+    }
+    most_prominent
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Again for resource reasons, we approximate the values of these and round up into blocks. For instance, a pixel of H: 15, S: 20, and L: 50
+would be put in heatmap block &lt;code&gt;[1][4][10]&lt;&#x2F;code&gt;. Once all the pixels have been evaluated, we can return a set of most prominent values.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;audio-processing&quot;&gt;Audio processing&lt;&#x2F;h3&gt;
+&lt;p&gt;While that&#x27;s ongoing, we also process the audio through Pipewire. I can&#x27;t pretend to say I did any of the work on processing it.
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;BlankParenthesis&quot;&gt;BlankParenthesis&lt;&#x2F;a&gt; wrote a beautiful visualisation program for audio which I repurposed to be used in this.
+I can&#x27;t begin to explain how it all works, but the end result is that for a given frame of audio data we get a amplitude value for each frequency.&lt;&#x2F;p&gt;
+&lt;p&gt;We take this computed value of amplitude and put it in a sliding window. The idea here is that we want to get an idea of &quot;relative&quot; power
+across an given length of audio (in this case, 64 frames). If we&#x27;re playing some really quiet music we don&#x27;t want the lights to be
+virtually off. The sliding window stores every value computed, and gives us the min&#x2F;max of the last 64 values. The min&#x2F;max give us an idea
+of how much we should then tweak the lightness for the latest frame.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Half-Shot&amp;#x2F;leafpipe&amp;#x2F;blob&amp;#x2F;9d5f3d1ec0eaea00c700c224c2e284a4fc491f13&amp;#x2F;src&amp;#x2F;main.rs#L56
+    let mut window = SlidingWindow::new(64);
+    let color = hsl_color_from_video_processing;
+    &amp;#x2F;&amp;#x2F; This would loop
+    if let Some(audio_data) = buffer_manager.write().unwrap().fft_interval(LIGHT_INTERVAL, panels.num_panels) {
+        for (panel_index, _panel) in sorted_panels.iter().enumerate() {
+            &amp;#x2F;&amp;#x2F; Submit our value, and return min,max.
+            let (min, max) = window.submit_new(audio_data[panel_index]);
+            let base_int = color.get_lightness() - 10.0;
+            let intensity = (base_int + ((audio_data[panel_index] + min) &amp;#x2F; max) * intensity_modifier * (panel_index as f32 + 1.0f32).powf(1.05f32)).clamp(5.0, 80.0);
+            let hsl = Hsl::from(color.get_hue(), color.get_saturation(), intensity);
+            let rgb = hsl.to_rgb().as_tuple();
+            let r = rgb.0.round() as u8;
+            let g = rgb.1.round() as u8;
+            let b = rgb.2.round() as u8;
+            &amp;#x2F;&amp;#x2F; And write this result to the nanoleaf
+        }
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The intensity algorithm ends up looking like:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;intensity = clamp((base_colour_intensity + relative_recent_intensity) * intensity_modifier * panel_index^1.05, 5, 80)&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;We allow the user to specify a modifier value (defaulting to &lt;code&gt;15&lt;&#x2F;code&gt;) in case they would like to turn up or tone down the effect. We also clamp the value
+to prevent blinding users or turning the lights off completely.&lt;&#x2F;p&gt;
+&lt;p&gt;Once we have our final RGB value, that&#x27;s it!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Oh wait, no!&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;How do we get that data to the panel?&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;sending-the-data&quot;&gt;Sending the data&lt;&#x2F;h3&gt;
+&lt;p&gt;So the Nanoleafs have a feature where you can enable &lt;code&gt;extControl&lt;&#x2F;code&gt; mode where the controller sort of turns off its brain and just interprets
+raw data for each of the panels.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;curl -X PUT --data &amp;#x27;{&amp;quot;write&amp;quot;:{&amp;quot;command&amp;quot;: &amp;quot;display&amp;quot;, &amp;quot;animType&amp;quot;: &amp;quot;extControl&amp;quot;, &amp;quot;extControlVersion&amp;quot;: &amp;quot;v2&amp;quot;}}&amp;#x27; &amp;#x27;http:&amp;#x2F;&amp;#x2F;{hostname}:16021&amp;#x2F;api&amp;#x2F;v1&amp;#x2F;}{token}&amp;#x2F;effects
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It&#x27;s really cool! It uses UDP, so you can effectively fire off new frames as fast as you like to control each panel. (Although in my testing anything
+higher than 100ms would cause it to melt). We therefore send a new payload of data to the controller every &lt;code&gt;100ms&lt;&#x2F;code&gt; which contains the
+values calculated. You need to give the effect a &quot;transition time&quot; because it likes to do a fade-effect between colours, so we set that to
+&lt;code&gt;100ms&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+  &lt;video alt=&quot;Demo video of the final product&quot; src=&quot;demo.webm&quot; controls poster=&quot;demo.webp&quot;&gt; &lt;&#x2F;video&gt;
+  &lt;figcaption&gt;Video taken from &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=eoY1Mc70uTo&quot;&gt;Blender 4.0 - Reel&lt;&#x2F;a&gt;&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h3 id=&quot;final-thoughts&quot;&gt;Final thoughts&lt;&#x2F;h3&gt;
+&lt;p&gt;This project was only made possible by the hard work of the Wayshot project for showing me how to capture a frame from a Wayland compositor, and
+BlankParenthesis for developing visualisation software for Pipewire streams.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m sure you have noticed by now dear reader, that this could work for any set of network addressable lights rather than just a particular brands
+particular product. Yes. Definitely. But I think I&#x27;ll leave that as a future idea for someone with other lights to pick up 😉.&lt;&#x2F;p&gt;
+&lt;p&gt;You can check out the code on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe&quot;&gt;GitHub&lt;&#x2F;a&gt; and it should compile and run for anyone with a Nanoleaf Shapes
+device (and of course, you must run a Linux setup with Wayland and Proton).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe&quot;&gt;Leafpipe&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;pxlha&quot;&gt;pxlha&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;BlankParenthesis&#x2F;visualiser&quot;&gt;BlankParenthesis&#x2F;visualiser&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;waycrate&#x2F;wayshot&quot;&gt;wayshot&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>

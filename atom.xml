@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>half-shot.uk</title>
+    <subtitle>Writings, arts, softwares</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://half-shot.uk/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://half-shot.uk"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-01-31T00:00:00+00:00</updated>
+    <id>https://half-shot.uk/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Bringing a SanDisk Clip+ back to life</title>
+        <published>2026-01-31T00:00:00+00:00</published>
+        <updated>2026-01-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/clip-plus/"/>
+        <id>https://half-shot.uk/blog/clip-plus/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/clip-plus/">&lt;h2 id=&quot;preamble&quot;&gt;Preamble&lt;&#x2F;h2&gt;
+&lt;p&gt;My latest obsession has been trying to find a &quot;retro&quot; personal music player, and replace the all-too-easy
+lure of subscription services of my eternally chatty Android phone.&lt;&#x2F;p&gt;
+&lt;p&gt;I already have a sizeable collection of music bought from &lt;a href=&quot;https:&#x2F;&#x2F;bandcamp.com&quot;&gt;Bandcamp&lt;&#x2F;a&gt; or ripped from CDs,
+but having tried out a number of FOSS Android Music apps, they just don&#x27;t feel good to use. They&#x27;re &quot;fine&quot;,
+but it&#x27;s just another battery drainer and just lack the tactile feel of a player in your hands.&lt;&#x2F;p&gt;
+&lt;p&gt;So my adventure began to find a good player from the 2000s which could:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Looks cool. This is very important, my ego needs stroking by total strangers!.&lt;&#x2F;li&gt;
+&lt;li&gt;Sounds &lt;em&gt;good&lt;&#x2F;em&gt;. No crappy DACs.&lt;&#x2F;li&gt;
+&lt;li&gt;Storage can be expanded.&lt;&#x2F;li&gt;
+&lt;li&gt;Can be found online for a sensible amount of money.&lt;&#x2F;li&gt;
+&lt;li&gt;A stretch goal of being supported by &lt;a href=&quot;https:&#x2F;&#x2F;www.rockbox.org&#x2F;&quot;&gt;Rockbox&lt;&#x2F;a&gt;. Rockbox is awesome!&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;And the winner? A &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;SanDisk_portable_media_players#Sansa_Clip+&quot;&gt;SanDisk Clip +&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;clip-plus&#x2F;clipplus.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;clipplus.931284779a760ef9.webp&quot; title=&quot;A picture of me holding my Clip+ running Rockbox&quot; alt=&quot;A picture of me holding my Clip+ running Rockbox&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;It&amp;#x27;s aliiiiiiive!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;These things can be found from anywhere from £20 to up to £100, but you can save significant amounts of
+money by buying &quot;Spares&#x2F;Parts only&quot;, &lt;em&gt;if you can hack it&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Also, they can run &lt;a href=&quot;https:&#x2F;&#x2F;www.rockbox.org&#x2F;wiki&#x2F;SansaAMS.html&quot;&gt;the Sansa Rockbox port&lt;&#x2F;a&gt; which gives the little matchbox
+a significant number of cool features like FLAC support, gap-less playback and a dozens of fidget toys.&lt;&#x2F;p&gt;
+&lt;p&gt;You &lt;em&gt;might&lt;&#x2F;em&gt; think DOOM on a tiny portable is a gimmick, but it was very handy when my phone ran out out battery
+when I was travelling!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-hackers-gamble-game-die&quot;&gt;The hackers gamble 🎲&lt;&#x2F;h2&gt;
+&lt;p&gt;I got very lucky and snagged a Clip+ for £20. It was in pristine condition but could not boot. The specific
+bug was that it got stuck at the &quot;flower&quot; stage, which is where the device starts but can&#x27;t get further
+than the boot animation. This was a total gamble, but I assumed it might just need a hard reset.&lt;&#x2F;p&gt;
+&lt;p&gt;Nope.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;clip-plus&#x2F;bootup.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;bootup.589e813ee92be0a6.webp&quot; title=&quot;A picture of a Clip+ with a flower logo on it&amp;#x27;s LCD&quot; alt=&quot;A picture of a Clip+ with a flower logo on it&amp;#x27;s LCD&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;A sure sign your Clip+ isn&amp;#x27;t happy is showing you an eternal flower.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;The device seemed to recognise being plugged in via USB to my PC, but the PC didn&#x27;t register a smidge of
+data across the connection. No USB device detected, not even an attempt registered when I checked &lt;code&gt;dmesg&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;So something was seriously wrong. You can even put these devices into MSC mode, which means they boot
+and just expose the flash &#x2F; SD card as a filesystem directly. Super useful for modding&#x2F;debugging, but this
+device was so far gone that even that wasn&#x27;t possible. The firmware was almost certainly &lt;strong&gt;corrupted&lt;&#x2F;strong&gt;, and I
+was praying that the onboard flash was still good.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;digging-in&quot;&gt;Digging in.&lt;&#x2F;h3&gt;
+&lt;p&gt;We need to try and put new firmware on the board now.&lt;&#x2F;p&gt;
+&lt;p&gt;I followed the &lt;a href=&quot;https:&#x2F;&#x2F;www.ifixit.com&#x2F;Guide&#x2F;Repairing+Loose+Headphone+Jack&#x2F;29473&quot;&gt;iFixIt&lt;&#x2F;a&gt;
+guide to get the case off, which was easy-ish. You just have to be &lt;em&gt;gentle&lt;&#x2F;em&gt; with the prying as it uses
+tiny little clips to keep the case together.&lt;&#x2F;p&gt;
+&lt;p&gt;Next, you need to &lt;strong&gt;gently&lt;&#x2F;strong&gt; pull the battery off. I can not stress enough how gently, this thing has 3
+tiny wires soldering the battery to the PCB, and it&#x27;s stuck to the processor via a thermal pad.&lt;&#x2F;p&gt;
+&lt;p&gt;Once that&#x27;s done, you need to unscrew the board, This is the most straightforward bit.&lt;&#x2F;p&gt;
+&lt;p&gt;Then, a real test of skill. We need to bridge the two pins that force the device to expose the NAND
+to allow us to flash on new firmware. This is shown below &lt;span style=&quot;color: red; text-weight: bold;&quot;&gt;IN RED&lt;&#x2F;span&gt;.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;clip-plus&#x2F;pcb.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;pcb.159c324d21f42095.webp&quot; title=&quot;Clip Plus PCB with the correct pins in red.&quot; alt=&quot;Clip Plus PCB with the correct pins in red.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Original Clip+ picture copyright © 2005-2009 EnzoTen Media. All rights reserved.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;These steps are abridged from the sources mentioned at the bottom. I have just annotated things that related to my experience,
+and you should definitely be careful here. Please do as the source article says and reach out to Rockbox via their support channels
+if you do not feel comfortable doing this work!&lt;&#x2F;p&gt;
+&lt;ol start=&quot;0&quot;&gt;
+&lt;li&gt;Download the &lt;a href=&quot;https:&#x2F;&#x2F;download.rockbox.org&#x2F;sansa_fw&#x2F;clipplus01.02.16.zip&quot;&gt;original firmware&lt;&#x2F;a&gt; and unzip it.&lt;&#x2F;li&gt;
+&lt;li&gt;Plug the device in via USB. Remove the micro-SD card if you have one inserted.&lt;&#x2F;li&gt;
+&lt;li&gt;(Optional, strongly recommended) Have &lt;code&gt;dmesg -w&lt;&#x2F;code&gt; running so you can see what the USB port is doing.&lt;&#x2F;li&gt;
+&lt;li&gt;A second terminal running which allows you to see the output of &lt;code&gt;lsblk&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Turn the device OFF by holding the power button for 20s until the screen turns off.&lt;&#x2F;li&gt;
+&lt;li&gt;Bridge the &lt;span style=&quot;color: red; text-weight: bold;&quot;&gt;indicated ports&lt;&#x2F;span&gt;. This is fiddly, I used a screwdriver that was conductive.&lt;&#x2F;li&gt;
+&lt;li&gt;Turn the device on, the screen should end up &lt;strong&gt;blank&lt;&#x2F;strong&gt; if this worked.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Do not worry if this does not work the first, second, or 20th time. I had to take many attempts at this process. If you still get a stuck boot logo, just hard power off like in step 3 and retry.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;ol start=&quot;7&quot;&gt;
+&lt;li&gt;You can see a block device has appeared (you can also run &lt;code&gt;fdisk -l&lt;&#x2F;code&gt; to check).&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;ul&gt;
+&lt;li&gt;This block device should be 4G &#x2F; 8GB depending on your model (i.e. the whole flash storage). If it gives
+you a different value, &lt;strong&gt;do not persist any further&lt;&#x2F;strong&gt;. Your flash is likely faulty.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;ol start=&quot;8&quot;&gt;
+&lt;li&gt;Once that&#x27;s working, you can attempt to flash new firmware by using &lt;code&gt;dd if=orig_image.bin of=&#x2F;dev&#x2F;sdX status=progress&lt;&#x2F;code&gt;.  &lt;strong&gt;TRIPLE CHECK THE DEVICE YOU ARE WRITING TO!&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;This may take a while. In my case, it about 30 minutes. Much longer than you might expect to write ~16MB of data. If it looks like
+it&#x27;s hung, just wait a while and check back on it.&lt;&#x2F;li&gt;
+&lt;li&gt;When it&#x27;s completed, disconnect the device and power off again like in step 3.&lt;&#x2F;li&gt;
+&lt;li&gt;The device should now boot normally.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Congratulations, you have saved a device from the e-waste bin!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;rockbox&quot;&gt;Rockbox&lt;&#x2F;h3&gt;
+&lt;p&gt;I found the original firmware to be quite frankly, shit. It was slow to run, supported very little of my library or my 128GB Micro SD card.&lt;&#x2F;p&gt;
+&lt;p&gt;The instructions for doing this are very straight forward and listed on the &lt;a href=&quot;https:&#x2F;&#x2F;www.rockbox.org&#x2F;wiki&#x2F;SansaAMS.html#Installation&quot;&gt;Rockbox Sansa article&lt;&#x2F;a&gt;
+so I won&#x27;t repeat those here. Hopefully they were as straightforward for me as they were for you.&lt;&#x2F;p&gt;
+&lt;p&gt;Anyway, that covers everything I wanted to say on the Clip +. It&#x27;s a fantastic piece of kit, and I&#x27;ve already had a lot of good usage out of
+it. Do let me know if you found this article useful on the fediverse!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;acknowledgements&quot;&gt;Acknowledgements&lt;&#x2F;h3&gt;
+&lt;p&gt;This post is merely the net summary of knowledge of people who came before me, I want to give a shout out to the following posts:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The contributors to &lt;a href=&quot;https:&#x2F;&#x2F;www.ifixit.com&#x2F;Guide&#x2F;Repairing+Loose+Headphone+Jack&#x2F;29473&quot;&gt;https:&#x2F;&#x2F;www.ifixit.com&#x2F;Guide&#x2F;Repairing+Loose+Headphone+Jack&#x2F;29473&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;rockbox&#x2F;comments&#x2F;16bd2dj&#x2F;recovered_another_cheap_sansa_clipplus_for_the&#x2F;&quot;&gt;This reddit post&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;This &lt;a href=&quot;https:&#x2F;&#x2F;www.rockbox.org&#x2F;wiki&#x2F;SansaAMSUnbrick.html&quot;&gt;RockBox article&lt;&#x2F;a&gt; showing how to unbrick a device with this problem.&lt;&#x2F;li&gt;
+&lt;li&gt;The &lt;a href=&quot;http:&#x2F;&#x2F;www.anythingbutipod.com&#x2F;archives&#x2F;disassembly&#x2F;&quot;&gt;PCB image&lt;&#x2F;a&gt; from anythingbutipod.com.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Please label your AI</title>
+        <published>2026-01-21T00:00:00+00:00</published>
+        <updated>2026-01-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/please-label-your-ai/"/>
+        <id>https://half-shot.uk/blog/please-label-your-ai/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/please-label-your-ai/">&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;&#x2F;h2&gt;
+&lt;p&gt;When I was around 8 years old, I fell in love with computers. This was the early 2000s when everyone had a big green
+hill and blue skies on their recently flattened monitors, and computers could now do everything!&lt;&#x2F;p&gt;
+&lt;p&gt;I used to make little websites that did horrible flashy effects, make animations in Macromedia Flash
+and play Worms Armageddon with my brothers. Grandfather Halfy was not so keen. He was a proud Luddite
+who at that age left me with the impression he was burning down warehouses full of computers on his weekends.
+I suspect that was no more true than the gold he hid under his floorboards, but I do remember the most advanced
+bit of tech in the house was a DVD recorder. Otherwise, nothing. And it fascinated me.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;borderless&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;please-label-your-ai&#x2F;flash.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;flash.75d1d724eab2efd9.webp&quot; title=&quot;Young Halfy playing with flash.&quot; alt=&quot;Young Halfy playing with flash.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Being able to animate stuff was an incredible power.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Growing up I remember that I did not want to be that person. I &lt;strong&gt;loved&lt;&#x2F;strong&gt; computers because I could do so much
+and later would make friends through computers, get paid through them and even fall in love through
+meeting people on those connections. The idea of burning down those would burn down my life&#x27;s ambitions.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m a strong believer in keeping up with the times and adapting to change. It&#x27;s not &lt;em&gt;me&lt;&#x2F;em&gt; to dig my feet into the
+ground for the sake of it, but try as I might I cannot love AI. LLMs appear constantly around what I do, and they
+never spark that joy. I&#x27;ve now connected with my late grandfather&#x27;s words about wanting to burn them down.&lt;&#x2F;p&gt;
+&lt;p&gt;With the ever increasing usage of ChatGTP&#x2F;Claude and the many many other models and tools out there, I think
+something needs to be said.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;this-does-not-spark-joy&quot;&gt;This does not spark joy&lt;&#x2F;h2&gt;
+&lt;p&gt;And I think the problem I fundamentally have with AI on a personal level is that computers are to me a way to
+express my creativity. I&#x27;ve gotten hired off that creative ability to reason around a problem, and I&#x27;ve given
+much fulfilment to my life through making music, drawing, photo-shopping or building random janky websites as
+a meme.&lt;&#x2F;p&gt;
+&lt;p&gt;I can&#x27;t see the joy in filling a prompt and getting some output. That&#x27;s just hiring someone to experience the
+joy for you. The computer can&#x27;t feel joy, so nobody wins. What a result.&lt;&#x2F;p&gt;
+&lt;p&gt;And aside from the occasional bit of faux-enjoyment where a Reddit post turns out to be fake, I&#x27;m managing to
+dodge AI. So far, I&#x27;m lucky to work for a place where AI is not enforced like some work places and my friends
+and family largely do not buy into the hype. And I have a hackerspace to camp in if things get too bad.&lt;&#x2F;p&gt;
+&lt;p&gt;In truth, I&#x27;m hoping it eventually fades the same way blockchain, NFTs and the other monsters did.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;but-i-m-angry&quot;&gt;But I&#x27;m angry&lt;&#x2F;h2&gt;
+&lt;p&gt;And right now I&#x27;m angry in the same way my Science teacher graded me down for not labelling my axis on a graph:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;PEOPLE ARE NOT LABELLING THEIR SHIT&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I get it, you like AI. That&#x27;s cool for you, and I don&#x27;t want to burn down your ambitions. But for sake of our
+collective sanity, When you generate some content, &lt;em&gt;disclose&lt;&#x2F;em&gt; that it was generated by a AI.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m reading Reddit posts pretending to be humans, I&#x27;m watching videos tricking my friends into believing fiction.
+I&#x27;m reviewing code from community members written by AI that will &lt;em&gt;never&lt;&#x2F;em&gt; work.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-impact-to-free-software-suck-too&quot;&gt;The impact to Free Software suck too&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;m noticing a much more worrying trend where AI has now allowed contributors to pick off issues they don&#x27;t like,
+generate some half baked code, and throwing it at the maintainer in the hope that it&#x27;ll get through review. If there
+is any feedback, they just throw another prompt at the machine until it works. Nobody is learning anything and
+both human and natural resources are wasted.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;please-label-your-ai&#x2F;evidence.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;evidence.21729fca6923882a.webp&quot; title=&quot;A GitHub Pull Request made mostly anonymous.&quot; alt=&quot;A GitHub Pull Request made mostly anonymous.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;This sort of PR is just pointless busywork. This is from a project I&amp;#x27;m involved with (censored)&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;In the &lt;em&gt;before times&lt;&#x2F;em&gt; we would see the occasional Pull Request come in for one of our projects and spend time
+reviewing it. It might be bad, but there was a genuine appreciation that someone had taken the time to download
+our project and attempt to learn how it works. I remember being that person a long time ago and getting a lot
+of training from maintainers on how to write good code, and how to be a team player. I want to believe over my
+maintainership years, I may have helped other people too.&lt;&#x2F;p&gt;
+&lt;p&gt;And sometimes I think this is lost on both maintainers and contributors. Yes, FOSS is about freedoms and the ability
+to read the code you run and contribute back. It&#x27;s a mechanism to level the playing field and that&#x27;s one of the reasons
+we get involved. But part of that is teaching people how to contribute forwards. It&#x27;s often times unpaid work, but
+we do it because we want&lt;&#x2F;p&gt;
+&lt;p&gt;But with the advent LLMs, it&#x27;s been impossible not to equate some of the bad code with someone using a LLM. And when
+we start to equate bad code with low effort, the &lt;strong&gt;real danger&lt;&#x2F;strong&gt; appears.&lt;&#x2F;p&gt;
+&lt;p&gt;We need bad code to be reviewed and nurtured because there is every chance a human being is on the other end of the line
+trying to actually learn the craft and maybe become a maintainer themselves in the future. We can&#x27;t simply disregard the
+unworkable stuff.&lt;&#x2F;p&gt;
+&lt;p&gt;So let me be clear to people out there using LLMs on projects they are not familiar with. You might think you are
+helping, oiling the gears of software that you know and love and trying to make them better. You are not doing this
+&lt;strong&gt;you are filling the gears with mud.&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;so-to-be-clear&quot;&gt;So to be clear&lt;&#x2F;h2&gt;
+&lt;p&gt;I am probably never going to get on with AI, however good it gets. I enjoy the learning curve of a craft, I
+get a lot out of fixing bugs with my human brain and I will play music and sing in terrible quality til the day
+I depart this Earth. I am not interested in the absolute quality or perceived productiveness, I get a thrill from
+just the experience.&lt;&#x2F;p&gt;
+&lt;p&gt;But I don&#x27;t want to trample on the fun people have with generating content, if that&#x27;s their bag then they
+may have their cake. All that I ask is that you let us Luddites know that you consulted an AI, roughly
+how much of that work is your own, and give us the &lt;em&gt;choice&lt;&#x2F;em&gt; to decide whether we want to engage with it.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>2025 Round-off</title>
+        <published>2026-01-04T00:00:00+00:00</published>
+        <updated>2026-01-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/2025-roundup/"/>
+        <id>https://half-shot.uk/blog/2025-roundup/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/2025-roundup/">&lt;p&gt;Hey friends! This post got stuck in a sludge of inaction for the last week, and has just been sanded down and ready for your consumption. 2025 was a reasonably
+busy year for projects and things that I got up to, so this is just a quick summary on the year.&lt;&#x2F;p&gt;
+&lt;div role=&quot;alert&quot; class=&quot;content-warning&quot;&gt;
+  &lt;h1&gt;Content Warning&lt;&#x2F;h1&gt;
+  &lt;p&gt;&lt;strong&gt;Food&lt;&#x2F;strong&gt; — &lt;span&gt;Some of this post contains pictures of food including meat. I&amp;#x27;ve left this section at the end, so feel free to skip by it.&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;2025-roundup&#x2F;field_full.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;field.a153a7841c92d7cb.webp&quot; title=&quot;A picture of some yellow rapeseed fields split in the middle with a path.&quot; alt=&quot;A picture of some yellow rapeseed fields split in the middle with a path.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;We hiked the Ridgeway this year. There was a lot of yellow.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h1 id=&quot;projects&quot;&gt;Projects&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;msc-crafter&quot;&gt;MSC Crafter&lt;&#x2F;h2&gt;
+&lt;p&gt;This year &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;msc-crafter&quot;&gt;MSC Crafter&lt;&#x2F;a&gt; was born, which is an ongoing attempt to build a better editor for the
+&lt;a href=&quot;https:&#x2F;&#x2F;spec.matrix.org&#x2F;proposals&#x2F;&quot;&gt;Matrix Spec Change&lt;&#x2F;a&gt; process.&lt;&#x2F;p&gt;
+&lt;p&gt;On the whole this was borne out of a mix of desires and frustrations from:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The process being so heavily dependant on GitHub, a platform which has in recent times got heavier, broken workflows, and occasionally just goes offline now.&lt;&#x2F;li&gt;
+&lt;li&gt;Information on MSCs (like which ones they link to, impls of those MSCs) being scattered around the place.&lt;&#x2F;li&gt;
+&lt;li&gt;Some MSCs range into the hundreds of comments territory, or go through several rounds of changes and reviews.&lt;&#x2F;li&gt;
+&lt;li&gt;Travelling along rail networks meant my internet would suddenly vanish, which was usually the times I wanted to spend writing docs. So offline modes would be useful.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;crafter.b09dd8d83dc7d45f.webp&quot; title=&quot;Preview of the interface showing the light&amp;#x2F;dark mode split on MSC4143: MatrixRTC.&quot; alt=&quot;Preview of the interface showing the light&amp;#x2F;dark mode split on MSC4143: MatrixRTC.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Pretty happy with how it came out looking!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;So all in all, there felt ample room for improving the workflow and if there is one thing I can do, it&#x27;s bash out a web app!&lt;&#x2F;p&gt;
+&lt;p&gt;My overall aim for 2026 is to get it to a state where it&#x27;s more useful, and feels snappier than GitHub is today. The end goal for the project is for the Matrix
+Foundation to promote it as a suggested tool for MSC writers and reviewers alike.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;kobold-kombat-wormgine&quot;&gt;Kobold Kombat (wormgine)&lt;&#x2F;h2&gt;
+&lt;p&gt;I wrote about about the project &lt;a href=&quot;&#x2F;blog&#x2F;kobold-kombat-intro&#x2F;&quot;&gt;in August&lt;&#x2F;a&gt; but haven&#x27;t kept up with it as much as I&#x27;d like to. The project is suffering a bit
+from a rotting architecture. It works well enough, most of the time in local play but trying to extend to multiplayer has brought a lot of bugs to the forefront.&lt;&#x2F;p&gt;
+&lt;p&gt;Primarily I would like to spend some of 2026 splitting out the rendering logic from the game logic, and decoupling it so that you could run and test the game entirely headless,
+which would then allow for smoother multiplayer games.&lt;&#x2F;p&gt;
+&lt;p&gt;Still though, I&#x27;m proud of where it is at!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;fitness&quot;&gt;Fitness&lt;&#x2F;h1&gt;
+&lt;p&gt;It was a good year for trying to keep fit! My usual ambition of running a few races a year split into 3 different tracks of:&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;paddleb.9f7fced9010179a1.webp&quot; title=&quot;Picture of a lake in the background, with a wooden deck and a paddle board sitting idle. It&amp;#x27;s a beautiful blue day.&quot; alt=&quot;Picture of a lake in the background, with a wooden deck and a paddle board sitting idle. It&amp;#x27;s a beautiful blue day.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;The lake! This doesn&amp;#x27;t do it justice. On a hot day, it was just beautiful.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;ul&gt;
+&lt;li&gt;Gym! Actually properly sticking to a routine. I&#x27;ve ended up with a spreadsheet and a finely crafted routine that I try to work towards most mornings.&lt;&#x2F;li&gt;
+&lt;li&gt;Paddle-boarding! We found out there was a nice lake to go paddle around in the heat of the summer, it was just beautiful.&lt;&#x2F;li&gt;
+&lt;li&gt;Running (still)!. I apparently ran ~650km in 2025, and PB&#x27;d my half marathon time at &lt;code&gt;1:49:22&lt;&#x2F;code&gt; so well happy with that.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;cooking&quot;&gt;Cooking&lt;&#x2F;h1&gt;
+&lt;p&gt;I occasionally post the good foods on socials, but I thought just for this post I&#x27;ll round off my favourite things I made this year
+(and critically, took a photo of before I ate!).&lt;&#x2F;p&gt;
+&lt;p&gt;
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;white-fish.761a49558148b32d.webp&quot; title=&quot;This one came out beautifully. Some tenderly poached white fish in sauce, with a few drips of hot honey on top.&quot; alt=&quot;This one came out beautifully. Some tenderly poached white fish in sauce, with a few drips of hot honey on top.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;This one came out beautifully. Some tenderly poached white fish in sauce, with a few drips of hot honey on top.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;chillib.244f6671b545c06c.webp&quot; title=&quot;Chilli beef that had marinaded for some time in chilli oil and soy sauce, laid atop rice and carrots.&quot; alt=&quot;Chilli beef that had marinaded for some time in chilli oil and soy sauce, laid atop rice and carrots.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Chilli beef that had marinaded for some time in chilli oil and soy sauce, laid atop rice and carrots.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;egg-fried-lamb.63cb41a2ac6367be.webp&quot; title=&quot;Egg fried rice with the most delicate lamb on top, alongside some duck spring rolls.&quot; alt=&quot;Egg fried rice with the most delicate lamb on top, alongside some duck spring rolls.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Egg fried rice with the most delicate lamb on top, alongside some duck spring rolls.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;steak.be253e61e7c3066e.webp&quot; title=&quot;A beautifully prepared sirloin steak. The leftover juices were used to cook up the mushrooms in butter, and those juices were then mixed with beer and cream for the sauce. Homemade chips too!&quot; alt=&quot;A beautifully prepared sirloin steak. The leftover juices were used to cook up the mushrooms in butter, and those juices were then mixed with beer and cream for the sauce. Homemade chips too!&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;A beautifully prepared sirloin steak. The leftover juices were used to cook up the mushrooms in butter, and those juices were then mixed with beer and cream for the sauce. Homemade chips too!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;beef-stew.aaf4d582685159f3.webp&quot; title=&quot;Coming into the holiday season, I stewed down some beef for a good few hours in more beer, and then added bacon. The result was a very rich stew, alongside some home roasted potatoes.&quot; alt=&quot;Coming into the holiday season, I stewed down some beef for a good few hours in more beer, and then added bacon. The result was a very rich stew, alongside some home roasted potatoes.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Coming into the holiday season, I stewed down some beef for a good few hours in more beer, and then added bacon. The result was a very rich stew, alongside some home roasted potatoes.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;#&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;banana-bread-tart.a5ed43fbb1ca8af0.webp&quot; title=&quot;And finally, banana bread! Well a tart, because my bread tin went missing! Still, it actually works!&quot; alt=&quot;And finally, banana bread! Well a tart, because my bread tin went missing! Still, it actually works!&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;And finally, banana bread! Well a tart, because my bread tin went missing! Still, it actually works!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h3 id=&quot;and-moving-into-2026&quot;&gt;And moving into 2026&lt;&#x2F;h3&gt;
+&lt;p&gt;Despite all the above, I&#x27;ve not actually cemented down what the goal of 2026 will be yet.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve got some thoughts about trying to be a better maintainer and working
+on some good habits to keep the overall cost to maintain low for the projects I&#x27;ve got on the burners. I probably plan to also do more
+hardware projects with the local hackspace, and post more of those on this very site!&lt;&#x2F;p&gt;
+&lt;p&gt;Anyway, that was a quick-ish post to give a general update of what I&#x27;ve been up to! Happy new year everyone!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Kobold Kombat: Building an entirely free software Worms clone.</title>
+        <published>2025-08-02T00:00:00+00:00</published>
+        <updated>2025-08-02T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/kobold-kombat-intro/"/>
+        <id>https://half-shot.uk/blog/kobold-kombat-intro/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/kobold-kombat-intro/">&lt;p&gt;This is going to be a &lt;em&gt;series&lt;&#x2F;em&gt; of blog posts discussing the various bits and pieces about one of my most proudest achievements;
+I&#x27;ve spent the last 2 years&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; working on building a fully functional clone of &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Worms_Armageddon&quot;&gt;Worms Armageddon&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For those less familiar with the series, you control a group of small characters on a island of randomly generated breakable terrain. You have
+a bunch of weapons, nearly all cartoonish and primed to inflict horrible painful deaths on your enemies (the name we use to refer to people you&#x27;ve convinced
+to huddle round your PC to play a game).&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;kobold-kombat-intro&#x2F;screenshot.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;screenshot.f4d01ba0fc6a7525.webp&quot; title=&quot;Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says &amp;#x27;Look who&amp;#x27;s up, it&amp;#x27;s Halfy&amp;#x27;s Angel!&amp;#x27;. The team names are &amp;#x27;Team Halfy&amp;#x27; and &amp;#x27;Chuckle Brothers&amp;#x27;&quot; alt=&quot;Screenshot of the game. The level is a cutout of a skate park halfpipe with my Skraps character sprayed on. The UI has a toast which says &amp;#x27;Look who&amp;#x27;s up, it&amp;#x27;s Halfy&amp;#x27;s Angel!&amp;#x27;. The team names are &amp;#x27;Team Halfy&amp;#x27; and &amp;#x27;Chuckle Brothers&amp;#x27;&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Look, when you&amp;#x27;ve played your own game for so long you have to start to get a bit creative with the levels. &lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h3 id=&quot;what-s-the-project-ultimately-about&quot;&gt;What&#x27;s the project ultimately about.&lt;&#x2F;h3&gt;
+&lt;p&gt;I will be writing the game from scratch, targeting web browser specifically. And most importantly:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Every last line of code and as much of the assets as possible will be open source&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This game will be entirely within the public domain. No reverse engineering will be used, simply observation and reimplementation. This will also not just be
+another Worms game, but a game in its own right. It will have its own characters and weapons and modes and so on. There are also plenty of shortcomings of games
+in this era (notably, accessible game design) which I am to fix without impacting the core experience. And of course finally, this game is intended to outgrow
+its roots, and take its own identity (hence the name Kobold Kombat, with cute little murderous kobolds :&amp;gt;)&lt;&#x2F;p&gt;
+&lt;p&gt;Ultimately what got me into programming was video games, and &lt;strong&gt;it&#x27;s about time I returned to what I love to work on most&lt;&#x2F;strong&gt;. If I can make it a resource
+that others can built on and learn from, then so much the better!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;so-what-s-on-the-menu&quot;&gt;So, what&#x27;s on the menu?&lt;&#x2F;h3&gt;
+&lt;p&gt;I&#x27;ve spent the last year or so wanting to write more blog posts about this topic, because with every day spent working on games I have learnt more tricks and
+fallen into more pitfalls than I thought possible. And, to meet that educational goal I really &#x27;aught to document everything that goes through my little developer
+brain.&lt;&#x2F;p&gt;
+&lt;p&gt;However, this blog post has sat in a half completed form for the best part of a year so I&#x27;ve instead decided to write a formal introduction post with the plan to do
+deep dives on specific topics later. &lt;strong&gt;With that in mind, here are some of the topics I&#x27;d like to cover&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;So, you want to build a web game in 2025.&lt;&#x2F;li&gt;
+&lt;li&gt;Bug squashing, automated game testing, and how many GitHub issues is too many.&lt;&#x2F;li&gt;
+&lt;li&gt;Welding Pixi.JS to a Physics engine, and how I can prevent you from going mad.&lt;&#x2F;li&gt;
+&lt;li&gt;The bluffers guide to music production and sound design.&lt;&#x2F;li&gt;
+&lt;li&gt;Why you should have thought about networking before your first commit.&lt;&#x2F;li&gt;
+&lt;li&gt;And finally, perhaps the thing I want to cover the most: Video game accessibility.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I &lt;em&gt;hope&lt;&#x2F;em&gt; to get to all these topics because each one is fun! But making video games is also fun! Doing real life chore things is not fun, but since all of those
+things are currently unpaid and only one of them might leave me in serious hot water, I can&#x27;t promise I&#x27;ll manage them all.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;i-m-here-for-video-games-is-this-in-a-functional-state&quot;&gt;I&#x27;m here for video games, is this in a functional state.&lt;&#x2F;h3&gt;
+&lt;p&gt;It&#x27;s certainly &lt;a href=&quot;https:&#x2F;&#x2F;half-shot.github.io&#x2F;wormgine&#x2F;&quot;&gt;playable&lt;&#x2F;a&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, and I really encourage people to give it a go and file issues. The multiplayer section
+is heavily neglected while I shore up the fundamental game mechanics, but I hope to return to that soon. A local game between 2-or-more players should work without issue.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;video alt=&quot;Gameplay video&quot; src=&quot;demo.webm&quot; controls&gt; &lt;&#x2F;video&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-s-next&quot;&gt;What&#x27;s next!&lt;&#x2F;h3&gt;
+&lt;p&gt;I plan to really work to shore up testing and code quality so I can then start to tackle lots of interesting, critical features. The next up items are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Terrain generation&lt;&#x2F;li&gt;
+&lt;li&gt;Multiplayer improvements&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#3&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;More items&lt;&#x2F;li&gt;
+&lt;li&gt;More animations&lt;&#x2F;li&gt;
+&lt;li&gt;More sounds&lt;&#x2F;li&gt;
+&lt;li&gt;And finally, a big pass on accessibility design and teaching the game to new players.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And if you have any questions, you can always ask on &lt;a href=&quot;https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;114963948231166102&quot;&gt;the mastodon thread&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Thanks for reading!&lt;&#x2F;p&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;1&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;1&lt;&#x2F;sup&gt;
+&lt;p&gt;Yes, it &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;wormgine&#x2F;tree&#x2F;74656c1dac389043167f222f4e889111fb71df58&quot;&gt;really has been that long&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;2&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;2&lt;&#x2F;sup&gt;
+&lt;p&gt;Occasionally this gets stuck on first load, a refresh nearly always fixes it. It&#x27;s a frustrating bug.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;3&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;3&lt;&#x2F;sup&gt;
+&lt;p&gt;The current multiplayer system uses &lt;a href=&quot;https:&#x2F;&#x2F;matrix.org&#x2F;&quot;&gt;Matrix&lt;&#x2F;a&gt; for interactions, and even on a tuned homeserver it was slow.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Power Monitor</title>
+        <published>2024-05-15T00:00:00+00:00</published>
+        <updated>2024-05-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/power-monitor/"/>
+        <id>https://half-shot.uk/blog/power-monitor/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/power-monitor/">&lt;p&gt;I run half-shot.uk, and various other services off actual server hardware at home. A few years back a friend convinced me to stop relying
+on cloud servers, and instead just buy a second hand box and run with it. The friend houses the server for me, and provides me an internet
+connection, power, and space in their cabinet at home.&lt;&#x2F;p&gt;
+&lt;p&gt;And for a long time the arrangement worked out fine. We installed a standard power monitoring brick which would tell him how much power
+I had used, and we&#x27;d multiply that by the kilowatt per hour cost from their power supplier. I&#x27;d end up paying anywhere between
+£30 to £40 per month depending on usage and the variance of bills.&lt;&#x2F;p&gt;
+&lt;p&gt;Things then changed with &lt;a href=&quot;https:&#x2F;&#x2F;octopus.energy&#x2F;smart&#x2F;agile&#x2F;&quot;&gt;Agile Octopus&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;agility&quot;&gt;Agility&lt;&#x2F;h3&gt;
+&lt;p&gt;I promise it&#x27;s got nothing to do with Agile software development delivered by eight-limbed molluscs. Octopus (a major UK energy company)
+have a plan where kilowatt per hour costs change every half hour. The customer is notified a day or so before, so they can plan to eat their
+dinner earlier&#x2F;later or generally plan to use energy in off-peak sessions; The intention to balance out power demand across the UK.&lt;&#x2F;p&gt;
+&lt;p&gt;Because the UK has a pretty sizable &lt;a href=&quot;https:&#x2F;&#x2F;grid.iamkate.com&#x2F;&quot;&gt;renewable energy&lt;&#x2F;a&gt; sector, power costs can vary greatly based on the weather
+conditions. There are some days when it&#x27;s miserable and the power costs tend to go up over the next few days, and some times we get a lot of
+wind and sunshine and the power costs drop (I&#x27;ve seen it drop below a penny per kwh!).&lt;&#x2F;p&gt;
+&lt;p&gt;This is great, except it utterly ruins the way I pay for the server! You can take averages sure, but my usage is never constant as my
+traffic patterns vary. And if I choose to do my heavy full disk backups in off peak periods, then I&#x27;d lose out on those potential savings.&lt;&#x2F;p&gt;
+&lt;p&gt;A better solution it seems, was needed.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;smart-plugs&quot;&gt;Smart Plugs&lt;&#x2F;h3&gt;
+&lt;p&gt;The first thing that needed to be improved was the data collection system. The current smart plug could only capture daily usage,
+and had no functionality to export the data to a third-party.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;power-monitor&#x2F;old-app.png&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;old-app.4f9a48a1fe211160.webp&quot; title=&quot;Screenshot of a basic Android app showing power usage per month.&quot; alt=&quot;Screenshot of a basic Android app showing power usage per month.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;The process involved reading from this, and enter the data manually into a spreadsheet. Nobody was going for that idea.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;In the end the solution was a MQTT-compatible smart plug that offered at least half hourly reporting. While I could have
+bought any old plug off the internet and hardware modded it...I do not trust my skills or my attention span. Instead,
+a supplier in the UK sells reasonably priced pre-modded ones &lt;a href=&quot;https:&#x2F;&#x2F;www.mylocalbytes.com&#x2F;products&#x2F;smart-plug-pm?variant=41600621510847&quot;&gt;here&lt;&#x2F;a&gt;.
+Thanks Local Bytes!&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;power-monitor&#x2F;plug.png&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;plug.25dd9d7e54b55c7e.webp&quot; title=&quot;A hand holding a smart plug with the words Local Bytes written on it.&quot; alt=&quot;A hand holding a smart plug with the words Local Bytes written on it.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Fairly unassuming!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;The next steps were to setup a MQTT broker on the server; &lt;a href=&quot;https:&#x2F;&#x2F;mosquitto.org&#x2F;&quot;&gt;Mosquitto&lt;&#x2F;a&gt; was very easy to get started with
+so I just plonked that on and connected my plug to it. Then all I needed was the logic to convert the power readings into power costs.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;autopowerbill&quot;&gt;Autopowerbill&lt;&#x2F;h3&gt;
+&lt;p&gt;(I tried to think of an imaginative name for this project, but...ah well)&lt;&#x2F;p&gt;
+&lt;p&gt;I wrote a little Rust daemon process that does essentially 3 things forever. It pulls in the latest prices from Octopus, roughly
+every few hours. It subscribes to the power usage statistics topic from the smart plug, and then it calculates between the last
+window and present time how much power has been used. This is then costed and pushed into a PostgreSQL database.&lt;&#x2F;p&gt;
+&lt;p&gt;The algorithm ended up something like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;if usage &amp;gt; 0.0 {
+    &amp;#x2F;&amp;#x2F; Find the price that matches this period
+    let usage_cost: f32 = match octopus.get_price_for_period(last_date, date).await {
+        Ok((matched_cost, Some(second_cost))) =&amp;gt; {
+            &amp;#x2F;&amp;#x2F; We fall inside a second bucket, so fetch that price too.
+            &amp;#x2F;&amp;#x2F; Calculate the delta between the two timestamps
+            let total_delta = (date-last_date).num_seconds() as f32;
+            let mult_a = (matched_cost.to - last_date).num_seconds() as f32 &amp;#x2F; total_delta;
+            let mult_b = (date - second_cost.from).num_seconds() as f32  &amp;#x2F; total_delta;
+            &amp;#x2F;&amp;#x2F; And thus determine how much power was used (approx) in each period.
+            (matched_cost.cost * (usage * mult_a)) + second_cost.cost * (usage * mult_b)
+        },
+        Ok((matched_cost, None)) =&amp;gt; {
+            &amp;#x2F;&amp;#x2F; Otherwise, straightforward to calculate.
+            matched_cost.cost * usage
+        }
+        Err(e) =&amp;gt; {
+            panic!(&amp;quot;Failure to handle cost at {:?}. No applicable cost found: {:}&amp;quot;, date, e)
+        },
+    };
+    println!(&amp;quot;Calculated {:?} for {:?} ({:?} kwh)&amp;quot;, usage_cost, date, kwh);
+    PowerUsage { date, usage, total_usage: kwh, cost: usage_cost }
+} else {
+    PowerUsage { date, usage, total_usage: kwh, cost: 0.0 }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Definitely feel like Rust is starting to click for me a little bit now too.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;everyone-loves-a-graph&quot;&gt;Everyone loves a graph&lt;&#x2F;h3&gt;
+&lt;p&gt;Of course now the data was being entered into PostgreSQL, it was then trivial to put together a Grafana dashboard. So I did:&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;power-monitor&#x2F;grafana.png&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;grafana.a0cdfbb13f60c085.webp&quot; title=&quot;Grafana dashboard showing Usage Per Day (kwh), Cost Per Day, Monthly Cost and Total usage. The graphs show that there is a significant cost saving over constant rate power.&quot; alt=&quot;Grafana dashboard showing Usage Per Day (kwh), Cost Per Day, Monthly Cost and Total usage. The graphs show that there is a significant cost saving over constant rate power.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;The yellow column is how much power I would have used if we kept on the old plan.&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Evidently this turned out to be a good idea. We&#x27;ve had some terrific weather in the UK recently, and it&#x27;s translated into some pretty
+welcome cost savings.&lt;&#x2F;p&gt;
+&lt;p&gt;If you are interested in something like this, or would just like to see how it&#x27;s put together then please check out &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;autopowerbill&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;autopowerbill&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;And if you have any questions, you can always ask on &lt;a href=&quot;https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;112446159375587479&quot;&gt;the mastodon thread&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Thanks for reading!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Leafpipe</title>
+        <published>2023-12-04T00:00:00+00:00</published>
+        <updated>2023-12-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/leafpipe/"/>
+        <id>https://half-shot.uk/blog/leafpipe/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/leafpipe/">&lt;p&gt;A few years ago after moving into a flat, I was staring at a white wall (I presume this isn&#x27;t unique to the UK, walls are always boring and white).
+A friend of mine suggested that the wall really could do with some RGB lights, and being the sort of person who is naturally attracted to flashy
+rainbows...I went and purchased some &lt;a href=&quot;https:&#x2F;&#x2F;nanoleaf.me&quot;&gt;Nanoleaf&lt;&#x2F;a&gt; lights.&lt;&#x2F;p&gt;
+&lt;p&gt;Nanoleaf make &quot;Shapes&quot; panels which are neat little diffuse LED hexagons, that can be connected like LEGO to each other. You can stick them to walls
+and make the prettiest of displays.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;leafpipe&#x2F;nanoleaf.webp&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;nanoleaf.c117718a5e7798d6.webp&quot; title=&quot;A picture of some hexagonal Nanoleaf Shape lights against a wall.&quot; alt=&quot;A picture of some hexagonal Nanoleaf Shape lights against a wall.&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;Marketing impression of how you are meant to arrange your lights. Totally not my wall! Image: © Nanoleaf&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;&lt;em&gt;However&lt;&#x2F;em&gt;. There is one feature that &lt;strong&gt;sucks&lt;&#x2F;strong&gt;: the audio-driven panel effects.&lt;&#x2F;p&gt;
+&lt;p&gt;Although you can arrange the panels nicely and apply some pretty effects to music, they process audio
+though a built-in microphone (so the quality is a bit crap). There is no video feed for them, so they cannot adapt to any inputs
+to produce a pleasing hue to the music either. You end up with panels that sort of adjust to your music, providing you are playing loudly enough.
+However, since this is all happening on the controller the performance isn&#x27;t &lt;em&gt;great&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Otherwise, the kit is pretty solid. They connect to the Wi-Fi and can be controlled via a standard REST API.
+It would be better if the &lt;a href=&quot;https:&#x2F;&#x2F;forum.nanoleaf.me&#x2F;docs&quot;&gt;API docs&lt;&#x2F;a&gt; were accessible without a forum account though,
+despite industry trends it just seems redundant.&lt;&#x2F;p&gt;
+&lt;p&gt;It should be noted that some models allow you to clip in a 3.5&quot; jack for better quality audio, but:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;This is only for the more expensive models.&lt;&#x2F;li&gt;
+&lt;li&gt;You still have to process the effects on the lower-powered controller.&lt;&#x2F;li&gt;
+&lt;li&gt;Still no ability to capture video.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;leafpipe&quot;&gt;Leafpipe&lt;&#x2F;h2&gt;
+&lt;p&gt;I built leafpipe to basically take input from my PC and send it onto the lights to make the aforementioned pretty displays. It uses a combination
+of Pipewire, and the Wayland screencopy protocol. It&#x27;s a little Rust daemon that sits there relentlessly capturing data and spewing out packets
+to the Nanoleaf controller.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+  &lt;img src=&quot;architecture.svg&quot; alt=&quot;{{ alt }}&quot; &#x2F;&gt;
+  &lt;figcaption&gt;Rough outline of how this all fits together&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;I&#x27;ll explain roughly how the process works.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;video-processing&quot;&gt;Video processing&lt;&#x2F;h3&gt;
+&lt;p&gt;For the visual side, we take a copy of a chosen display every &lt;code&gt;33ms&lt;&#x2F;code&gt;. The frame is copied into a buffer, and then split into chunks of 4 bytes
+to make up a set of pixels (RGBA).&lt;&#x2F;p&gt;
+&lt;p&gt;We then further split things so we only read every 8th pixel (to save on processing time) to achieve a sort
+of rough approximation of what&#x27;s on screen.&lt;&#x2F;p&gt;
+&lt;p&gt;Finally, we split each of the pixels horizontally by the number of panels we have. So if we
+have 8 Nanoleaf panels, we split the frame by 8. These pixels are converted to HSL so we can evaluate the lightness aspect of them, which will come
+in handy in just a second.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; From https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Half-Shot&amp;#x2F;leafpipe&amp;#x2F;blob&amp;#x2F;c4537c564def652b57bf9daa54f4538d7e61bd29&amp;#x2F;src&amp;#x2F;visual&amp;#x2F;prominent_color.rs#L27
+&amp;#x2F;**
+ * How many pixels to skip in a chunk, for performance.
+ *&amp;#x2F;
+const SKIP_PIXEL: usize = 8;
+pub fn determine_prominent_color(frame_copy: FrameCopy, heatmap: &amp;amp;mut [Vec&amp;lt;Vec&amp;lt;Vec&amp;lt;u32&amp;gt;&amp;gt;&amp;gt;]) -&amp;gt; Vec&amp;lt;Hsl&amp;gt; {
+    if ColorType::Rgba8 != frame_copy.frame_color_type {
+        panic!(&amp;quot;Cannot handle frame!&amp;quot;)
+    };
+    let split_by = heatmap.len();
+    let mut most_prominent = vec![Hsl::from(0.0, 0.0, 0.0); split_by];
+    let mut most_prominent_idx: Vec&amp;lt;u32&amp;gt; = vec![0; split_by];
+    let split_width: u32 = frame_copy.width &amp;#x2F; split_by as u32;
+    let chunk_size = 4 + (SKIP_PIXEL*4);
+    
+    for (chunk_idx, chunk) in frame_copy.data.chunks_exact(chunk_size).enumerate() {
+        let x = ((chunk_idx * chunk_size) &amp;#x2F; 4) % frame_copy.width as usize;
+        let panel_idx = (x as f32 &amp;#x2F; split_width as f32).floor().min(split_by as f32 - 1.0f32) as usize;
+
+        let hsl = Rgb::from(chunk[0] as f32, chunk[1] as f32, chunk[2] as f32).to_hsl();
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We then take these samples, and apply some simple evaluations to each pixel to skip anything that might be &quot;dull&quot; (really light or really dark
+colours tend to be a bit boring on a RGB display).&lt;&#x2F;p&gt;
+&lt;p&gt;Within each panel, we take a heatmap of the pixels and choose whichever pixel ranks highest. The heatmap is effectively a 4 dimensional array of
+all the panels x [possible hue values] x [possible saturation values] x [possible lightness values].&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;        &amp;#x2F;&amp;#x2F; Reject any really dark colours.
+        if LIGHTNESS_MAX &amp;lt; hsl.get_lightness() || hsl.get_lightness() &amp;lt; LIGHTNESS_MIN {
+            continue;
+        }
+        if hsl.get_saturation() &amp;lt; SATURATION_MIN {
+            continue;
+        }
+        &amp;#x2F;&amp;#x2F; Split into 36 blocks
+        let h_index = (hsl.get_hue() as usize) &amp;#x2F; 10; &amp;#x2F;&amp;#x2F; 0-255
+        let s_index = (hsl.get_saturation() as usize) &amp;#x2F; 5; &amp;#x2F;&amp;#x2F; 0-100
+        let l_index = (hsl.get_lightness() as usize) &amp;#x2F; 5; &amp;#x2F;&amp;#x2F; 0-100
+        let new_prominence = heatmap[panel_idx][h_index][s_index][l_index] + 1;
+        &amp;#x2F;&amp;#x2F; With what&amp;#x27;s left, primary focus on getting the most prominent colour in the frame.
+        heatmap[panel_idx][h_index][s_index][l_index] = new_prominence;
+        if new_prominence &amp;gt; most_prominent_idx[panel_idx] {
+            most_prominent[panel_idx] = Hsl::from(
+                (h_index * 10) as f32,
+                (s_index * 5) as f32,
+                (l_index * 5) as f32,
+            );
+            most_prominent_idx[panel_idx] = new_prominence;
+        }
+    }
+    most_prominent
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Again for resource reasons, we approximate the values of these and round up into blocks. For instance, a pixel of H: 15, S: 20, and L: 50
+would be put in heatmap block &lt;code&gt;[1][4][10]&lt;&#x2F;code&gt;. Once all the pixels have been evaluated, we can return a set of most prominent values.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;audio-processing&quot;&gt;Audio processing&lt;&#x2F;h3&gt;
+&lt;p&gt;While that&#x27;s ongoing, we also process the audio through Pipewire. I can&#x27;t pretend to say I did any of the work on processing it.
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;BlankParenthesis&quot;&gt;BlankParenthesis&lt;&#x2F;a&gt; wrote a beautiful visualisation program for audio which I repurposed to be used in this.
+I can&#x27;t begin to explain how it all works, but the end result is that for a given frame of audio data we get a amplitude value for each frequency.&lt;&#x2F;p&gt;
+&lt;p&gt;We take this computed value of amplitude and put it in a sliding window. The idea here is that we want to get an idea of &quot;relative&quot; power
+across an given length of audio (in this case, 64 frames). If we&#x27;re playing some really quiet music we don&#x27;t want the lights to be
+virtually off. The sliding window stores every value computed, and gives us the min&#x2F;max of the last 64 values. The min&#x2F;max give us an idea
+of how much we should then tweak the lightness for the latest frame.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Half-Shot&amp;#x2F;leafpipe&amp;#x2F;blob&amp;#x2F;9d5f3d1ec0eaea00c700c224c2e284a4fc491f13&amp;#x2F;src&amp;#x2F;main.rs#L56
+    let mut window = SlidingWindow::new(64);
+    let color = hsl_color_from_video_processing;
+    &amp;#x2F;&amp;#x2F; This would loop
+    if let Some(audio_data) = buffer_manager.write().unwrap().fft_interval(LIGHT_INTERVAL, panels.num_panels) {
+        for (panel_index, _panel) in sorted_panels.iter().enumerate() {
+            &amp;#x2F;&amp;#x2F; Submit our value, and return min,max.
+            let (min, max) = window.submit_new(audio_data[panel_index]);
+            let base_int = color.get_lightness() - 10.0;
+            let intensity = (base_int + ((audio_data[panel_index] + min) &amp;#x2F; max) * intensity_modifier * (panel_index as f32 + 1.0f32).powf(1.05f32)).clamp(5.0, 80.0);
+            let hsl = Hsl::from(color.get_hue(), color.get_saturation(), intensity);
+            let rgb = hsl.to_rgb().as_tuple();
+            let r = rgb.0.round() as u8;
+            let g = rgb.1.round() as u8;
+            let b = rgb.2.round() as u8;
+            &amp;#x2F;&amp;#x2F; And write this result to the nanoleaf
+        }
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The intensity algorithm ends up looking like:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;intensity = clamp((base_colour_intensity + relative_recent_intensity) * intensity_modifier * panel_index^1.05, 5, 80)&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;We allow the user to specify a modifier value (defaulting to &lt;code&gt;15&lt;&#x2F;code&gt;) in case they would like to turn up or tone down the effect. We also clamp the value
+to prevent blinding users or turning the lights off completely.&lt;&#x2F;p&gt;
+&lt;p&gt;Once we have our final RGB value, that&#x27;s it!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Oh wait, no!&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;How do we get that data to the panel?&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;sending-the-data&quot;&gt;Sending the data&lt;&#x2F;h3&gt;
+&lt;p&gt;So the Nanoleafs have a feature where you can enable &lt;code&gt;extControl&lt;&#x2F;code&gt; mode where the controller sort of turns off its brain and just interprets
+raw data for each of the panels.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;curl -X PUT --data &amp;#x27;{&amp;quot;write&amp;quot;:{&amp;quot;command&amp;quot;: &amp;quot;display&amp;quot;, &amp;quot;animType&amp;quot;: &amp;quot;extControl&amp;quot;, &amp;quot;extControlVersion&amp;quot;: &amp;quot;v2&amp;quot;}}&amp;#x27; &amp;#x27;http:&amp;#x2F;&amp;#x2F;{hostname}:16021&amp;#x2F;api&amp;#x2F;v1&amp;#x2F;}{token}&amp;#x2F;effects
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It&#x27;s really cool! It uses UDP, so you can effectively fire off new frames as fast as you like to control each panel. (Although in my testing anything
+higher than 100ms would cause it to melt). We therefore send a new payload of data to the controller every &lt;code&gt;100ms&lt;&#x2F;code&gt; which contains the
+values calculated. You need to give the effect a &quot;transition time&quot; because it likes to do a fade-effect between colours, so we set that to
+&lt;code&gt;100ms&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+  &lt;video alt=&quot;Demo video of the final product&quot; src=&quot;demo.webm&quot; controls poster=&quot;demo.webp&quot;&gt; &lt;&#x2F;video&gt;
+  &lt;figcaption&gt;Video taken from &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=eoY1Mc70uTo&quot;&gt;Blender 4.0 - Reel&lt;&#x2F;a&gt;&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h3 id=&quot;final-thoughts&quot;&gt;Final thoughts&lt;&#x2F;h3&gt;
+&lt;p&gt;This project was only made possible by the hard work of the Wayshot project for showing me how to capture a frame from a Wayland compositor, and
+BlankParenthesis for developing visualisation software for Pipewire streams.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m sure you have noticed by now dear reader, that this could work for any set of network addressable lights rather than just a particular brands
+particular product. Yes. Definitely. But I think I&#x27;ll leave that as a future idea for someone with other lights to pick up 😉.&lt;&#x2F;p&gt;
+&lt;p&gt;You can check out the code on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe&quot;&gt;GitHub&lt;&#x2F;a&gt; and it should compile and run for anyone with a Nanoleaf Shapes
+device (and of course, you must run a Linux setup with Wayland and Proton).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;leafpipe&quot;&gt;Leafpipe&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;pxlha&quot;&gt;pxlha&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;BlankParenthesis&#x2F;visualiser&quot;&gt;BlankParenthesis&#x2F;visualiser&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;waycrate&#x2F;wayshot&quot;&gt;wayshot&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>New frontiers</title>
+        <published>2023-08-30T00:00:00+00:00</published>
+        <updated>2023-08-30T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Will Hunt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://half-shot.uk/blog/new-frontiers/"/>
+        <id>https://half-shot.uk/blog/new-frontiers/</id>
+        
+        <content type="html" xml:base="https://half-shot.uk/blog/new-frontiers/">&lt;h2 id=&quot;preface&quot;&gt;Preface&lt;&#x2F;h2&gt;
+&lt;p&gt;I bought an Internet Radio. Yes, one of those things from the late 2000s where you could make a radio
+connect to your WiFi and hook into a MP3 stream. I bought one because I was unsatisifed with the solutions out there to get audio around your house.&lt;&#x2F;p&gt;
+&lt;p&gt;Bluetooth is cumbersome, you have to connect it and then you have to locate an app on your phone to get
+the media you want...ugh. I want a thing that turns on and immediately plays. Yes, I could have built one
+out of speakers and a Pi...but that&#x27;s now a thing &lt;em&gt;I&lt;&#x2F;em&gt; have to spec and maintain. I just want a Wifi-enabled streaming device.&lt;&#x2F;p&gt;
+&lt;p&gt;And so, the often forgotten little entry-level internet radios appeared before me. Amazon is littered with internet radios from different providers
+but the one I bought ended up being a &lt;a href=&quot;https:&#x2F;&#x2F;www.amazon.co.uk&#x2F;gp&#x2F;product&#x2F;B089D8BV99&quot;&gt;LEMEGA IR1&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;new-frontiers&#x2F;wifi_interface.jpg&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;wifi_interface.e5cb64cde539357d.webp&quot; title=&quot;A picture of the radio, with the wifi screen&quot; alt=&quot;A picture of the radio, with the wifi screen&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;The UX for the wifi password screen left something to be desired&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;h2 id=&quot;frontier-silicon&quot;&gt;Frontier Silicon&lt;&#x2F;h2&gt;
+&lt;p&gt;A lot of the cheapo radios use the same OS and hardware under the hood. I&#x27;ve by no means done a thorough investigation, but &quot;Pure radios&quot; may
+be another seller. Either way, they&#x27;re all using &lt;a href=&quot;https:&#x2F;&#x2F;www.frontiersmart.com&#x2F;&quot;&gt;Frontier Silicon&lt;&#x2F;a&gt;. These seem to be a Cambridge outfit that
+build purpose-made PCBs for internet-radio-shaped devices. They also provide an operating system based on RTOS, which is closed source. I used
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;huaracheguarache&#x2F;Frontier-Silicon-Argon-Firmware&#x2F;tree&#x2F;master&quot;&gt;this GitHub project&lt;&#x2F;a&gt; as a good starting point.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;breaking-in&quot;&gt;Breaking in&lt;&#x2F;h2&gt;
+&lt;p&gt;To start with, we needed to know what it was connecting to. To do that, I pointed the radio at my home DNS resolver (what do you mean you don&#x27;t have one?). This showed me that it was connecting to &lt;code&gt;airable.wifiradionetworks.com&lt;&#x2F;code&gt;. Great!&lt;&#x2F;p&gt;
+&lt;p&gt;Now I had initially assumed it was unencrypted and simply pointing it to a web server would be enough. Not at all! The call was made directly as HTTPS so simply responding on port 80 would do...nothing.&lt;&#x2F;p&gt;
+&lt;p&gt;I poked about a bit and ended up looking at port 514, which when connected to via &lt;code&gt;telnet&lt;&#x2F;code&gt; will spam out logs. However, nothing useful was sent...&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Escape character is &amp;#x27;^]&amp;#x27;.
+(Thread1): [     28.992309] UI     (2): Timer1---873
+(Thread1): [     28.992478] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+(Thread1): [     29.306109] NET    (2): Notify Wlan Link i&amp;#x2F;f 0 UP
+(Thread1): [     29.992315] UI     (2): Timer1---872
+(Thread1): [     30.992313] UI     (2): Timer1---871
+(Thread1): [     30.992489] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+(Thread1): [     31.992320] UI     (2): Timer1---870
+(Thread1): [     32.992317] UI     (2): Timer1---869
+(Thread1): [     32.992490] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+(Thread1): [     33.992310] UI     (2): Timer1---868
+(Thread1): [     34.992310] UI     (2): Timer1---867
+(Thread1): [     34.992486] UI     (2): BATT =&amp;gt;&amp;gt; 1023
+(Thread1): [     35.339301] NET    (2): Notify IP i&amp;#x2F;f 0 (192.168.1.203) UP
+(Thread1): [     35.348842] CB     (1): airable_cb_module_SetInfo(): item index = 0, item id = &amp;#x27;airable:&amp;#x2F;&amp;#x2F;frontiersmart&amp;#x2F;radio&amp;#x2F;102296330081
+(Thread1): [     35.356550] CB     (1): airable_cb_module_PostImmediateConnect(): connecting to &amp;#x27;airable:&amp;#x2F;&amp;#x2F;frontiersmart&amp;#x2F;radio&amp;#x2F;10229633008
+(Thread1): [     35.357703] IB     (2): Browsing into &amp;#x27;&amp;lt;no folder name&amp;gt;&amp;#x27; (-1 - -1)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;em&gt;it&#x27;s cute how they have their little protocol handler&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The next thing to try was the API used to control these devices via an app. Yes, a lovely insecure API protected by a 4 digit pin (the default is easily guessed and enabled by default, yay).&lt;&#x2F;p&gt;
+&lt;p&gt;This API even features a web interface you can reach by hitting the 8080 port on the radio, but it wasn&#x27;t very useful.
+You can control the media volume, set some presets and see what&#x27;s playing but critically you &lt;strong&gt;cannot&lt;&#x2F;strong&gt; modify what is playing.&lt;&#x2F;p&gt;
+&lt;p&gt;So then what? After a chat with some lovely folks on Mastodon, it was suggested to try &lt;code&gt;mitmproxy&lt;&#x2F;code&gt;. &lt;a href=&quot;https:&#x2F;&#x2F;mitmproxy.org&#x2F;&quot;&gt;mitmproxy&lt;&#x2F;a&gt; is a simple tool that
+allows you to serve encrypted HTTPS traffic and view the contents. it has a proxy mode, but it also has a &lt;em&gt;reverse proxy mode&lt;&#x2F;em&gt;. This means you can serve up
+a server, and redirect all requests to the real server &lt;em&gt;while&lt;&#x2F;em&gt; inspecting the contents of the messages. Neat!&lt;&#x2F;p&gt;
+&lt;p&gt;Critically the radio does not verify the certificates for the host at all, so the target domain was set to my devbox&#x27;s IP address.
+I ran the proxy and routed traffic to the real host aaaand...🎉 voila! It spilled the beans and by clicking around on the interface,
+you could see how it was pulling the data.&lt;&#x2F;p&gt;
+
+&lt;figure class=&quot;&quot;&gt;
+  &lt;a href=&quot;&#x2F;blog&#x2F;new-frontiers&#x2F;requests_view.png&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;half-shot.uk&#x2F;processed_images&#x2F;requests_view.1f39c6c76eaa5631.webp&quot; title=&quot;Screen capture of mitmproxy showing two requests from wifiradionetworks.com&quot; alt=&quot;Screen capture of mitmproxy showing two requests from wifiradionetworks.com&quot;&gt;&lt;&#x2F;a&gt;
+  &lt;figcaption&gt;And now it all makes sense!&lt;&#x2F;figcaption&gt;
+&lt;&#x2F;figure&gt;
+&lt;p&gt;So now that the API was revealed it was fairly trivial to work with. I wrote a simple node server to handle the requests which let me play a MP3 file (sadly no vorbis support) through it.
+I could then also connect it to &lt;code&gt;mpd&lt;&#x2F;code&gt; (Music Player Daemon) and play a whole playlist. Also, I added my own &quot;brand&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;video alt=&quot;Video of the stream working&quot; src=&quot;success.webm&quot; controls&gt; &lt;&#x2F;video&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;So that&#x27;s that, we&#x27;ve broken in and found ourselves a way to add arbitrary streams to it!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;You can now use &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;fairable&quot;&gt;fairable&lt;&#x2F;a&gt; as a rudimentary replacement service for this radio series. I plan to add
+support for things like &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;badaix&#x2F;snapcast&quot;&gt;Snapcast&lt;&#x2F;a&gt; so I can stream arbitrary audio to it but that will require a lot more
+effort than what is put here.&lt;&#x2F;p&gt;
+&lt;p&gt;Ultimately, this project will be useful as part of my home automation stack (think: morning alarm playlists without the need for Spotify).&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;d like to thank the Mastodon community, the Watercooler group on Matrix, the previous hackers who wrote some tremendously useful info.
+and my poor partner who suffered my enthusiasm for days on end 😁.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;ve got any questions on this, hit me up on &lt;a href=&quot;&#x2F;contact&quot;&gt;Matrix&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;references&quot;&gt;References&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;mastodon.half-shot.uk&#x2F;@halfy&#x2F;110967351685629045&quot;&gt;The Mastodon thread&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Half-Shot&#x2F;fairable&quot;&gt;Fairable&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>
