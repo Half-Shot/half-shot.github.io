@@ -22,7 +22,7 @@ I want to return to an era where I own my music, forever. I can stream it to my 
 
 I already have a Nextcloud, it serves many purposes from backups to nostalgic photo album sharing. My plan is to acquire all the music I listen to as Bandcamp downloads, or CDs off eBay / Music Magpie (seriously, £2 a CD in some cases).
 
-I use [Laser]() to rip these CDs from source. It helpfully hooks up to online sources for the media so each track is ripped as a FLAC with full metadata. Within a hour I have a Nextcloud full of media. At this point I could just listen to it in the WebUI, but where is the fun in that!
+I use [Laser](https://codeberg.org/andreasknoben/Laser) to rip these CDs from source. It helpfully hooks up to online sources for the media so each track is ripped as a FLAC with full metadata. Within a hour I have a Nextcloud full of media. At this point I could just listen to it in the WebUI, but where is the fun in that!
 
 I'm a heavy MPD user, but storing all this music on each device I own feels like a lot of wasted space. Why couldn't we just stream it from WebDAV...enter Mopidy.
 
@@ -41,4 +41,14 @@ We now have a way to stream music, however it is *dead* slow. Nextcloud is simpl
 
 ### Putting this altogether
 
+So we have:
+ - Laser 
+ - Garage (trusty low maintenance S3 service)
+ - Nextcloud + Nextcloudr (multi replica)
+ - Mopidy + mopidy-mpd + mopidy-webdav
+
+This gives me a way to stream music to my devices with very low latency, and only paying for servers storage (which was already on the go) and the occasional second hand CD.
+
 ### What's next
+
+Figuring out how to make this work for on-the-go listening. I still use my [Sansa]() for this, so really it's figuring out how to upload music to it without storing my entire collection on the PC.
